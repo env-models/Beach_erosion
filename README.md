@@ -7,5 +7,4 @@ As the storm induced erosion processes are still a research topic, this analysis
 
 ## The following schema is resuming the general method .
 
-
-![alt text](https://raw.githubusercontent.com/Raph9989/Beach_erosion/master/images/schéma.png)
+![alt text](https://raw.githubusercontent.com/Raph9989/Beach_erosion/master/images/Schéma methode_english.jpg)
