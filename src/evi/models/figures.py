@@ -16,7 +16,7 @@ INK, INK2 = "#0b0b0b", "#52514e"
 plt.rcParams.update({"font.size": 10, "axes.edgecolor": INK2, "axes.labelcolor": INK, "xtick.color": INK2,
                      "ytick.color": INK2, "axes.spines.top": False, "axes.spines.right": False,
                      "axes.grid": True, "grid.color": "#e6e5e0", "grid.linewidth": 0.6, "figure.dpi": 150})
-LABEL = {"dV_upper": "ΔV upper beach (above HAT), m³/m", "dV_total_fixed": "ΔV total (fixed 0–139.9 m window), m³/m"}
+LABEL = {"dV_upper": "ΔV upper beach (above HAT), m³/m", "dV_total_fixed": "ΔV total (fixed cross-shore window), m³/m"}
 
 
 def _save(fig, name, df, tag):
@@ -42,7 +42,7 @@ def fig_skill(res, tag):
         ax.axvline(0, color=INK2, lw=1)
         ax.set_xlim(-1.2, 1)
         ax.set_title(LABEL[t], fontsize=10, color=INK)
-        ax.set_xlabel("Skill vs climatology = 1 − MSE/MSE_clim\n(95 % bootstrap CI)")
+        ax.set_xlabel("Skill vs climatology = 1 − MSE/MSE_clim\n(95 % bootstrap CI; axis clipped at −1.2)")
     axes[0].set_yticks(np.arange(len(order)))
     axes[0].set_yticklabels([names[m] for m in order], fontsize=8)
     h, l = axes[0].get_legend_handles_labels()

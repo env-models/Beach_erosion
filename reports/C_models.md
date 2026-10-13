@@ -1135,3 +1135,6 @@ python -c "from evi.models.run_all import hat_sensitivity, direction_ablation; h
 python -m evi.models.report v1 v2 v2C   # refresh the auto tables in this file + model cards
 ```
 Seeds are fixed (0); results are deterministic on the same library versions (`requirements.lock.txt`).
+Checked in this session: a fresh `git clone` of `revisit-2026` run with `python -m evi.models.run_all --data v1`
+reproduced `figures/tables/C_results_v1.csv` exactly (max absolute difference 0.0). Figures can be re-drawn from the
+saved tables without refitting (see `evi.models.figures.make_all`).
