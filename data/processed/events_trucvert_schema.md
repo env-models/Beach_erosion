@@ -95,7 +95,7 @@ exists only from about 2013). Mixing windows would alias the averaging change in
   HAT = +1.75 m MSL is used as in v1. The legacy datum is IGN69 − 0.39 m; the 1 cm difference is ignored.
 - **Fixed volume window**: x ∈ [30, 130] m (= B's xl 70–170 m). Therefore `V_pre_*`, `dV_*_fixed` and `x_window_fixed`
   are **not on the same window as v1** (which uses x ∈ [0, 139.9]). They are NaN when a survey does not reach x = 130
-  m: 27 of 98 events have NaN `dV_total_fixed`.
+  m: 17 of 98 events (27 of 201 intervals) have NaN `dV_total_fixed`.
 - `dV_*` without a suffix uses the pairwise common window, starting at x = 30.
 - Cross-check: `dV_upper` equals the differences of B's `v_upper` (w740) over the 174 intervals where both exist
   (correlation 1.000, mean absolute difference < 0.001 m³/m). Over the 97 survey intervals shared with v1,
