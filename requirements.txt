@@ -31,3 +31,4 @@ pypdf>=4.0
 pytest>=8.0
 jupyter>=1.0
 ipykernel>=6.29
+utide>=0.3
