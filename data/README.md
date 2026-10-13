@@ -199,4 +199,11 @@ Treat raw downloads as untrusted data. Run the scripts from the repo root with `
 ---
 
 ## 5. Lower-priority sources (recorded, not downloaded)
-See `reports/B_data.md` §5.
+
+| Source | What was found | Status |
+|---|---|---|
+| CoastSat / SDS Benchmark (Vos et al.) | GitHub `SatelliteShorelines/SDS_Benchmark` (GPL-3.0) includes **TRUCVERT**: transects, reference shoreline, a `TRUCVERT_tides.csv` of about 67 MB, `TRUCVERT_waves_ERA5.csv` of about 41 MB, and per-algorithm satellite shoreline submissions. Its in-situ series is derived from the same Castelle et al. (2020) data. CoastSat paper: Vos et al. 2019, Env. Modelling & Software, doi:10.1016/j.envsoft.2019.104528 (verified: yes). | not downloaded (time). The ERA5 wave CSV there is a credential-free ERA5 source [verify its licence/terms]. |
+| OCA LiDAR (Observatoire de la Côte de Nouvelle-Aquitaine) | Regional beach/dune LiDAR DEMs are distributed through OCA / PIGMA portals [verify URL and licence]. | not attempted |
+| Pléiades DEMs (Burvingt et al. 2025, *Remote Sensing* 17(9):1522, doi:10.3390/rs17091522) | The DOI resolves (MDPI). Data availability statement not checked [verify]. Pléiades imagery is commercial (Airbus), so DEMs are likely not open. | not attempted |
+| Biscarrosse EPOC surveys (Biausque) | No public repository found in this session [verify]; probably needs a request to EPOC, and outreach is Raphaël's decision. | not found |
+| Post-2019 Truc Vert surveys (SNO DYNALIT / OCA) | No open release found (see §1). | not found |
