@@ -29,10 +29,10 @@ These reports were being written concurrently with this index; check each file's
 
 | report | purpose | status | key result (one line) | reproduce |
 |---|---|---|---|---|
-| [`F_publishing_guide.md`](F_publishing_guide.md) | How to publish as an independent researcher: gates, journal choice, preprint, data/code release (pairs with [`../paper/publication_checklist.md`](../paper/publication_checklist.md)) | session 2 | see report | — |
-| [`S_sand_physics.md`](S_sand_physics.md) | Sand-physics literature relevant to storm erosion and recovery (grain size, fall velocity, berm/bar dynamics) | session 2 | see report | — |
+| [`F_publishing_guide.md`](F_publishing_guide.md) | How to publish as an independent researcher: gates, journal choice, preprint, data/code release (pairs with [`../paper/publication_checklist.md`](../paper/publication_checklist.md)) | done (session 2, fees/policies checked on journal sites 2026-10-13) | Top-3: NHESS (APC €1,800, waiver route, public review) > Coastal Engineering (€0 OA only via Couperin if an affiliated co-author is corresponding) > Géomorphologie (no APC found). Gates: journal AI-use rules, data rights on legacy OCA data, 2018-paper overlap disclosure, no LICENSE file yet | — |
+| [`S_sand_physics.md`](S_sand_physics.md) | Sand-physics / process literature: swash, berm, bars, dune erosion, recovery, sediment budget, forcing, process models (72 entries, 71 verified) | done (session 2) | Ranked physics the energy indicator ignores (morphological feedback, tide–storm phasing, within-interval recovery, bar state, infragravity, dune toe, export, direction) + 5 computable physics-informed features; Coco et al. 2014 (Truc Vert, daily surveys) is the key site citation | — |
 | [`N_recent_findings.md`](N_recent_findings.md) | 2024–2026 work and overlap check: has anyone already done what this project plans? | session 2 | see report | — |
-| [`G_el_nino_risks.md`](G_el_nino_risks.md) | El Niño / climate-mode risks and hazards relevant to this field and site | session 2 | see report | — |
+| [`G_el_nino_risks.md`](G_el_nino_risks.md) | El Niño 2026–27: ENSO state, teleconnection evidence for the Bay of Biscay, global hazards, risk register for Aquitaine | done (session 2, sources checked 2026-10-13) | Strong-to-very-strong El Niño under way (NOAA advisory 8 Oct 2026); no established ENSO link to Bay of Biscay winter storminess (Masselink et al. 2023); WEPA/NAO dominate; ENSO not added as a feature | — |
 
 ## `C_model_cards/`
 

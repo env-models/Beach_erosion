@@ -78,6 +78,24 @@ LOWO skill vs climatology on resolvable events [95 % CI] (RMSE m³/m):
 9. Dune-foot retreat / dune volume as a second response (E's hook #3, connects to Nicolae Lerma's dune work).
 10. Paper: pick title/venue with the supervisors; send E Part 4 material (owner's call); ORCID; fix README image paths (HANDOFF item 11); Zenodo release plan (`paper/publication_checklist.md`).
 
+## 4b. Session 2 (23:50 → ~00:30): more research, publishing, El Niño, cleanup
+Owner's request: use more credits; research more (incl. sand physics and whether others already found more); explain how to publish (gates, journal); El Niño risks; summarise and clean the project. Five agents (P, S, N, G, H) on Opus 5.5; modelling results frozen (D-30).
+
+| Agent | Output | Key result |
+|---|---|---|
+| P — publishing | `reports/F_publishing_guide.md`, `paper/publication_checklist.md` (verified) | Top-3 venues NHESS > Coastal Engineering > Géomorphologie; APC/waiver routes; 5 gates (AI-use rules, corresponding author/APC, open-science items, data rights, 2018 overlap); 17-step plan, cover letter, highlights, statement templates |
+| S — sand physics | `reports/S_sand_physics.md` (+71 bib entries) | 72 entries, 71 verified; ranked physics the indicator ignores; 5 computable physics-informed features (tide-weighted energy, Larson impact integral, saturating/sequence-depleted response, Ω disequilibrium, within-interval recovery correction); Coco et al. 2014 Truc Vert daily surveys = key citation; no held-out event-scale physics-informed volume model found on a meso-macrotidal beach |
+| N — recent work / overlap | `reports/N_recent_findings.md` | {{N_RESULT}} |
+| G — El Niño | `reports/G_el_nino_risks.md` | Strong-to-very-strong El Niño under way (NOAA CPC advisory 8 Oct 2026; WMO ~100 % through Feb 2027). Literature: no established ENSO → Bay of Biscay storminess link (Masselink et al. 2023 GRL: "unrelated to ENSO"; WEPA explains 50–80 % of winter wave-power variance); 2013–14 was ENSO-neutral. Risk register for winter 2026–27 (energetic WEPA+/NAO+ winter on an unobserved beach state; spring-tide storm clusters; late-winter southern-track Xynthia-type storms if a sudden stratospheric warming occurs). ENSO not added as a feature; WEPA is the climate index to use |
+| H — navigation | `README.md`, `reports/README.md`, `figures/README.md`, `scripts/README.md`, `docs/README.md`, `docs/GLOSSARY.md`, `src/evi/README.md`, `notebooks/README.md`, `Makefile` | Front-door README with repo map and reproduce block; 102 links checked; `make env|test|tables|audit|models|report|download|process`; lockfile portable; 24 tests pass |
+
+**Additional to-do from session 2** (append to §4):
+11. Choose and add a LICENSE (code: MIT/BSD-style; derived tables: CC BY 4.0 where upstream allows; RESOURCECODE-derived columns are CC BY-SA) and obtain written permission from OCA/BRGM for the legacy v1 data before any release.
+12. Decide corresponding author with the supervisors (drives the APC route); confirm BRGM eligibility under Couperin–Elsevier.
+13. Implement the five physics-informed features from `S_sand_physics.md` §B and re-run the frozen protocol (expect modest gains; report with CIs).
+14. The manuscript prose must be written by the author (journal AI-use rules); declare AI-assisted code/analysis; redraw all figures; disclose the 2018 overlap.
+15. Track winter 2026–27 through OCA bulletins / SHOM vigilance and, if a storm cluster occurs, request post-storm surveys from OCA/EPOC to extend the record (the record stops 2019-12).
+
 ## 5. Session timeline
 22:40 setup → 22:50 Wave 1 (A, B, D, E) → 22:53 event table v1 → 22:56 Agent C → 22:58 D done → 23:04 E done → 23:05 A done (v1.1 23:14, v2 23:15, HAT 2.14 regen 23:15, slope diagnostic 23:32) → 23:12 B done → 23:12 reviewer launched, done 23:20 → 23:27 C done → 23:37 C slope sensitivity done → 23:45 final push. All subagents ran on Opus 5.5; max 5 concurrent.
 
