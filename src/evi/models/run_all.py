@@ -28,9 +28,7 @@ CONFORMAL_MODELS = ["evi_general", "ppt_all", "eq_b", "lgbm", "two_stage_ml", "h
 REF_PPT = "ppt_2stage"
 
 
-def add_shorefor(ev: pd.DataFrame) -> pd.DataFrame:
-    from evi.io import load_hydro
-    hy = load_hydro()
+def add_shorefor(ev: pd.DataFrame, hy: pd.DataFrame) -> pd.DataFrame:
     parts = [shorefor_forcing(hy, ev, phi) for phi in SF_PHIS]
     return pd.concat([ev] + parts, axis=1)
 
@@ -53,9 +51,11 @@ def conformal_halfwidths(model, dtr, ctx, levels=LEVELS):
     return {a: float(res[min(n - 1, int(np.ceil((n + 1) * a)) - 1)]) for a in levels}
 
 
-def evaluate(ev, iv, target, subset, models, splits="lowo", with_intervals=True):
+def evaluate(ev, iv, target, subset, models, splits="lowo", with_intervals=True, holdout_test=P.HOLDOUT_TEST,
+             train_last=P.HOLDOUT_TRAIN_LAST):
     """Out-of-fold predictions for every model. Returns DataFrame (one row per event)."""
-    d = ev[ev["resolvable"]].reset_index(drop=True) if subset == "resolvable" else ev.reset_index(drop=True)
+    d = ev[ev["resolvable"]] if subset == "resolvable" else ev
+    d = d[d[target].notna()].reset_index(drop=True)  # missing target only (never filtered on its value)
     ctx = Ctx(target=target, intervals=iv)
     out = d[["event_id", "survey_start", "survey_end", "winter", "interval_days", target]].copy()
     out = out.rename(columns={target: "obs"})
@@ -64,7 +64,7 @@ def evaluate(ev, iv, target, subset, models, splits="lowo", with_intervals=True)
     if splits == "lowo":
         folds = [(tr, te) for _, tr, te in P.lowo_splits(d)]
     else:
-        tr, te = P.holdout_split(d)
+        tr, te = P.holdout_split(d, holdout_test, train_last)
         folds = [(tr, te)]
     from scipy.stats import norm
     for tr, te in folds:
@@ -189,14 +189,57 @@ def run_ablations(ev, iv, tag):
     return pd.DataFrame(rows), pd.DataFrame(target_rows)
 
 
-def run(tag="v1", events_path=P.EVENTS_V1, intervals_path=P.INTERVALS_V1, do_figs=True):
+def load_v1():
+    from evi.io import load_hydro
+    info = {"events": P.file_info(P.EVENTS_V1), "intervals": P.file_info(P.INTERVALS_V1)}
+    ev, iv = P.load_events()
+    return ev, iv, load_hydro(), info, [("holdout", P.HOLDOUT_TRAIN_LAST, P.HOLDOUT_TEST)], FEATURES, 4.224
+
+
+def load_v2():
+    """Agent A's v2 table (Castelle 2020 profiles w740 + hourly waves with direction)."""
+    from evi.io import load_hydro  # noqa: F401
+    dp = P.DATA
+    ev_p, iv_p = dp / "events_trucvert_v2.parquet", dp / "intervals_trucvert_v2.parquet"
+    info = {"events": P.file_info(ev_p), "intervals": P.file_info(iv_p)}
+    ev, iv = P.prepare(pd.read_parquet(ev_p), pd.read_parquet(iv_p))
+    info["n_imputed_pre_state_past_only"] = ev.attrs.get("n_imputed", {})
+    clim = pd.read_parquet(dp / "climate_indices.parquet").dropna(subset=["nao_djfm"])
+    nao = clim.groupby("winter")["nao_djfm"].first()
+    # winter "2013-14" -> DJFM 2013-14 (climate_indices 'winter' = year of Jan); concurrent seasonal index
+    ev["nao_winter"] = ev["winter"].map(lambda w: nao.get(float(int(w[:4]) + 1), float("nan")))
+    hy = pd.read_parquet(dp / "waves_castelle2020.parquet").set_index("time")[["hs", "tp"]]
+    hy = hy[hy.index >= ev["survey_start"].min() - pd.Timedelta(days=400)]
+    holdouts = [("holdout", P.HOLDOUT_TRAIN_LAST, ("2013-14",)),
+                ("recent", "2014-15", tuple(sorted(w for w in ev["winter"].unique() if w >= "2015-16")))]
+    return ev, iv, hy, info, holdouts, FEATURES + ["mean_dir", "nao_winter"], 3.56
+
+
+def load_v2c():
+    from .events_v2 import DP, build
+    ev, iv = build()
+    info = {"built_by": "evi.models.events_v2 (Agent C) from Agent B files",
+            "volumes": P.file_info(DP / "trucvert_castelle2020_volumes.parquet"),
+            "profiles": P.file_info(DP / "trucvert_castelle2020_profiles.parquet"),
+            "waves": P.file_info(DP / "waves_castelle2020.parquet"),
+            "climate": P.file_info(DP / "climate_indices.parquet"),
+            "n_events": len(ev), "n_intervals": len(iv), "hs95": ev.attrs["hs95"], "hs75": ev.attrs["hs75"]}
+    hs95 = ev.attrs["hs95"]
+    ev, iv = P.prepare(ev, iv)
+    hy = pd.read_parquet(DP / "waves_castelle2020.parquet").set_index("time")[["hs", "tp"]]
+    test = tuple(sorted(w for w in ev["winter"].unique() if w >= "2013-14"))
+    holdouts = [("holdout", P.HOLDOUT_TRAIN_LAST, ("2013-14",)),
+                ("recent", "2014-15", tuple(sorted(w for w in ev["winter"].unique() if w >= "2015-16")))]
+    return ev, iv, hy, info, holdouts, FEATURES + ["mean_dir", "nao_interval"], hs95
+
+
+def run(tag="v1", do_figs=True):
     P.seed_everything()
     t0 = time.time()
     OUT_TAB.mkdir(parents=True, exist_ok=True)
-    info = {"events": P.file_info(Path(events_path)), "intervals": P.file_info(Path(intervals_path))}
-    ev, iv = P.load_events(Path(events_path), Path(intervals_path))
-    ev = add_shorefor(ev)
-    models = {**baseline_models(), **ml_models()}
+    ev, iv, hydro, info, holdouts, feats, hs95 = {"v1": load_v1, "v2": load_v2, "v2C": load_v2c}[tag]()
+    ev = add_shorefor(ev, hydro)
+    models = {**baseline_models(), **ml_models(feats)}
     names = {k: m.name for k, m in models.items()}
     rows, cov, preds = [], [], {}
     for target in TARGETS:
@@ -205,14 +248,19 @@ def run(tag="v1", events_path=P.EVENTS_V1, intervals_path=P.INTERVALS_V1, do_fig
             preds[(target, subset, "lowo")] = pl
             rows += metrics_table(pl, models, names, tag, target, subset, "lowo")
             cov += coverage_rows(pl, tag, target, subset, "lowo")
-            ph = evaluate(ev, iv, target, subset, models, splits="holdout")
-            preds[(target, subset, "holdout")] = ph
-            for w in P.HOLDOUT_TEST:
-                sub = ph[ph["winter"] == w]
-                if len(sub) >= 3:
-                    rows += metrics_table(sub, models, names, tag, target, subset, f"holdout_{w}")
-                    cov += coverage_rows(sub, tag, target, subset, f"holdout_{w}")
-            rows += metrics_table(ph, models, names, tag, target, subset, "holdout_2013-15")
+            for label, train_last, test in holdouts:
+                ph = evaluate(ev, iv, target, subset, models, splits="holdout", holdout_test=test, train_last=train_last)
+                preds[(target, subset, label)] = ph
+                if label == "holdout":
+                    for w in test:
+                        sub = ph[ph["winter"] == w]
+                        if len(sub) >= 3:
+                            rows += metrics_table(sub, models, names, tag, target, subset, f"holdout_{w}")
+                            cov += coverage_rows(sub, tag, target, subset, f"holdout_{w}")
+                if label != "holdout" or len(test) > 1:
+                    sp = f"{label}_{test[0]}..{test[-1]}(train<= {train_last})"
+                    rows += metrics_table(ph, models, names, tag, target, subset, sp)
+                    cov += coverage_rows(ph, tag, target, subset, sp)
             print(f"[{tag}] {target}/{subset} done ({time.time()-t0:.0f}s)", flush=True)
     res = pd.DataFrame(rows)
     covdf = pd.DataFrame(cov)
@@ -226,22 +274,46 @@ def run(tag="v1", events_path=P.EVENTS_V1, intervals_path=P.INTERVALS_V1, do_fig
     (OUT_TAB / f"C_datainfo_{tag}.json").write_text(json.dumps(info, indent=2))
     if do_figs:
         from .figures import make_all
-        make_all(tag, ev, iv, preds, res, covdf)
+        make_all(tag, ev, iv, preds, res, covdf, hydro, hs95, feats)
     print(f"[{tag}] finished in {time.time()-t0:.0f}s", flush=True)
     return res, covdf, abl, abl_t
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data", default="v1", choices=["v1", "v2"])
-    ap.add_argument("--events", default=None)
-    ap.add_argument("--intervals", default=None)
+    ap.add_argument("--data", default="v1", choices=["v1", "v2", "v2C"])
     ap.add_argument("--no-figs", action="store_true")
     a = ap.parse_args()
-    ev = Path(a.events) if a.events else P.EVENTS_V1
-    iv = Path(a.intervals) if a.intervals else P.INTERVALS_V1
-    run(a.data, ev, iv, do_figs=not a.no_figs)
+    run(a.data, do_figs=not a.no_figs)
 
 
 if __name__ == "__main__":
     main()
+
+
+def hat_sensitivity():
+    """LOWO skill of key models on the HAT = 2.14 m tables vs the superseded HAT = 1.75 m tables."""
+    from .ml import ml_models as _ml
+    rows = []
+    keys = ["evi_general", "ppt_2stage", "harley", "eq_b", "rf"]
+    for ver, (e2, i2, e1, i1) in {
+        "v1": ("events_trucvert", "intervals_trucvert", "events_trucvert_hat175", "intervals_trucvert_hat175"),
+        "v2": ("events_trucvert_v2", "intervals_trucvert_v2", "events_trucvert_v2_hat175", "intervals_trucvert_v2_hat175"),
+    }.items():
+        for hat, (ef, inf) in {"2.14": (e2, i2), "1.75": (e1, i1)}.items():
+            ep, ip = P.DATA / f"{ef}.parquet", P.DATA / f"{inf}.parquet"
+            if not ep.exists():
+                continue
+            ev, iv = P.load_events(ep, ip)
+            allm = {**baseline_models(), **_ml()}
+            ms = {k: allm[k] for k in keys + ["clim"]}
+            for target in TARGETS:
+                pred = evaluate(ev, iv, target, "resolvable", ms, with_intervals=False)
+                for k in keys:
+                    m = P.bootstrap_metrics(pred["obs"], pred[k], {"clim": pred["clim"]})
+                    rows.append(dict(data=ver, hat_msl=hat, target=target, model=k, n=m["n"], rmse=m["rmse"],
+                                     skill_clim=m["skill_clim"], skill_clim_lo=m["skill_clim_lo"],
+                                     skill_clim_hi=m["skill_clim_hi"]))
+    out = pd.DataFrame(rows)
+    out.to_csv(OUT_TAB / "C_hat_sensitivity.csv", index=False)
+    return out

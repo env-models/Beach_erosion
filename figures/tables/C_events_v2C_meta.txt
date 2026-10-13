@@ -1,0 +1,1 @@
+Hs95=3.655 m, Hs75=2.101 m on 2003-09-01..2013-07-01; storms=200; surveys=267; intervals=266; events=128

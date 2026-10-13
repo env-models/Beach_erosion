@@ -126,24 +126,27 @@ class HybridResidual:
     """Equilibrium-B baseline + shallow LightGBM on its in-sample residuals (shrunk: 100 trees)."""
     name = "Hybrid (Equilibrium B + LightGBM residual)"
 
+    def __init__(self, features=FEATURES):
+        self.features = list(features)
+
     def fit(self, df, ctx):
         import lightgbm as lgb
         self.base = OLS([E_HAT, e_times_diseq], "eq_b", state_fn=True).fit(df, ctx)
         r = df[ctx.target].to_numpy(float) - self.base.predict(df)
         kw = dict(LGB_PARAMS, n_estimators=100)
-        self.m = lgb.LGBMRegressor(**kw).fit(df[FEATURES].astype(float), r)
+        self.m = lgb.LGBMRegressor(**kw).fit(df[self.features].astype(float), r)
         return self
 
     def predict(self, df):
-        return self.base.predict(df) + self.m.predict(df[FEATURES].astype(float))
+        return self.base.predict(df) + self.m.predict(df[self.features].astype(float))
 
 
-def ml_models() -> dict:
+def ml_models(features=FEATURES) -> dict:
     return {
-        "lgbm": Tree("lgbm"),
-        "xgb": Tree("xgb"),
-        "rf": Tree("rf"),
+        "lgbm": Tree("lgbm", features),
+        "xgb": Tree("xgb", features),
+        "rf": Tree("rf", features),
         "gp": GP(),
         "two_stage_ml": TwoStageML(),
-        "hybrid": HybridResidual(),
+        "hybrid": HybridResidual(features),
     }

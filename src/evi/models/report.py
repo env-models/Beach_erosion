@@ -74,12 +74,23 @@ def fill(tag_list):
             for sub in ["resolvable", "all"]:
                 blocks[f"lowo_{tag}_{tgt}_{sub}"] = results_md(res, "lowo", sub, tgt)
                 blocks[f"w1314_{tag}_{tgt}_{sub}"] = results_md(res, "holdout_2013-14", sub, tgt)
+        rec = sorted(x for x in res.split.unique() if str(x).startswith("recent_"))
+        if rec:
+            blocks[f"recent_{tag}"] = "".join(f"`{t}`, resolvable, split `{rec[0]}`:\n" + results_md(res, rec[0], "resolvable", t) + "\n"
+                                             for t in ["dV_upper", "dV_total_fixed"])
         blocks[f"abl_{tag}"] = ablation_md(pd.read_csv(TAB / f"C_ablations_{tag}.csv"))
         blocks[f"ablt_{tag}"] = target_md(pd.read_csv(TAB / f"C_ablation_target_{tag}.csv"))
         blocks[f"cov_{tag}"] = coverage_md(pd.read_csv(TAB / f"C_coverage_{tag}.csv"))
         imp = pd.read_csv(TAB / f"C_shap_importance_{tag}.csv", index_col=0)
         blocks[f"shap_{tag}"] = "| feature | mean abs SHAP (m³/m) |\n|---|---|\n" + "\n".join(
             f"| {k} | {v:.2f} |" for k, v in imp["mean_abs_shap"].items()) + "\n"
+    hf = TAB / "C_hat_sensitivity.csv"
+    if hf.exists():
+        h = pd.read_csv(hf)
+        blocks["hat"] = "| data | target | model | n | RMSE HAT 2.14 | RMSE HAT 1.75 | skill vs clim HAT 2.14 [CI] | skill vs clim HAT 1.75 [CI] |\n|---|---|---|---|---|---|---|---|\n" + "\n".join(
+            f"| {d} | {t} | {m} | {g.n.iloc[0]} | " + " | ".join(f"{g[g.hat_msl == x].rmse.iloc[0]:.2f}" if (g.hat_msl == x).any() else "–" for x in (2.14, 1.75)) + " | "
+            + " | ".join(_ci(g[g.hat_msl == x].iloc[0], "skill_clim") if (g.hat_msl == x).any() else "–" for x in (2.14, 1.75)) + " |"
+            for (d, t, m), g in h.groupby(["data", "target", "model"], sort=False)) + "\n"
     for k, v in blocks.items():
         pat = re.compile(rf"(<!-- AUTO:{k} -->\n)(.*?)(<!-- /AUTO:{k} -->)", re.S)
         txt = pat.sub(lambda m: m.group(1) + v + m.group(3), txt)

@@ -1,0 +1,27 @@
+{
+  "built_by": "evi.models.events_v2 (Agent C) from Agent B files",
+  "volumes": {
+    "path": "data/processed/trucvert_castelle2020_volumes.parquet",
+    "mtime": "2026-10-13 23:02:33 CEST",
+    "n_rows": 701
+  },
+  "profiles": {
+    "path": "data/processed/trucvert_castelle2020_profiles.parquet",
+    "mtime": "2026-10-13 23:02:33 CEST",
+    "n_rows": 59403
+  },
+  "waves": {
+    "path": "data/processed/waves_castelle2020.parquet",
+    "mtime": "2026-10-13 23:02:54 CEST",
+    "n_rows": 175320
+  },
+  "climate": {
+    "path": "data/processed/climate_indices.parquet",
+    "mtime": "2026-10-13 22:58:31 CEST",
+    "n_rows": 921
+  },
+  "n_events": 128,
+  "n_intervals": 266,
+  "hs95": 3.6548084251546427,
+  "hs75": 2.1005563728640775
+}

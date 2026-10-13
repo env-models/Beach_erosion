@@ -36,9 +36,9 @@ def fig_skill(res, tag):
         for j, (sp, col, mk, off) in enumerate([("lowo", C1, "o", -0.15), ("holdout_2013-14", C2, "s", 0.15)]):
             g = keep[(keep.target == t) & (keep.split == sp)].set_index("model").loc[order]
             y = np.arange(len(order)) + off
+            lab = {"lowo": "Leave-one-winter-out", "holdout_2013-14": "Hold-out winter 2013-14"}[sp]
             ax.errorbar(g["skill_clim"], y, xerr=[g["skill_clim"] - g["skill_clim_lo"], g["skill_clim_hi"] - g["skill_clim"]],
-                        fmt=mk, color=col, ms=6, lw=1.5, capsize=0,
-                        label={"lowo": "Leave-one-winter-out (n=48)", "holdout_2013-14": "Hold-out winter 2013-14 (n=12)"}[sp])
+                        fmt=mk, color=col, ms=6, lw=1.5, capsize=0, label=f"{lab} (n={int(g['n'].iloc[0])})")
         ax.axvline(0, color=INK2, lw=1)
         ax.set_xlim(-1.2, 1)
         ax.set_title(LABEL[t], fontsize=10, color=INK)
@@ -77,12 +77,14 @@ def fig_energy(ev, tag):
     _save(fig, "fig_energy_vs_dV", d, tag)
 
 
-def fig_shap(ev, tag):
+def fig_shap(ev, tag, features=None):
     import shap
     from .baselines import Ctx
-    from .ml import FEATURES, Tree
+    from .ml import FEATURES as _F, Tree
+    FEATURES = _F  # noqa: N806
     d = ev[ev["resolvable"]].reset_index(drop=True)
-    m = Tree("lgbm").fit(d, Ctx("dV_upper"))
+    FEATURES = list(features or FEATURES)  # noqa: N806
+    m = Tree("lgbm", FEATURES).fit(d, Ctx("dV_upper"))
     X = d[FEATURES].astype(float)
     sv = shap.TreeExplainer(m.m).shap_values(X)
     plt.figure()
@@ -143,19 +145,17 @@ def fig_calibration(cov, tag):
                     label=("GP posterior" if k == "gp" else f"{k} (CV+ conformal)"))
         ax.set_xlabel("Nominal interval coverage")
         ax.set_title(LABEL[t], fontsize=9)
-    axes[0].set_ylabel("Empirical coverage (LOWO, n = 48)")
+    axes[0].set_ylabel(f"Empirical coverage (LOWO, n = {int(c['n'].iloc[0])})")
     axes[0].legend(fontsize=7, frameon=False)
     fig.tight_layout()
     _save(fig, "fig_calibration", c, tag)
 
 
-def fig_timeline(ev, iv, tag):
-    from evi.io import load_hydro
-    hy = load_hydro()
+def fig_timeline(ev, iv, tag, hy, hs95):
     fig, axes = plt.subplots(2, 1, figsize=(12, 5.5), sharex=True, gridspec_kw={"height_ratios": [1, 1.2]})
     axes[0].plot(hy.index, hy["hs"], color=C1, lw=0.5)
-    axes[0].axhline(4.224, color=C2, lw=1, ls="--", label="Hs95 = 4.22 m (storm peak threshold)")
-    axes[0].set_ylabel("Hs (WW3), m")
+    axes[0].axhline(hs95, color=C2, lw=1, ls="--", label=f"Hs95 = {hs95:.2f} m (storm peak threshold)")
+    axes[0].set_ylabel("Hs, m")
     axes[0].legend(fontsize=8, frameon=False, loc="upper left")
     a = axes[1]
     ivp = iv.copy()
@@ -167,18 +167,18 @@ def fig_timeline(ev, iv, tag):
     a.axhline(0, color=INK2, lw=0.8)
     a.set_ylabel("ΔV upper beach, m³/m\n(> 0 = erosion)")
     a.legend(fontsize=8, frameon=False, loc="lower left")
-    fig.suptitle("Forcing and survey-interval volume change, 2008–2014 (bar width = survey interval)", fontsize=10)
+    fig.suptitle(f"Forcing and survey-interval volume change, {iv.survey_start.min():%Y}–{iv.survey_end.max():%Y}, data {tag} (bar width = survey interval)", fontsize=10)
     fig.tight_layout()
     _save(fig, "fig_event_timeline", ivp[["survey_start", "survey_end", "interval_days", "n_storms", "dV_upper",
                                           "dV_total_fixed", "winter"]], tag)
 
 
-def make_all(tag, ev, iv, preds, res, cov):
+def make_all(tag, ev, iv, preds, res, cov, hydro, hs95, features=None):
     FIG.mkdir(exist_ok=True)
     fig_skill(res, tag)
     fig_energy(ev, tag)
-    imp = fig_shap(ev, tag)
+    imp = fig_shap(ev, tag, features)
     imp.rename("mean_abs_shap").to_csv(FIG / "tables" / f"C_shap_importance_{tag}.csv")
     fig_winter(preds, tag)
     fig_calibration(cov, tag)
-    fig_timeline(ev, iv, tag)
+    fig_timeline(ev, iv, tag, hydro, hs95)

@@ -60,13 +60,36 @@ def past_only_anomaly(events: pd.DataFrame, intervals: pd.DataFrame, col: str = 
     out = []
     for t, v in zip(events["survey_start"], events[col]):
         m = (surveys["survey_start"] < t) & (surveys["survey_start"] >= t - pd.Timedelta(days=window_days))
-        out.append(v - surveys.loc[m, col].mean() if m.any() else 0.0)
-    return pd.Series(out, index=events.index, name=f"{col}_anom_past")
+        out.append(v - surveys.loc[m, col].mean() if m.any() and np.isfinite(v) else 0.0)
+    return pd.Series(out, index=events.index, name=f"{col}_anom_past").fillna(0.0)
 
 
 def load_events(path: Path = EVENTS_V1, intervals_path: Path = INTERVALS_V1) -> tuple[pd.DataFrame, pd.DataFrame]:
-    ev = pd.read_parquet(path).sort_values("survey_start").reset_index(drop=True)
-    iv = pd.read_parquet(intervals_path).sort_values("survey_start").reset_index(drop=True)
+    return prepare(pd.read_parquet(path), pd.read_parquet(intervals_path))
+
+
+def prepare(ev: pd.DataFrame, iv: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Add protocol columns (resolvable flag, past-only anomalies, codes) to an event table."""
+    ev = ev.copy()
+    iv = iv.copy()
+    for d in (ev, iv):
+        for c in ("survey_start", "survey_end"):
+            d[c] = pd.to_datetime(d[c])
+    ev = ev.sort_values("survey_start").reset_index(drop=True)
+    iv = iv.sort_values("survey_start").reset_index(drop=True)
+    # Missing pre-storm state (survey does not cover the fixed window, v2): carry forward the last
+    # earlier survey's value (past-only). Count recorded in ev.attrs["n_imputed"].
+    n_imp = {}
+    for c in ("V_pre_total", "V_pre_upper", "V_pre_lower", "intertidal_slope_pre", "berm_volume_pre"):
+        if c not in ev or not ev[c].isna().any():
+            continue
+        hist = iv[["survey_start", c]].dropna().sort_values("survey_start")
+        miss = ev[c].isna()
+        n_imp[c] = int(miss.sum())
+        for i in ev.index[miss]:
+            h = hist[hist["survey_start"] < ev.at[i, "survey_start"]]
+            ev.at[i, c] = h[c].iloc[-1] if len(h) else hist[c].median()
+    ev.attrs["n_imputed"] = n_imp
     ev["resolvable"] = ev["interval_days"] <= MAX_RESOLVABLE_DAYS
     ev["V_anom_past"] = past_only_anomaly(ev, iv, "V_pre_total")
     ev["Vup_anom_past"] = past_only_anomaly(ev, iv, "V_pre_upper")
@@ -85,9 +108,9 @@ def lowo_splits(ev: pd.DataFrame):
         yield w, tr, te
 
 
-def holdout_split(ev: pd.DataFrame):
-    tr = np.where(ev["winter"].values <= HOLDOUT_TRAIN_LAST)[0]
-    te = np.where(np.isin(ev["winter"].values, HOLDOUT_TEST))[0]
+def holdout_split(ev: pd.DataFrame, test_winters=HOLDOUT_TEST, train_last=HOLDOUT_TRAIN_LAST):
+    tr = np.where(ev["winter"].values <= train_last)[0]
+    te = np.where(np.isin(ev["winter"].values, test_winters))[0]
     return tr, te
 
 

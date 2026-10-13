@@ -1,0 +1,18 @@
+{
+  "events": {
+    "path": "data/processed/events_trucvert_v2.parquet",
+    "mtime": "2026-10-13 23:13:29 CEST",
+    "n_rows": 98
+  },
+  "intervals": {
+    "path": "data/processed/intervals_trucvert_v2.parquet",
+    "mtime": "2026-10-13 23:13:29 CEST",
+    "n_rows": 201
+  },
+  "n_imputed_pre_state_past_only": {
+    "V_pre_total": 9,
+    "V_pre_upper": 9,
+    "V_pre_lower": 9,
+    "intertidal_slope_pre": 1
+  }
+}
