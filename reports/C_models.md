@@ -1124,7 +1124,7 @@ side-by-side in `figures/tables/C_slopefix_comparison.csv`. Default results (v1,
 | Two-stage (logit -> OLS per branch, expected value) | 0.73 [0.44, 0.86] (11.7) | 0.74 [0.30, 0.91] (11.3) | 0.30 [-2.39, 0.85] (17.6) | 0.22 [-3.28, 0.87] (18.6) |
 | Hybrid (Equilibrium B + LightGBM residual) | 0.76 [0.40, 0.91] (10.9) | 0.72 [0.28, 0.88] (11.8) | 0.68 [-0.20, 0.81] (11.8) | 0.65 [-0.78, 0.84] (12.5) |
 
-Recent hold-out (v2s, train ≤ 2012-13 → ≤ 2014-15, test 2015-16 → 2019-20, n = 38, `dV_upper`): EVI General 0.37
+Recent hold-out (v2s, train ≤ 2014-15, test 2015-16 → 2019-20, n = 38, `dV_upper`): EVI General 0.37
 [0.11, 0.60] (v2: 0.38), Equilibrium B 0.48 [0.20, 0.71] (v2: 0.47), ShoreFor-flavoured 0.46 (same), LightGBM 0.05
 [−0.56, 0.53] (v2: −0.17), GP 0.41 [0.07, 0.66] (v2: 0.31).
 
