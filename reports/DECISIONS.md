@@ -17,3 +17,5 @@ Session started 2026-10-13 ~22:45 local. Orchestrator: Claude (Fable 5.1). Owner
 ## Wave 1 (A, B, D, E in parallel)
 
 (appended below as decisions are made)
+- **[22:52] D-10 — All subagents run on Opus 5.5 (`model: opus`).** Owner said mid-session they need to move off Fable 5.1 to conserve credits. Orchestrator stays on whatever model the owner selects with `/model`; subagents are pinned to Opus 5.5.
+- **[22:52] D-11 — Shared working tree, disjoint paths.** Agents work in the same checkout on `revisit-2026` and stage only their own paths (`git add <paths>`), never `git add -A`, and retry on `index.lock`. Only the orchestrator pushes. Rationale: 4 worktrees would need 4 merges at the end; path ownership from HANDOFF §3 is already disjoint.
