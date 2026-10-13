@@ -1,6 +1,6 @@
 """Regenerate every Agent-C result: ``python -m evi.models.run_all [--data v1|v2] [--quick]``.
 
-Writes figures/*.png + *.csv and reports/C_results_*.csv tables (consumed by C_models.md).
+Writes figures/*.png + *.csv and figures/tables/C_*.csv tables (consumed by reports/C_models.md).
 """
 from __future__ import annotations
 

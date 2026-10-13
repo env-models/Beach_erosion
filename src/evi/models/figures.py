@@ -42,10 +42,11 @@ def fig_skill(res, tag):
         ax.axvline(0, color=INK2, lw=1)
         ax.set_xlim(-1.2, 1)
         ax.set_title(LABEL[t], fontsize=10, color=INK)
-        ax.set_xlabel("MSE skill vs climatology (1 − MSE/MSE_clim), 95 % bootstrap CI")
+        ax.set_xlabel("Skill vs climatology = 1 − MSE/MSE_clim\n(95 % bootstrap CI)")
     axes[0].set_yticks(np.arange(len(order)))
     axes[0].set_yticklabels([names[m] for m in order], fontsize=8)
-    axes[0].legend(loc="lower left", fontsize=8, frameon=False)
+    h, l = axes[0].get_legend_handles_labels()
+    fig.legend(h, l, loc="lower center", ncol=2, fontsize=9, frameon=False, bbox_to_anchor=(0.6, -0.04))
     fig.suptitle(f"Skill of each model, resolvable events (interval ≤ {P.MAX_RESOLVABLE_DAYS:g} d), data {tag}", fontsize=11)
     fig.tight_layout()
     cols = ["model", "model_name", "target", "split", "n", "skill_clim", "skill_clim_lo", "skill_clim_hi", "rmse", "rmse_lo", "rmse_hi"]
@@ -117,8 +118,6 @@ def fig_winter(preds, tag):
         ax.plot(x, p["obs"].cumsum(), color=INK, lw=2.2, marker="o", ms=5, label="Observed")
         for k, lab, col in models:
             ax.plot(x, p[k].cumsum(), color=col, lw=1.6, marker="o", ms=3.5, label=lab)
-        if "gp_lo0.9" in p:
-            pass
         ax.axhline(0, color=INK2, lw=0.8)
         ax.set_ylabel("Cumulative " + LABEL[t] + "\n(> 0 = erosion)", fontsize=9)
         ax.tick_params(axis="x", rotation=30)

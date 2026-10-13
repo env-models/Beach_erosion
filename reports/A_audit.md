@@ -12,7 +12,7 @@ check is tagged [verify].
   This is pinned by a regression test (`tests/test_reproduction.py`).
 * **The notebook is not the thesis pipeline.** It integrates ΔV over the whole profile for every model
   (no "above HAT" volume), uses a threshold of +3 m instead of HAT (+1.75 m MSL), a different train/test
-  split (85/15 of the Hs series → split at 2013-12-13 08:00 UTC; test = Dec 2013–Dec 2014 only), quantiles on
+  split (85/15 of the 3-hourly series → first test sample 17,388 on 2013-12-13; test = mid-Dec 2013 → Dec 2014 only), quantiles on
   2008–2014, and a non-standard "R" (n-weighted average of two per-group Pearson R). Thesis numbers therefore
   cannot be reproduced exactly from this code; the closest analogues are reported side by side.
 * **The headline "R = 0.97 / R² = 0.85" is not robust.** In the notebook test set (n = 8 erosive events), the
@@ -156,8 +156,8 @@ Same code path as the notebook (85/15 split, whole-profile ΔV, notebook metrics
 * `berm_volume_pre` is a proxy (sand between +1.75 m and +4.0 m MSL seaward of the +4 m crossing); the
   +4 m dune-toe level and the −1.5/+1.5 m intertidal band are assumptions [verify].
 * Wave direction is not in the repo data (`mean_dir` = NaN); Agent B's CANDHIS/hindcast data should fill it.
-* Validation window here ends 2014-12-31 (repo forcing), whereas the thesis validated to mid-2015.
-* `docs/thesis/thesis_key_sections_en.md` (optional translation): see that file if present.
+* Validation window here ends 2014-12-31 (repo forcing), whereas the thesis validation period is "2014–2015".
+* `docs/thesis/thesis_key_sections_en.md`: agent translation of key passages, not checked by the author [verify].
 
 ## Reproduce
 ```bash
