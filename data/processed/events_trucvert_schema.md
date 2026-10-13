@@ -13,7 +13,7 @@ storm thresholds (computed on 2009-01-01 → 2013-12-01, see below) — Agent C 
 window as "in-sample" for the thresholds.
 
 ## Conventions
-* Times: naive UTC. Survey datenums converted exactly (`datetime.fromordinal(int(d)) + frac - 366 d`); every survey is at 12:00.
+* Times: naive UTC. The CSV clock is shifted by +3600 s (it is CET, 1 h early; see reports/A_audit.md §2.2). Survey datenums converted exactly (`datetime.fromordinal(int(d)) + frac - 366 d`); every survey is at 12:00.
 * Elevations: m relative to the profile datum = MSL at Truc Vert (0 = +0.39 m IGN69).
 * HAT (PHMA) = +2.14 m IGN69 = **+1.75 m MSL** (`evi.constants.HAT_MSL`).
 * Δt = 3 h per forcing sample; a sample at time t belongs to interval [survey_start, survey_end).

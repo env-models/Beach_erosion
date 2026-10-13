@@ -19,3 +19,10 @@ def test_datenum_first_survey():
 def test_notebook_fudge_is_one_hour_early():
     d = np.array([732410.5, 736133.5])
     assert np.allclose(datenum_to_unix(d) - datenum_to_unix_notebook(d), 3599.8, atol=0.5)
+
+
+def test_csv_clock_offset():
+    from evi.io import load_hydro
+    import pandas as pd
+    assert load_hydro(time_offset_s=0).index[0] == pd.Timestamp("2007-12-31 23:00")
+    assert load_hydro().index[0] == pd.Timestamp("2008-01-01 00:00")

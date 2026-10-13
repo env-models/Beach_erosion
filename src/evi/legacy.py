@@ -89,7 +89,7 @@ def _safe_delete(a: np.ndarray, idx: list[int]) -> np.ndarray:
 def run_notebook(o: NotebookOptions = NotebookOptions(), hydro: pd.DataFrame | None = None,
                  prof: Profiles | None = None, return_events: bool = False) -> dict:
     """Run the notebook pipeline; returns fits and metrics for General/TPTE/PPT (train/test)."""
-    hydro = load_hydro() if hydro is None else hydro
+    hydro = load_hydro(time_offset_s=0.0) if hydro is None else hydro  # raw CSV clock, as the notebook
     prof = load_profiles() if prof is None else prof
     hs, tp, wl = (hydro[c].values.astype(float) for c in ("hs", "tp", "wl"))
     t_hs = hydro["t_unix"].values.astype(float)

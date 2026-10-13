@@ -43,14 +43,24 @@ def datenum_to_unix_notebook(d: np.ndarray) -> np.ndarray:
     return np.asarray(d, dtype=float) * 86400.0 + epoch_sec - 365.242 * 86400.0 - 155491.0
 
 
-def load_hydro(path: Path | str = HYDRO_CSV) -> pd.DataFrame:
-    """Return the 3-hourly forcing with a UTC DatetimeIndex.
+# The CSV's "# time" stamps are 1 h EARLY w.r.t. UTC (built from CET local time): the first
+# record is 2007-12-31T23:00Z, and Hs/fp match the raw WW3 2010 files (nearest node 44.667N,
+# -1.5E, 3-hourly at 00,03..UTC) and the MARS2D level matches datasets/Level/2010 exactly
+# only after adding 3600 s (see reports/A_audit.md, §2.2).
+CSV_TIME_OFFSET_S: float = 3600.0
 
-    Columns: ``t_unix`` (s), ``hs`` (m), ``tp`` (s), ``wl`` (m, MARS2D tide+surge,
-    the ``setup`` column of the CSV, assumed MSL-referenced like the profiles [verify]).
+
+def load_hydro(path: Path | str = HYDRO_CSV, time_offset_s: float = CSV_TIME_OFFSET_S) -> pd.DataFrame:
+    """Return the 3-hourly forcing with a true-UTC DatetimeIndex.
+
+    Columns: ``t_unix`` (s, UTC after adding ``time_offset_s``), ``hs`` (m), ``tp`` (s),
+    ``wl`` (m, MARS2D tide+surge = the misnamed ``setup`` column; CF standard name of the
+    source variable XE is ``sea_surface_height_above_sea_level``, i.e. model mean sea level).
+    Use ``time_offset_s=0`` to get the raw CSV clock (notebook reproduction).
     """
     df = pd.read_csv(path, sep=";")
     df = df.rename(columns={"# time": "t_unix", "setup": "wl"})
+    df["t_unix"] = df["t_unix"] + time_offset_s
     df.index = pd.to_datetime(df["t_unix"], unit="s", utc=True).dt.tz_localize(None)
     df.index.name = "time"
     return df[["t_unix", "hs", "tp", "wl"]]

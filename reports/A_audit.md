@@ -1,6 +1,6 @@
 # A — Reproduction and audit of the 2017/2020 EVI pipeline
 
-Agent A, 2026-10-13. Code: `src/evi/` (clean package), tests: `tests/` (23 passing), data products:
+Agent A, 2026-10-13. Code: `src/evi/` (clean package), tests: `tests/` (24 passing), data products:
 `data/processed/{events,intervals}_trucvert.{parquet,csv}` + `events_trucvert_schema.md`,
 `data/processed/reproduction_A.json` (all numbers below). Every number in this report was computed by
 the commands in **Reproduce**; numbers quoted from the thesis are marked "thesis:"; anything I could not
@@ -74,30 +74,30 @@ Same code path as the notebook (85/15 split, whole-profile ΔV, notebook metrics
 |---|---|---|---|---|---|---|---|---|
 | E_notebook | stormHAT | dV_upper | 35 | 0.23 | 11 | 0.75 | 0.52 | 8.53 |
 | E_notebook | stormHAT | dV_total_fixed | 35 | 0.23 | 11 | 0.88 | 0.76 | 11.25 |
-| E_notebook | storm | dV_upper | 36 | 0.29 | 11 | 0.79 | 0.61 | 7.73 |
-| E_notebook | storm | dV_total_fixed | 36 | 0.31 | 11 | 0.91 | 0.79 | 10.43 |
+| E_notebook | storm | dV_upper | 36 | 0.29 | 11 | 0.78 | 0.60 | 7.85 |
+| E_notebook | storm | dV_total_fixed | 36 | 0.31 | 11 | 0.91 | 0.80 | 10.37 |
 | E_Hs2dt | stormHAT | dV_upper | 35 | 0.23 | 11 | 0.75 | 0.52 | 8.53 |
 | E_Hs2dt | stormHAT | dV_total_fixed | 35 | 0.23 | 11 | 0.88 | 0.76 | 11.25 |
-| E_Hs2dt | storm | dV_upper | 36 | 0.29 | 11 | 0.79 | 0.61 | 7.73 |
-| E_Hs2dt | storm | dV_total_fixed | 36 | 0.31 | 11 | 0.91 | 0.79 | 10.43 |
+| E_Hs2dt | storm | dV_upper | 36 | 0.29 | 11 | 0.78 | 0.60 | 7.85 |
+| E_Hs2dt | storm | dV_total_fixed | 36 | 0.31 | 11 | 0.91 | 0.80 | 10.37 |
 | E_dens | stormHAT | dV_upper | 35 | 0.23 | 11 | 0.75 | 0.52 | 8.53 |
 | E_dens | stormHAT | dV_total_fixed | 35 | 0.23 | 11 | 0.88 | 0.76 | 11.25 |
-| E_dens | storm | dV_upper | 36 | 0.29 | 11 | 0.79 | 0.61 | 7.73 |
-| E_dens | storm | dV_total_fixed | 36 | 0.31 | 11 | 0.91 | 0.79 | 10.43 |
+| E_dens | storm | dV_upper | 36 | 0.29 | 11 | 0.78 | 0.60 | 7.85 |
+| E_dens | storm | dV_total_fixed | 36 | 0.31 | 11 | 0.91 | 0.80 | 10.37 |
 | E_Pflux | stormHAT | dV_upper | 35 | 0.22 | 11 | 0.75 | 0.52 | 8.58 |
 | E_Pflux | stormHAT | dV_total_fixed | 35 | 0.22 | 11 | 0.89 | 0.77 | 10.98 |
-| E_Pflux | storm | dV_upper | 36 | 0.28 | 11 | 0.79 | 0.61 | 7.73 |
-| E_Pflux | storm | dV_total_fixed | 36 | 0.30 | 11 | 0.92 | 0.82 | 9.83 |
+| E_Pflux | storm | dV_upper | 36 | 0.28 | 11 | 0.79 | 0.60 | 7.84 |
+| E_Pflux | storm | dV_total_fixed | 36 | 0.31 | 11 | 0.92 | 0.82 | 9.81 |
 
 ## 2. Audit of HANDOFF §2.1 (11 items)
 
 | # | issue | confirmed? (evidence) | fix applied (where) | effect on metrics |
 |---|---|---|---|---|
-| 1 | Energy units | **Yes.** Notebook: `En=(1/16*densi*g*Hs**2)*3`, then `/1e6`, Δt = 3 in hours → unit is 1e6 J·h·m⁻², labelled "MJ/m" (notebook) and "MJ/m²" (thesis). Thesis Eq. (p. 10) defines flux P = ρg²Hs²TpΔt/(64π) with Δt "en heures", and §II defines E as the time integral of energy density in J/m². Neither label is dimensionally right. | Four explicitly-unitised variants in `evi.energy` and in the event table: `E_notebook_*_MJh_m2` (reproduction only), `E_Hs2dt_*_m2h`, `E_dens_*_MJs_m2`, `E_Pflux_*_GJ_m` (ρ=1025, g=9.81). Tested in `tests/test_energy.py`. | None on linear-fit skill: the first three are exact multiples of each other (test `test_energy_variants_are_rescalings`), identical R²/RMSE (§1.2); only the slope's numeric value changes (×3600×9.81/9.8 from notebook unit to MJ·s·m⁻²). Energy flux (Tp-weighted) is marginally different (val R² 0.82 vs 0.79 on ΔV_total, all storm hours, n = 11 — within noise). |
-| 2 | Threshold: β = 3 vs HAT = +1.75 m MSL | **Yes.** Notebook cell 10: `beta = 3`. HAT/PHMA = +2.14 m IGN69 (thesis p. 20, Fig. list) = +1.75 m in the MSL-referenced profiles. The thesis figures were produced with PHMA by the author's description; the 2020 notebook (a later Python port) used +3 m, so the notebook cannot have produced the thesis figures [verify against original 2017 code, not in repo]. | `HAT_MSL = 1.75` in `evi.constants`; clean pipeline compares TWL to HAT vertically. Ablation step 3. | Notebook pipeline: PPT train R_w 0.83 → 0.87, RMSE_w 11.67 → 10.51; General/TPTE ±0.02 in R. **Side finding [verify]:** with HAT = +1.75 m, the MARS2D still water level alone exceeds HAT in 3.7% of samples and TWL ≥ HAT in 37% of samples; this is inconsistent with HAT being "rarely exceeded" (thesis p. 20). Either the MARS2D level is not MSL-referenced like the profiles, or HAT in model datum is higher. Needs the MARS2D datum (Agent B). |
+| 1 | Energy units | **Yes.** Notebook: `En=(1/16*densi*g*Hs**2)*3`, then `/1e6`, Δt = 3 in hours → unit is 1e6 J·h·m⁻², labelled "MJ/m" (notebook) and "MJ/m²" (thesis). Thesis Eq. (p. 10) defines flux P = ρg²Hs²TpΔt/(64π) with Δt "en heures", and §II defines E as the time integral of energy density in J/m². Neither label is dimensionally right. | Four explicitly-unitised variants in `evi.energy` and in the event table: `E_notebook_*_MJh_m2` (reproduction only), `E_Hs2dt_*_m2h`, `E_dens_*_MJs_m2`, `E_Pflux_*_GJ_m` (ρ=1025, g=9.81). Tested in `tests/test_energy.py`. | None on linear-fit skill: the first three are exact multiples of each other (test `test_energy_variants_are_rescalings`), identical R²/RMSE (§1.2); only the slope's numeric value changes (×3600×9.81/9.8 from notebook unit to MJ·s·m⁻²). Energy flux (Tp-weighted) is marginally different (val R² 0.82 vs 0.80 on ΔV_total, all storm hours, n = 11 — within noise). |
+| 2 | Threshold: β = 3 vs HAT = +1.75 m MSL | **Yes.** Notebook cell 10: `beta = 3`. HAT/PHMA = +2.14 m IGN69 (thesis p. 20, Fig. list) = +1.75 m in the MSL-referenced profiles. The thesis figures were produced with PHMA by the author's description; the 2020 notebook (a later Python port) used +3 m, so the notebook cannot have produced the thesis figures [verify against original 2017 code, not in repo]. | `HAT_MSL = 1.75` in `evi.constants`; clean pipeline compares TWL to HAT vertically. Ablation step 3. | Notebook pipeline: PPT train R_w 0.83 → 0.87, RMSE_w 11.67 → 10.51; General/TPTE ±0.02 in R. **Side finding [verify]:** with HAT = +1.75 m, the MARS2D still water level alone exceeds HAT in 3.7% of samples and TWL ≥ HAT in 37% of samples; this is inconsistent with HAT being "rarely exceeded" (thesis p. 20). The source variable in `datasets/Level/2010/*.nc` (`XE`, MARS2D AQUI250, point 44.641 N, −1.290 E) has CF standard name `sea_surface_height_above_sea_level` (model mean level) and the CSV `setup` column equals it exactly (after the 1 h clock fix), so the water level is nominally MSL-referenced; the mismatch then points to the HAT value/datum or to a model-vs-site MSL offset [verify with SHOM PHMA and a tide gauge — Agent B]. |
 | 3 | Index misalignment (`ELE[~isnull]` vs unfiltered `DIST=x`) | **Latent only.** All 168 profiles have NaNs only as a trailing block (0 profiles with leading/interior NaN; checked in code), so `ELE` indices still align with `x`. Valid points per profile: 1400–2980. | `evi.profiles` never strips NaNs; it uses `valid_extent` and the original grid. | None on this dataset (ablation step 2 combines items 3–4). |
 | 4 | `find_nearest` on non-monotonic profiles | **Yes, but rare.** Only 1/168 profiles crosses +3 m or +1.75 m more than once. The nearest-value search also picks the nearest *sample* rather than an interpolated crossing. Exceedance sign disagreements between nearest and landward-most crossing: 13 of 18,057 defined steps (β=3), 31 (HAT). | `evi.profiles.landward_crossing` (first down-crossing from the dune, linear interpolation); test with a barred profile. | Tiny on fits (General RMSE 15.4 → 15.3; PPT train RMSE_w 11.73 → 11.67) but it **flips the reported PPT test R from 0.97 to 0.47** because one 2-event group's R goes from +1 to −1 (see item 9). |
-| 5 | Datenum fudge | **Yes.** `X*86400+epoch−365.242*86400−155491` is 3599.8 s (≈1 h) earlier than the exact conversion (`tests/test_io.py`). Surveys are all at 12:00 UTC (datenum fraction 0.5); the notebook places them at 11:00 UTC. | `evi.io.datenum_to_datetime` / `datenum_to_unix` (exact; `datetime.fromordinal(int(d)) + timedelta(days=d%1) − timedelta(days=366)`). | **None** (ablation step 1 identical to step 0): forcing samples are on 3-h boundaries, and no sample falls between 11:00 and 12:00. |
+| 5 | Datenum fudge | **Yes.** `X*86400+epoch−365.242*86400−155491` is 3599.8 s (≈1 h) earlier than the exact conversion (`tests/test_io.py`). Surveys are all at 12:00 UTC (datenum fraction 0.5); the notebook places them at 11:00 UTC. | `evi.io.datenum_to_datetime` / `datenum_to_unix` (exact; `datetime.fromordinal(int(d)) + timedelta(days=d%1) − timedelta(days=366)`). | **None** on the notebook (ablation step 1 identical to step 0). Reason found (§2.2): the CSV clock is itself 1 h early (CET), so the fudge (surveys at 11:00:00.2 UTC-label) is consistent with the CSV; with either conversion the 11:00-labelled sample falls before the survey. The clean pipeline uses the exact datenum **and** shifts the CSV clock by +3600 s. |
 | 6 | Volume integration window | **Partly.** The notebook window `end` = first NaN of the mean profile over all 2008–2014 surveys − 1 → x ≤ 139.8 m, which every profile covers (the mean is NaN as soon as one profile is). So there is **no aliasing of survey extent** into ΔV; the cost is discarding everything seaward of 139.8 m (surveys reach up to 297.9 m). | Event table gives both `dV_*` over the pairwise common window (both surveys cover it; `x_window_pair`) and `dV_*_fixed` over the global common window (139.9 m). Upper/lower split by the HAT plane, so `dV_upper` is window-independent. | Notebook metrics unchanged. In the clean table, ΔV_total over the pairwise window has a larger spread (−102 to +141 m³/m) than over the fixed window (−76 to +76); models use the fixed window for comparability. |
 | 7 | Selection on the target | **Yes.** Cells 20/23 drop events with `V_err < 0` before fitting and testing. Thesis §III-1-2 does the same for TPTE/PPT. | Clean pipeline never filters on ΔV; erosive-only fits are kept only as labelled "SECONDARY" rows. | Ablation step 7: TPTE train R 0.68 → 0.54, RMSE 15.4 → 22.6; PPT train R_w 0.82 → 0.68, RMSE_w 11.7 → 19.3; PPT test RMSE_w 7.6 → 10.9. Clean table: TPTE calibration R² 0.53 (erosive-only) vs 0.23 (all). |
 | 8 | Leakage (mean profile; storm indices) | **Yes, both.** Mean profile = mean of all surveys between first and last forcing sample (2008–2014, includes test). Quantiles Hs95/Hs75 computed on the full 2008–2014 series (4.41/2.49 m). Storm start/stop found on the full series (a train storm can be delimited using test data — minor). Also the per-timestep slope uses the last survey before t (no look-ahead — fine). | Quantiles on 2009-01-01 → 2013-12-01 (4.22/2.37 m, `storm_thresholds`); fat/eroded reference = mean pre-storm volume of calibration surveys only (472.4 m³/m over 0–139.9 m). | Ablation steps 5–6: train RMSE_w 10.5 → 11.0 → 11.7; test RMSE_w 8.3 → 8.3 → 7.6; test n unchanged (8). Small, but it must be fixed for a paper. Agent C note: the thresholds in the event table are fitted on 2009–2013, so events in that window are in-sample for the thresholds. |
@@ -106,6 +106,16 @@ Same code path as the notebook (85/15 split, whole-profile ΔV, notebook metrics
 | 11 | README image paths | **Yes.** `README.md` line 10 links `https://raw.githubusercontent.com/Raph9989/Beach_erosion/master/images/Schema_english.jpg` (other account). | Not edited (README is outside Agent A's paths). Suggested fix: relative path `images/Schema_english.jpg`. | n/a |
 
 ### 2.2 Additional findings (not in §2.1)
+* **CSV clock is 1 h early (new, confirmed).** `Data_frame.csv` `# time` starts at 1199142000 =
+  2007-12-31T23:00Z, i.e. the stamps were made from CET local time. Against the raw repo files: Hs and
+  1/fp equal the WW3 2010 fields at the nearest grid node (44.667 N, −1.500 E; 0.25° grid) with max
+  difference 0.000 only after adding +1 h (no overlap at 0 h, corr 0.97 / 0.82 at +4 h), and `setup` equals
+  MARS2D `XE` from `datasets/Level/2010/Niveaux_mars_2010_1.nc` (corr 1.000, std diff 0.000) only at +60 min
+  (corr 0.876 at 0 min). Fixed in `evi.io.load_hydro` (`CSV_TIME_OFFSET_S = 3600`); the notebook port keeps the
+  raw clock. Effect on the clean energy-variant table: ≤ 0.01 in R², ≤ 0.12 m³/m in RMSE.
+* **Forcing location.** Hs/Tp come from the nearest node of a 0.25° WW3 grid (44.667 N, −1.5 E), not an
+  interpolation to the stated buoy point (44.6525 N, −1.45 E); the water level is from a different, MARS2D
+  AQUI250 point (44.641 N, −1.290 E). Documented here; not changed.
 * **Hidden state / stale outputs.** Cell 23's saved output is `Text(0.1, 47, 'R =0.97')`, but the cell source
   draws `RMSE` at y = 50 and no `R` label at all; the saved figure shows both labels. The outputs therefore come
   from a different version of the cell than the one saved. The numbers are still reproduced exactly by the
@@ -156,6 +166,6 @@ source .venv/bin/activate            # Python 3.12, package `evi` installed edit
 python -m evi.events                 # -> data/processed/{events,intervals}_trucvert.{parquet,csv}
 python -m evi.reproduce              # -> prints §1 tables (notebook ablation, corrected models, energy variants)
                                      #    and writes data/processed/reproduction_A.json (bootstrap seed 42)
-pytest -q                            # 23 tests: runup, energy units, storms, volumes, datenum, events, notebook regression
+pytest -q                            # 24 tests: runup, energy units, storms, volumes, datenum, events, notebook regression
 python -c "from evi.legacy import run_notebook; r=run_notebook(); print(r['ppt_train'], r['ppt_test'])"  # notebook as-is
 ```
