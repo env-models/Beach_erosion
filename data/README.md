@@ -113,7 +113,7 @@ Treat raw downloads as untrusted data. Run the scripts from the repo root with `
   is required, plus the date of the last update.
 - **Access**: the REST API (`https://candhis.cerema.fr/API/v1/`, `getCampTD.php` etc.) needs an access key. The key is
   obtained **by emailing the CANDHIS team** (user doc `04_Candhis_API_v1_Utilisateur.pdf`, Oct 2024). No key was
-  requested, because contacting people is Raphaël's decision. The website has an "Archives" tab for manual downloads
+  requested, because contacting people is Raphaël's decision. The campaign page has an "Archives" tab with a JavaScript "Téléchargement données archivées" (archived data download) button, not scripted here; try it manually in a browser
   [verify whether it needs an account]. The repo's Jan–Mar 2014 sample shows manual export is possible.
 - **Status**: blocked (needs an API key). §2a and §2b already reproduce the buoy at 5–6° direction RMSE.
 
