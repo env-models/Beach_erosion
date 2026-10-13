@@ -11,8 +11,14 @@ RHO_NB: float = 1025.0       # notebook constants, kept for exact reproduction
 G_NB: float = 9.8
 
 IGN69_TO_MSL: float = -0.39  # z_MSL = z_IGN69 - 0.39
-HAT_IGN69: float = 2.14      # PHMA (Highest Astronomical Tide) used in the thesis, m IGN69
-HAT_MSL: float = HAT_IGN69 + IGN69_TO_MSL  # = +1.75 m in profile datum
+# HAT / PHMA. SHOM RAM tidal levels for Cap Ferret (pulled by Agent B): chart datum ZH = -1.98 m IGN69,
+# PHMA = 4.51 m ZH = +2.53 m IGN69, mean level NM = 2.37 m ZH = +0.39 m IGN69, so PHMA - NM = 2.14 m.
+# The thesis's "2.14 m IGN69" is therefore read as 2.14 m above MSL (Agent B's inference)
+# [verify against thesis text p. 20]. Until 2026-10-13 this package used HAT_MSL = 2.14 - 0.39 = 1.75,
+# which subtracted the 0.39 m offset twice (kept as HAT_MSL_SUPERSEDED for sensitivity runs).
+HAT_IGN69: float = 2.53      # SHOM PHMA Cap Ferret, m IGN69
+HAT_MSL: float = 2.14        # m in profile datum (MSL)
+HAT_MSL_SUPERSEDED: float = 1.75
 BETA_NOTEBOOK: float = 3.0   # morphological threshold actually used in the 2020 notebook, m (profile datum)
 
 DT_HOURS: float = 3.0        # wave/water-level time step in Data_frame.csv

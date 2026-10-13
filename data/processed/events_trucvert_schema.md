@@ -1,4 +1,4 @@
-# Truc Vert event / interval tables — schema (v1.1, repo data only)
+# Truc Vert event / interval tables — schema (v1.1 / v2, data version 2026-10-13b: HAT = +2.14 m MSL)
 
 v1.1 (2026-10-13): added `max_P_kWm_*` and `hours_P_gt100_*` / `hours_P_gt200_*` (OCA operational wave-power
 thresholds, BRGM report RP-67418-FR (2019), thresholds relayed by the orchestrator [verify]). Density documented below.
@@ -19,7 +19,7 @@ window as "in-sample" for the thresholds.
 * Times: naive UTC. The CSV clock is shifted by +3600 s (it is CET, 1 h early; see reports/A_audit.md §2.2). Survey datenums converted exactly (`datetime.fromordinal(int(d)) + frac - 366 d`); every survey is at 12:00.
 * Elevations: m relative to the profile datum = MSL at Truc Vert (0 = +0.39 m IGN69).
 * Constants: ρ = 1025 kg/m³ (notebook value; the thesis and the 2018 JCR paper use 1030, which rescales energies by +0.5 %), g = 9.81 m/s², except `E_notebook_*`, which keeps the notebook's ρ = 1025, g = 9.8.
-* HAT (PHMA) = +2.14 m IGN69 = **+1.75 m MSL** (`evi.constants.HAT_MSL`).
+* **HAT = +2.14 m MSL** (`evi.constants.HAT_MSL`, data version 2026-10-13b). Source: SHOM RAM Cap Ferret, PHMA = 4.51 m ZH = +2.53 m IGN69, NM = +0.39 m IGN69, so PHMA − NM = 2.14 m [verify against thesis p. 20]. The earlier tables used +1.75 m (double-subtracted MSL offset); they are kept for sensitivity analysis as `events_trucvert_hat175.*`, `intervals_trucvert_hat175.*`, `events_trucvert_v2_hat175.*` and `intervals_trucvert_v2_hat175.*`.
 * Δt = 3 h per forcing sample; a sample at time t belongs to interval [survey_start, survey_end).
 * **Sign: ΔV > 0 = erosion** (volume lost between `survey_start` and `survey_end`), ΔV < 0 = accretion.
 * Storms (`evi.storms.detect_storms`): maximal runs with Hs > Hs75 that contain at least one Hs > Hs95.
@@ -63,7 +63,7 @@ window as "in-sample" for the thresholds.
 | V_pre_total | m³/m | ∫ z dx over the fixed window x ∈ [0, 139.9 m] on the survey_start profile (relative to the MSL datum) |
 | V_pre_upper | m³/m | ∫ max(z − HAT, 0) dx, same window (sand above the HAT plane) |
 | V_pre_lower | m³/m | V_pre_total − V_pre_upper |
-| berm_volume_pre | m³/m | **proxy**: sand between the planes z = HAT (+1.75) and z = +4.0 m MSL seaward of the dune-toe proxy (landward-most crossing of +4.0 m) — `evi.profiles.berm_volume`. Dune toe at +4 m is an assumption (thesis tested 4/5/6 m NGF) [verify]. It includes any upper-beach sand in that band, not only a morphologically identified berm. |
+| berm_volume_pre | m³/m | **proxy**: sand between the planes z = HAT (+2.14) and z = +4.0 m MSL seaward of the dune-toe proxy (landward-most crossing of +4.0 m) — `evi.profiles.berm_volume`. Dune toe at +4 m is an assumption (thesis tested 4/5/6 m NGF) [verify]. It includes any upper-beach sand in that band, not only a morphologically identified berm. |
 | intertidal_slope_pre | m/m | least-squares slope of z ∈ [−1.5, +1.5] m MSL (landward of the first −1.5 m crossing) [band verify vs tidal datums] |
 | dV_total, dV_upper, dV_lower | m³/m | ΔV over the window covered by **both** profiles, x ∈ [0, x_window_pair]; upper = change of sand above HAT plane; lower = total − upper |
 | x_window_pair | m | seaward limit of the pairwise common window |
@@ -92,7 +92,7 @@ exists only from about 2013). Mixing windows would alias the averaging change in
   xl = 70 m, ≈ +5 m MSL, and is the start of B's volume window. The w740 80% coverage rule usually removes the
   dune crest, so the v1 origin x = 0 cannot be used.
 - **Vertical datum.** B's z is already **MSL = IGN69 − 0.40 m** (data/README.md), so no conversion was applied.
-  HAT = +1.75 m MSL is used as in v1. The legacy datum is IGN69 − 0.39 m; the 1 cm difference is ignored.
+  HAT = +2.14 m MSL is used as in v1. The legacy datum is IGN69 − 0.39 m; the 1 cm difference is ignored.
 - **Fixed volume window**: x ∈ [30, 130] m (= B's xl 70–170 m). Therefore `V_pre_*`, `dV_*_fixed` and `x_window_fixed`
   are **not on the same window as v1** (which uses x ∈ [0, 139.9]). They are NaN when a survey does not reach x = 130
   m: 17 of 98 events (27 of 201 intervals) have NaN `dV_total_fixed`.
@@ -122,7 +122,7 @@ are **not** used. This gives 152 storms in 2008–2019.
   seasonal and mean-sea-level anomalies.
 - Over 2008–2014 this water level agrees with the legacy MARS2D level: corr 0.995, mean difference −0.001 m.
 
-**Datum issue (applies to v1 and v2).** The *predicted astronomical tide alone* (Castelle `tide_msl`) exceeds
+**Datum issue (applies to v1 and v2) — RESOLVED in data version 2026-10-13b by HAT = +2.14 m MSL. Original note, written for HAT = 1.75 m:** The *predicted astronomical tide alone* (Castelle `tide_msl`) exceeds
 +1.75 m MSL in 3.7% of hours; its maximum is +2.45 m MSL and its 99th percentile +2.02 m. So +2.14 m IGN69 (+1.75 m
 MSL) is **not** the highest astronomical tide at Truc Vert in these data. HAT-exceedance features (TWL ≥ HAT is
 reached in 30% of hourly steps in v2) are therefore much less selective than the thesis intended. The water-level
@@ -136,3 +136,6 @@ thesis against SHOM].
   is NaN. Hydro covers 2008-01-01 → 2019-12-31 23:00.
 - Long gaps (up to 428 days, partly from dropped surveys) are kept. Filter on `interval_days`.
 - `period` uses the v1 split: `calibration` if survey_end ≤ 2013-12-01, otherwise `validation`. That makes 2014–2019 all "validation".
+
+**HAT = +2.14 m MSL (data version 2026-10-13b).** Steps with TWL ≥ HAT: 20.8% in v2 (30.7% at 1.75 m) and 27.4% in v1
+(37.4% at 1.75 m). The still water level alone exceeds HAT 0.6% of the time in v2 and 0.41% in v1.

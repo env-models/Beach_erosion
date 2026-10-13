@@ -13,7 +13,7 @@ from dataclasses import dataclass, replace
 import numpy as np
 import pandas as pd
 
-from .constants import CALIB_END, CALIB_START
+from .constants import CALIB_END, CALIB_START, HAT_MSL
 from .io import Profiles, datenum_to_unix, datenum_to_unix_notebook, load_hydro, load_profiles
 from .profiles import landward_crossing
 from .runup import stockdon_r2
@@ -25,7 +25,7 @@ _trapz = getattr(np, "trapezoid", None) or np.trapz
 @dataclass(frozen=True)
 class NotebookOptions:
     exact_datenum: bool = False      # item 5
-    threshold: float = 3.0           # item 2: notebook beta=3; HAT = 1.75 m MSL
+    threshold: float = 3.0           # item 2: notebook beta=3; HAT = 2.14 m MSL (evi.constants)
     landward_crossing: bool = False  # items 3-4: argmin|z-level| on NaN-stripped profile vs landward crossing
     exact_deshoal: bool = False      # extra: notebook used k0 instead of dispersion k in Ks
     g: float = 9.8
@@ -229,7 +229,7 @@ def ablation(base: NotebookOptions = NotebookOptions()) -> list[tuple[str, Noteb
     steps = [("0 notebook as-is", base)]
     o = replace(base, exact_datenum=True); steps.append(("1 +exact datenum (item 5)", o))
     o = replace(o, landward_crossing=True); steps.append(("2 +landward crossing, NaN-safe (items 3-4)", o))
-    o = replace(o, threshold=1.75); steps.append(("3 +HAT=1.75 m MSL threshold (item 2)", o))
+    o = replace(o, threshold=HAT_MSL); steps.append((f"3 +HAT={HAT_MSL} m MSL threshold (item 2)", o))
     o = replace(o, exact_deshoal=True, g=9.81); steps.append(("4 +exact de-shoaling, g=9.81", o))
     o = replace(o, quantiles_calib_only=True); steps.append(("5 +storm quantiles on calibration only (item 8)", o))
     o = replace(o, mean_profile_train_only=True); steps.append(("6 +mean profile from train only (item 8)", o))

@@ -41,5 +41,6 @@ def test_landward_crossing_on_barred_profile():
 
 def test_berm_volume_band():
     z = lin()
-    # band between 1.75 and 4.0 seaward of x(4.0)=60: triangle 0.5*22.5*2.25 + nothing else
-    assert berm_volume(X, z) == pytest.approx(0.5 * 22.5 * 2.25, rel=1e-3)
+    # band between HAT=2.14 and 4.0 seaward of x(4.0)=60: triangle 0.5*18.6*1.86
+    assert berm_volume(X, z) == pytest.approx(0.5 * 18.6 * 1.86, rel=1e-3)
+    assert berm_volume(X, z, z_low=1.75) == pytest.approx(0.5 * 22.5 * 2.25, rel=1e-3)
