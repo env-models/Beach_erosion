@@ -12,5 +12,7 @@
 - [x] Wave 1 launched (A, B, D, E) at 22:50, all on Opus 5.5
 - [x] Event table v1 from A (22:53; 51 events 2008–2014)
 - [x] Wave 2: C launched 22:56
-- [ ] paper/outline.md + publication checklist
+- [x] paper/outline.md v1 + publication checklist (23:11; C placeholders pending)
 - [ ] Final STATUS.md, commit, push
+- [x] A done 23:05 (+v1.1 23:14, +v2 23:15); B done 23:12; D done 22:58; E done 23:04
+- [ ] A: HAT = 2.14 m regeneration (due 23:45) · C: models (due 00:15) · R: review of A (due 00:05)
