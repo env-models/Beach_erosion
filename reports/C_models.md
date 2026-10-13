@@ -1048,6 +1048,100 @@ window, a 2003–2019 record and tide-only TWL, the qualitative conclusion holds
 equilibrium-type models are the most consistent. The sign of the ML-vs-EVI comparison on 2013-14 flips between v2
 and v2C, which shows how fragile any 2013-14 ranking based on 8–12 events is.
 
+## 8b. Slope sensitivity (slopefix tables)
+
+Agent A's alternative tables recompute the runup foreshore slope β as the least-squares slope over 0 to +3 m MSL,
+capped at 0.2 (HAT = +2.14 m as in the defaults): `data/processed/events_trucvert_slopefix.parquet` (51 events, mtime
+2026-10-13 23:29:39 CEST) and `data/processed/events_trucvert_v2_slopefix.parquet` (98 events, mtime 2026-10-13 23:29:39 CEST),
+with matching `intervals_*_slopefix.parquet`. Only the TWL-dependent columns change: the `*_stormHAT` energies,
+the HAT-exceedance hours and max TWL (v2 max TWL 15.59 → 6.73 m; v1 8.67 → 7.92 m; correlation of `E_Hs2dt_stormHAT`
+old vs new 0.975 for v1 and 0.974 for v2). Targets, volumes and storm definitions are unchanged, so models that do
+not use HAT-filtered energy (Harley-type, ShoreFor-flavoured) give identical numbers. Run with
+`python -m evi.models.run_all --data v1s|v2s --no-figs`; full tables in `figures/tables/C_*_v1s.csv`, `C_*_v2s.csv`,
+side-by-side in `figures/tables/C_slopefix_comparison.csv`. Default results (v1, v2) are untouched.
+
+**dV_upper, resolvable, LOWO** — skill vs climatology [95 % CI] (RMSE, m³/m)
+
+| model | v1 (n=48) | v1s (n=48) | v2 (n=91) | v2s (n=91) |
+|---|---|---|---|---|
+| EVI General (dV ~ E_nbHAT) | 0.46 [0.24, 0.62] (9.0) | 0.56 [0.33, 0.71] (8.1) | 0.37 [0.06, 0.58] (8.5) | 0.39 [0.23, 0.51] (8.3) |
+| PPT 2-stage (thesis-style) | 0.40 [0.15, 0.60] (9.4) | 0.51 [0.29, 0.67] (8.6) | 0.27 [-0.07, 0.48] (9.1) | 0.33 [0.04, 0.52] (8.8) |
+| Harley-type (dV ~ sum Hs2 dt) | 0.48 [0.26, 0.63] (8.8) | 0.48 [0.26, 0.63] (8.8) | 0.40 [0.17, 0.56] (8.3) | 0.40 [0.17, 0.56] (8.3) |
+| Equilibrium B (dV ~ E + E(V-Veq)) | 0.45 [0.25, 0.60] (9.1) | 0.52 [0.32, 0.68] (8.4) | 0.46 [0.27, 0.63] (7.9) | 0.47 [0.32, 0.59] (7.8) |
+| ShoreFor-flavoured (phi by train fit) | 0.32 [0.01, 0.53] (10.1) | 0.32 [0.01, 0.53] (10.1) | 0.44 [0.24, 0.60] (8.0) | 0.44 [0.24, 0.60] (8.0) |
+| Random forest | 0.41 [0.18, 0.56] (9.3) | 0.47 [0.25, 0.61] (8.8) | 0.38 [0.19, 0.53] (8.4) | 0.43 [0.23, 0.58] (8.1) |
+| XGBoost | 0.27 [-0.10, 0.49] (10.4) | 0.31 [-0.03, 0.52] (10.1) | 0.31 [0.07, 0.49] (8.9) | 0.37 [0.13, 0.56] (8.4) |
+| LightGBM | 0.22 [-0.19, 0.48] (10.8) | 0.31 [-0.10, 0.56] (10.1) | 0.31 [0.08, 0.50] (8.8) | 0.40 [0.16, 0.57] (8.3) |
+| Gaussian process (RBF-ARD + White) | -0.09 [-0.38, 0.12] (12.7) | 0.24 [-0.09, 0.48] (10.6) | 0.33 [0.08, 0.49] (8.8) | 0.25 [-0.03, 0.46] (9.2) |
+| Two-stage (logit -> OLS per branch, expected value) | 0.43 [0.23, 0.60] (9.2) | 0.53 [0.31, 0.70] (8.4) | 0.38 [0.10, 0.57] (8.4) | 0.43 [0.25, 0.58] (8.1) |
+| Hybrid (Equilibrium B + LightGBM residual) | 0.38 [0.10, 0.58] (9.6) | 0.47 [0.21, 0.66] (8.9) | 0.44 [0.23, 0.61] (8.0) | 0.43 [0.26, 0.58] (8.1) |
+
+**dV_upper, resolvable, 2013-14 hold-out (train ≤ 2012-13)** — skill vs climatology [95 % CI] (RMSE, m³/m)
+
+| model | v1 (n=12) | v1s (n=12) | v2 (n=12) | v2s (n=12) |
+|---|---|---|---|---|
+| EVI General (dV ~ E_nbHAT) | 0.63 [0.18, 0.83] (7.6) | 0.75 [0.59, 0.86] (6.2) | -0.08 [-6.44, 0.76] (12.7) | 0.36 [-1.40, 0.65] (9.8) |
+| PPT 2-stage (thesis-style) | 0.65 [0.10, 0.83] (7.4) | 0.65 [0.06, 0.84] (7.3) | 0.01 [-5.94, 0.75] (12.2) | 0.51 [-2.71, 0.85] (8.5) |
+| Harley-type (dV ~ sum Hs2 dt) | 0.68 [0.38, 0.82] (7.1) | 0.68 [0.38, 0.82] (7.1) | 0.18 [-3.31, 0.72] (11.1) | 0.18 [-3.31, 0.72] (11.1) |
+| Equilibrium B (dV ~ E + E(V-Veq)) | 0.61 [0.26, 0.87] (7.7) | 0.69 [0.38, 0.89] (6.9) | 0.17 [-4.05, 0.79] (11.2) | 0.56 [0.38, 0.62] (8.1) |
+| ShoreFor-flavoured (phi by train fit) | 0.29 [0.03, 0.52] (10.5) | 0.29 [0.03, 0.52] (10.5) | 0.42 [-0.81, 0.60] (9.3) | 0.42 [-0.81, 0.60] (9.3) |
+| Random forest | 0.64 [0.49, 0.77] (7.5) | 0.69 [0.58, 0.81] (7.0) | 0.46 [-0.28, 0.63] (9.0) | 0.50 [-0.44, 0.67] (8.7) |
+| XGBoost | 0.50 [0.24, 0.67] (8.8) | 0.58 [0.36, 0.75] (8.0) | 0.53 [-0.14, 0.66] (8.4) | 0.51 [-0.35, 0.64] (8.6) |
+| LightGBM | 0.60 [0.47, 0.71] (7.9) | 0.68 [0.54, 0.81] (7.1) | 0.58 [-0.55, 0.69] (7.9) | 0.58 [-0.90, 0.72] (7.9) |
+| Gaussian process (RBF-ARD + White) | 0.12 [-0.72, 0.51] (11.6) | 0.29 [-0.40, 0.55] (10.5) | 0.61 [-1.00, 0.88] (7.6) | 0.62 [-1.25, 0.90] (7.5) |
+| Two-stage (logit -> OLS per branch, expected value) | 0.54 [0.16, 0.78] (8.4) | 0.66 [0.35, 0.85] (7.2) | 0.09 [-5.06, 0.78] (11.7) | 0.43 [-1.43, 0.71] (9.2) |
+| Hybrid (Equilibrium B + LightGBM residual) | 0.59 [0.14, 0.89] (8.0) | 0.65 [0.27, 0.91] (7.3) | 0.32 [-3.12, 0.88] (10.1) | 0.65 [0.17, 0.79] (7.2) |
+
+**dV_total_fixed, resolvable, LOWO** — skill vs climatology [95 % CI] (RMSE, m³/m)
+
+| model | v1 (n=48) | v1s (n=48) | v2 (n=76) | v2s (n=76) |
+|---|---|---|---|---|
+| EVI General (dV ~ E_nbHAT) | 0.57 [0.35, 0.72] (14.7) | 0.59 [0.35, 0.76] (14.3) | 0.39 [0.10, 0.59] (14.3) | 0.40 [0.12, 0.59] (14.1) |
+| PPT 2-stage (thesis-style) | 0.53 [0.26, 0.70] (15.4) | 0.48 [0.15, 0.68] (16.2) | 0.36 [0.03, 0.56] (14.7) | 0.33 [-0.04, 0.54] (15.0) |
+| Harley-type (dV ~ sum Hs2 dt) | 0.63 [0.41, 0.76] (13.7) | 0.63 [0.41, 0.76] (13.7) | 0.43 [0.21, 0.58] (13.9) | 0.43 [0.21, 0.58] (13.9) |
+| Equilibrium B (dV ~ E + E(V-Veq)) | 0.61 [0.43, 0.72] (14.1) | 0.59 [0.36, 0.74] (14.5) | 0.51 [0.33, 0.65] (12.8) | 0.53 [0.30, 0.69] (12.6) |
+| ShoreFor-flavoured (phi by train fit) | 0.32 [-0.03, 0.60] (18.6) | 0.32 [-0.03, 0.60] (18.6) | 0.46 [0.24, 0.61] (13.4) | 0.46 [0.24, 0.61] (13.4) |
+| Random forest | 0.51 [0.28, 0.65] (15.7) | 0.47 [0.21, 0.63] (16.4) | 0.39 [0.20, 0.54] (14.3) | 0.42 [0.22, 0.55] (14.0) |
+| XGBoost | 0.33 [-0.01, 0.57] (18.4) | 0.26 [-0.10, 0.53] (19.3) | 0.40 [0.17, 0.55] (14.2) | 0.43 [0.22, 0.57] (13.8) |
+| LightGBM | 0.33 [-0.10, 0.56] (18.5) | 0.31 [-0.11, 0.55] (18.7) | 0.36 [0.11, 0.53] (14.6) | 0.41 [0.17, 0.56] (14.1) |
+| Gaussian process (RBF-ARD + White) | 0.24 [-0.02, 0.45] (19.6) | 0.20 [-0.06, 0.40] (20.1) | 0.37 [0.08, 0.57] (14.6) | 0.31 [-0.02, 0.52] (15.2) |
+| Two-stage (logit -> OLS per branch, expected value) | 0.58 [0.38, 0.72] (14.6) | 0.59 [0.36, 0.76] (14.4) | 0.39 [0.15, 0.56] (14.3) | 0.40 [0.16, 0.56] (14.2) |
+| Hybrid (Equilibrium B + LightGBM residual) | 0.51 [0.28, 0.66] (15.8) | 0.55 [0.31, 0.72] (15.1) | 0.48 [0.26, 0.64] (13.2) | 0.51 [0.27, 0.67] (12.8) |
+
+**dV_total_fixed, resolvable, 2013-14 hold-out (train ≤ 2012-13)** — skill vs climatology [95 % CI] (RMSE, m³/m)
+
+| model | v1 (n=12) | v1s (n=12) | v2 (n=8) | v2s (n=8) |
+|---|---|---|---|---|
+| EVI General (dV ~ E_nbHAT) | 0.66 [0.28, 0.86] (13.0) | 0.73 [0.24, 0.92] (11.6) | 0.14 [-3.52, 0.88] (19.4) | 0.08 [-3.89, 0.92] (20.1) |
+| PPT 2-stage (thesis-style) | 0.57 [-0.00, 0.83] (14.6) | 0.47 [-0.42, 0.80] (16.2) | 0.39 [-0.29, 0.53] (16.4) | 0.23 [-1.90, 0.55] (18.4) |
+| Harley-type (dV ~ sum Hs2 dt) | 0.75 [0.44, 0.88] (11.2) | 0.75 [0.44, 0.88] (11.2) | 0.55 [-0.67, 0.82] (14.0) | 0.55 [-0.67, 0.82] (14.0) |
+| Equilibrium B (dV ~ E + E(V-Veq)) | 0.75 [0.38, 0.91] (11.2) | 0.64 [0.06, 0.86] (13.4) | 0.73 [0.30, 0.80] (10.8) | 0.66 [-0.77, 0.86] (12.2) |
+| ShoreFor-flavoured (phi by train fit) | 0.25 [0.10, 0.52] (19.3) | 0.25 [0.10, 0.52] (19.3) | 0.61 [-0.40, 0.78] (13.1) | 0.61 [-0.40, 0.78] (13.1) |
+| Random forest | 0.83 [0.66, 0.91] (9.3) | 0.70 [0.16, 0.89] (12.2) | 0.43 [0.10, 0.75] (15.8) | 0.41 [-0.14, 0.73] (16.1) |
+| XGBoost | 0.85 [0.72, 0.91] (8.6) | 0.77 [0.49, 0.86] (10.8) | 0.61 [0.47, 0.95] (13.1) | 0.58 [0.32, 0.85] (13.5) |
+| LightGBM | 0.82 [0.66, 0.92] (9.4) | 0.73 [0.32, 0.87] (11.7) | 0.36 [0.11, 0.90] (16.8) | 0.37 [0.12, 0.80] (16.6) |
+| Gaussian process (RBF-ARD + White) | 0.38 [0.25, 0.53] (17.5) | 0.36 [0.18, 0.48] (17.9) | 0.51 [0.11, 0.58] (14.6) | 0.41 [-1.36, 0.67] (16.1) |
+| Two-stage (logit -> OLS per branch, expected value) | 0.73 [0.44, 0.86] (11.7) | 0.74 [0.30, 0.91] (11.3) | 0.30 [-2.39, 0.85] (17.6) | 0.22 [-3.28, 0.87] (18.6) |
+| Hybrid (Equilibrium B + LightGBM residual) | 0.76 [0.40, 0.91] (10.9) | 0.72 [0.28, 0.88] (11.8) | 0.68 [-0.20, 0.81] (11.8) | 0.65 [-0.78, 0.84] (12.5) |
+
+Recent hold-out (v2s, train ≤ 2012-13 → ≤ 2014-15, test 2015-16 → 2019-20, n = 38, `dV_upper`): EVI General 0.37
+[0.11, 0.60] (v2: 0.38), Equilibrium B 0.48 [0.20, 0.71] (v2: 0.47), ShoreFor-flavoured 0.46 (same), LightGBM 0.05
+[−0.56, 0.53] (v2: −0.17), GP 0.41 [0.07, 0.66] (v2: 0.31).
+
+The HAT-filter ablation changes direction on v1s `dV_upper`. HAT-filtered Hs²Δt is now marginally better than
+all-storm Hs²Δt (ΔRMSE −0.64 [−1.57, +0.18]), where on v1 it was +0.24 [−0.21, +0.71]. The CI still includes 0, and
+v2s shows no difference (+0.04 [−0.57, +0.80]).
+
+**Verdict:** the slope fix makes the HAT-filtered models better, and does so most clearly on v1. EVI General goes
+from 0.46 to 0.56 on LOWO `dV_upper` and from 0.63 to 0.75 on 2013-14. On v2 2013-14, EVI General goes from −0.08 to
+0.36 and Equilibrium B from 0.17 to 0.56 [0.38, 0.62], so the v2 2013-14 collapse of the linear models was partly a
+TWL artefact. **No conclusion changes:**
+* No model beats EVI General by more than the CIs on LOWO.
+* The trees and the GP still do not beat the best linear or equilibrium baseline on LOWO (v2s `dV_upper`:
+  LightGBM 0.40 and GP 0.25, against Equilibrium B 0.47).
+* Equilibrium B remains the most consistent model.
+* The antecedent-state, cluster and flux verdicts are unaffected.
+
 ## 9. Honest conclusion
 
 1. **Honest re-evaluation of the 2017/2018 EVI.** Under leave-one-winter-out on resolvable events, the General
@@ -1131,6 +1225,8 @@ source .venv/bin/activate            # Python 3.12, requirements.txt
 python -m evi.models.run_all --data v1   # ~2 min: tables in figures/tables/, figures in figures/
 python -m evi.models.run_all --data v2   # ~6 min (needs data/processed/events_trucvert_v2.parquet)
 python -m evi.models.run_all --data v2C  # optional: C's own build from Agent B's files (+ raw tide nc)
+python -m evi.models.run_all --data v1s --no-figs  # slope-fix sensitivity (Agent A's *_slopefix tables)
+python -m evi.models.run_all --data v2s --no-figs
 python -c "from evi.models.run_all import hat_sensitivity, direction_ablation; hat_sensitivity(); direction_ablation()"
 python -m evi.models.report v1 v2 v2C   # refresh the auto tables in this file + model cards
 ```

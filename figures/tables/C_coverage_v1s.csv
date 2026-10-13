@@ -1,0 +1,337 @@
+data,target,subset,split,model,nominal,n,empirical,mean_width
+v1s,dV_upper,resolvable,lowo,gp,0.5,48,0.3125,10.987808480953191
+v1s,dV_upper,resolvable,lowo,gp,0.8,48,0.625,20.87717886976958
+v1s,dV_upper,resolvable,lowo,gp,0.9,48,0.7708333333333334,26.79556898661526
+v1s,dV_upper,resolvable,lowo,gp,0.95,48,0.8333333333333334,31.9288897799134
+v1s,dV_upper,resolvable,lowo,evi_general,0.5,48,0.5,11.249156927379765
+v1s,dV_upper,resolvable,lowo,evi_general,0.8,48,0.8333333333333334,21.984212019633592
+v1s,dV_upper,resolvable,lowo,evi_general,0.9,48,0.8958333333333334,29.835193106819627
+v1s,dV_upper,resolvable,lowo,evi_general,0.95,48,0.9583333333333334,36.42234051875553
+v1s,dV_upper,resolvable,lowo,ppt_all,0.5,48,0.5416666666666666,11.551776056566958
+v1s,dV_upper,resolvable,lowo,ppt_all,0.8,48,0.7916666666666666,21.680164772437283
+v1s,dV_upper,resolvable,lowo,ppt_all,0.9,48,0.9375,32.34651583799947
+v1s,dV_upper,resolvable,lowo,ppt_all,0.95,48,0.9583333333333334,39.036928965919934
+v1s,dV_upper,resolvable,lowo,eq_b,0.5,48,0.5625,12.226724362660258
+v1s,dV_upper,resolvable,lowo,eq_b,0.8,48,0.8125,21.65905954869216
+v1s,dV_upper,resolvable,lowo,eq_b,0.9,48,0.875,30.552191224400406
+v1s,dV_upper,resolvable,lowo,eq_b,0.95,48,0.9791666666666666,41.6128292069317
+v1s,dV_upper,resolvable,lowo,lgbm,0.5,48,0.625,14.784403730354049
+v1s,dV_upper,resolvable,lowo,lgbm,0.8,48,0.8333333333333334,31.587213453753023
+v1s,dV_upper,resolvable,lowo,lgbm,0.9,48,0.9166666666666666,40.117688554426465
+v1s,dV_upper,resolvable,lowo,lgbm,0.95,48,0.9375,43.37058398316865
+v1s,dV_upper,resolvable,lowo,two_stage_ml,0.5,48,0.5416666666666666,11.801469972489485
+v1s,dV_upper,resolvable,lowo,two_stage_ml,0.8,48,0.8333333333333334,21.652555806307202
+v1s,dV_upper,resolvable,lowo,two_stage_ml,0.9,48,0.875,32.04832976974827
+v1s,dV_upper,resolvable,lowo,two_stage_ml,0.95,48,0.9375,36.38844116512521
+v1s,dV_upper,resolvable,lowo,hybrid,0.5,48,0.5416666666666666,13.441798140771803
+v1s,dV_upper,resolvable,lowo,hybrid,0.8,48,0.8125,24.699623204634907
+v1s,dV_upper,resolvable,lowo,hybrid,0.9,48,0.9166666666666666,33.48096494622777
+v1s,dV_upper,resolvable,lowo,hybrid,0.95,48,0.9791666666666666,41.40877446564222
+v1s,dV_upper,resolvable,holdout_2013-14,gp,0.5,12,0.3333333333333333,11.187596106071696
+v1s,dV_upper,resolvable,holdout_2013-14,gp,0.8,12,0.5833333333333334,21.256781589711025
+v1s,dV_upper,resolvable,holdout_2013-14,gp,0.9,12,0.75,27.282783803001507
+v1s,dV_upper,resolvable,holdout_2013-14,gp,0.95,12,0.9166666666666666,32.50944204134542
+v1s,dV_upper,resolvable,holdout_2013-14,evi_general,0.5,12,0.6666666666666666,13.04677892266784
+v1s,dV_upper,resolvable,holdout_2013-14,evi_general,0.8,12,0.9166666666666666,22.29874161145918
+v1s,dV_upper,resolvable,holdout_2013-14,evi_general,0.9,12,1.0,32.73618621246835
+v1s,dV_upper,resolvable,holdout_2013-14,evi_general,0.95,12,1.0,40.80438913703835
+v1s,dV_upper,resolvable,holdout_2013-14,ppt_all,0.5,12,0.8333333333333334,14.785715673244823
+v1s,dV_upper,resolvable,holdout_2013-14,ppt_all,0.8,12,0.9166666666666666,19.95606239928617
+v1s,dV_upper,resolvable,holdout_2013-14,ppt_all,0.9,12,1.0,34.34230028773727
+v1s,dV_upper,resolvable,holdout_2013-14,ppt_all,0.95,12,1.0,45.16473819051239
+v1s,dV_upper,resolvable,holdout_2013-14,eq_b,0.5,12,0.8333333333333334,15.126965137025799
+v1s,dV_upper,resolvable,holdout_2013-14,eq_b,0.8,12,0.9166666666666666,21.771487000901633
+v1s,dV_upper,resolvable,holdout_2013-14,eq_b,0.9,12,0.9166666666666666,33.601332984958596
+v1s,dV_upper,resolvable,holdout_2013-14,eq_b,0.95,12,1.0,50.6832017484553
+v1s,dV_upper,resolvable,holdout_2013-14,lgbm,0.5,12,0.9166666666666666,26.151074960131197
+v1s,dV_upper,resolvable,holdout_2013-14,lgbm,0.8,12,1.0,34.95462461986197
+v1s,dV_upper,resolvable,holdout_2013-14,lgbm,0.9,12,1.0,42.166610500957354
+v1s,dV_upper,resolvable,holdout_2013-14,lgbm,0.95,12,1.0,49.23767176286285
+v1s,dV_upper,resolvable,holdout_2013-14,two_stage_ml,0.5,12,0.5833333333333334,12.603573807983693
+v1s,dV_upper,resolvable,holdout_2013-14,two_stage_ml,0.8,12,0.9166666666666666,22.479941233273383
+v1s,dV_upper,resolvable,holdout_2013-14,two_stage_ml,0.9,12,0.9166666666666666,32.48883375367142
+v1s,dV_upper,resolvable,holdout_2013-14,two_stage_ml,0.95,12,1.0,40.514831850898524
+v1s,dV_upper,resolvable,holdout_2013-14,hybrid,0.5,12,0.9166666666666666,19.992703530621295
+v1s,dV_upper,resolvable,holdout_2013-14,hybrid,0.8,12,0.9166666666666666,28.061081977660866
+v1s,dV_upper,resolvable,holdout_2013-14,hybrid,0.9,12,0.9166666666666666,35.57421935925816
+v1s,dV_upper,resolvable,holdout_2013-14,hybrid,0.95,12,1.0,49.12285565657305
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),gp,0.5,14,0.42857142857142855,10.647458550894878
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),gp,0.8,14,0.6428571428571429,20.23050338571304
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),gp,0.9,14,0.7857142857142857,25.96556998851877
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),gp,0.95,14,0.9285714285714286,30.93988497315229
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.5,14,0.7142857142857143,13.04677892266784
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.8,14,0.9285714285714286,22.298741611459185
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.9,14,1.0,32.73618621246835
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.95,14,1.0,40.80438913703835
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.5,14,0.8571428571428571,14.785715673244823
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.8,14,0.9285714285714286,19.95606239928617
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.9,14,1.0,34.34230028773727
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.95,14,1.0,45.16473819051238
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.5,14,0.8571428571428571,15.126965137025797
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.8,14,0.9285714285714286,21.771487000901633
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.9,14,0.9285714285714286,33.6013329849586
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.95,14,1.0,50.6832017484553
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.5,14,0.8571428571428571,26.1510749601312
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.8,14,1.0,34.954624619861974
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.9,14,1.0,42.166610500957354
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.95,14,1.0,49.23767176286286
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.5,14,0.6428571428571429,12.603573807983695
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.8,14,0.9285714285714286,22.479941233273387
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.9,14,0.9285714285714286,32.48883375367142
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.95,14,1.0,40.514831850898524
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.5,14,0.9285714285714286,19.99270353062129
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.8,14,0.9285714285714286,28.06108197766087
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.9,14,0.9285714285714286,35.57421935925816
+v1s,dV_upper,resolvable,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.95,14,1.0,49.12285565657305
+v1s,dV_upper,all,lowo,gp,0.5,51,0.39215686274509803,12.397435319520449
+v1s,dV_upper,all,lowo,gp,0.8,51,0.7058823529411765,23.555513835236997
+v1s,dV_upper,all,lowo,gp,0.9,51,0.8235294117647058,30.233174698772398
+v1s,dV_upper,all,lowo,gp,0.95,51,0.8627450980392157,36.02504963175651
+v1s,dV_upper,all,lowo,evi_general,0.5,51,0.49019607843137253,12.331945258440584
+v1s,dV_upper,all,lowo,evi_general,0.8,51,0.8235294117647058,31.892689054375346
+v1s,dV_upper,all,lowo,evi_general,0.9,51,0.9411764705882353,40.137611947802434
+v1s,dV_upper,all,lowo,evi_general,0.95,51,0.9607843137254902,73.98292483595436
+v1s,dV_upper,all,lowo,ppt_all,0.5,51,0.5294117647058824,11.053848587993631
+v1s,dV_upper,all,lowo,ppt_all,0.8,51,0.8431372549019608,24.497250086872135
+v1s,dV_upper,all,lowo,ppt_all,0.9,51,0.9215686274509803,44.71287398578349
+v1s,dV_upper,all,lowo,ppt_all,0.95,51,0.9607843137254902,59.7601227707663
+v1s,dV_upper,all,lowo,eq_b,0.5,51,0.5294117647058824,12.200490651049785
+v1s,dV_upper,all,lowo,eq_b,0.8,51,0.8235294117647058,25.90478510932586
+v1s,dV_upper,all,lowo,eq_b,0.9,51,0.9019607843137255,49.092599059586995
+v1s,dV_upper,all,lowo,eq_b,0.95,51,0.9607843137254902,66.46910450378131
+v1s,dV_upper,all,lowo,lgbm,0.5,51,0.5294117647058824,12.774570568073473
+v1s,dV_upper,all,lowo,lgbm,0.8,51,0.8431372549019608,30.909656716803447
+v1s,dV_upper,all,lowo,lgbm,0.9,51,0.8823529411764706,41.50214104181829
+v1s,dV_upper,all,lowo,lgbm,0.95,51,0.9411764705882353,49.46302636276498
+v1s,dV_upper,all,lowo,two_stage_ml,0.5,51,0.5294117647058824,12.678486764547861
+v1s,dV_upper,all,lowo,two_stage_ml,0.8,51,0.803921568627451,36.01810709925946
+v1s,dV_upper,all,lowo,two_stage_ml,0.9,51,0.9411764705882353,50.72083130918639
+v1s,dV_upper,all,lowo,two_stage_ml,0.95,51,0.9607843137254902,73.91470605794524
+v1s,dV_upper,all,lowo,hybrid,0.5,51,0.49019607843137253,13.458820097458483
+v1s,dV_upper,all,lowo,hybrid,0.8,51,0.803921568627451,30.148358503403752
+v1s,dV_upper,all,lowo,hybrid,0.9,51,0.9215686274509803,48.09711794445557
+v1s,dV_upper,all,lowo,hybrid,0.95,51,0.9411764705882353,59.30693752624421
+v1s,dV_upper,all,holdout_2013-14,gp,0.5,12,0.4166666666666667,10.868091766972016
+v1s,dV_upper,all,holdout_2013-14,gp,0.8,12,0.75,20.649713378737545
+v1s,dV_upper,all,holdout_2013-14,gp,0.9,12,0.8333333333333334,26.50362018955585
+v1s,dV_upper,all,holdout_2013-14,gp,0.95,12,0.9166666666666666,31.581011331527236
+v1s,dV_upper,all,holdout_2013-14,evi_general,0.5,12,0.6666666666666666,12.952301670082543
+v1s,dV_upper,all,holdout_2013-14,evi_general,0.8,12,0.8333333333333334,33.413060545107314
+v1s,dV_upper,all,holdout_2013-14,evi_general,0.9,12,1.0,45.3754190377893
+v1s,dV_upper,all,holdout_2013-14,evi_general,0.95,12,1.0,91.06282969767095
+v1s,dV_upper,all,holdout_2013-14,ppt_all,0.5,12,0.6666666666666666,12.51740022122307
+v1s,dV_upper,all,holdout_2013-14,ppt_all,0.8,12,0.8333333333333334,29.454941563335684
+v1s,dV_upper,all,holdout_2013-14,ppt_all,0.9,12,1.0,54.4401703721279
+v1s,dV_upper,all,holdout_2013-14,ppt_all,0.95,12,1.0,74.58486830932343
+v1s,dV_upper,all,holdout_2013-14,eq_b,0.5,12,0.5,13.56687392502524
+v1s,dV_upper,all,holdout_2013-14,eq_b,0.8,12,0.8333333333333334,26.553603874412605
+v1s,dV_upper,all,holdout_2013-14,eq_b,0.9,12,0.9166666666666666,55.224894780974786
+v1s,dV_upper,all,holdout_2013-14,eq_b,0.95,12,1.0,89.40850242629652
+v1s,dV_upper,all,holdout_2013-14,lgbm,0.5,12,0.4166666666666667,17.145706789060483
+v1s,dV_upper,all,holdout_2013-14,lgbm,0.8,12,1.0,39.49028363120228
+v1s,dV_upper,all,holdout_2013-14,lgbm,0.9,12,1.0,44.1869589137543
+v1s,dV_upper,all,holdout_2013-14,lgbm,0.95,12,1.0,63.65432267504959
+v1s,dV_upper,all,holdout_2013-14,two_stage_ml,0.5,12,0.4166666666666667,12.694222362663433
+v1s,dV_upper,all,holdout_2013-14,two_stage_ml,0.8,12,0.8333333333333334,37.6630881596979
+v1s,dV_upper,all,holdout_2013-14,two_stage_ml,0.9,12,0.9166666666666666,49.796059985948716
+v1s,dV_upper,all,holdout_2013-14,two_stage_ml,0.95,12,1.0,71.75760113352062
+v1s,dV_upper,all,holdout_2013-14,hybrid,0.5,12,0.5833333333333334,14.291779478388838
+v1s,dV_upper,all,holdout_2013-14,hybrid,0.8,12,0.9166666666666666,34.22558310389883
+v1s,dV_upper,all,holdout_2013-14,hybrid,0.9,12,0.9166666666666666,49.08302751333084
+v1s,dV_upper,all,holdout_2013-14,hybrid,0.95,12,1.0,85.71755503146163
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),gp,0.5,14,0.42857142857142855,10.296576175556927
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),gp,0.8,14,0.7142857142857143,19.56381592707393
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),gp,0.9,14,0.7857142857142857,25.1098858991161
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),gp,0.95,14,0.8571428571428571,29.920274492381733
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.5,14,0.7142857142857143,12.952301670082543
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.8,14,0.8571428571428571,33.413060545107314
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.9,14,1.0,45.37541903778929
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.95,14,1.0,91.06282969767094
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.5,14,0.7142857142857143,12.517400221223069
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.8,14,0.8571428571428571,29.454941563335687
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.9,14,1.0,54.4401703721279
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.95,14,1.0,74.58486830932341
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.5,14,0.5714285714285714,13.56687392502524
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.8,14,0.8571428571428571,26.553603874412605
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.9,14,0.9285714285714286,55.224894780974786
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.95,14,1.0,89.40850242629652
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.5,14,0.5,17.145706789060483
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.8,14,1.0,39.490283631202274
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.9,14,1.0,44.18695891375431
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.95,14,1.0,63.654322675049585
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.5,14,0.5,12.694222362663433
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.8,14,0.8571428571428571,37.6630881596979
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.9,14,0.9285714285714286,49.79605998594871
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.95,14,1.0,71.75760113352064
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.5,14,0.6428571428571429,14.291779478388836
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.8,14,0.9285714285714286,34.22558310389883
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.9,14,0.9285714285714286,49.08302751333084
+v1s,dV_upper,all,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.95,14,1.0,85.71755503146163
+v1s,dV_total_fixed,resolvable,lowo,gp,0.5,48,0.4791666666666667,19.914355268401124
+v1s,dV_total_fixed,resolvable,lowo,gp,0.8,48,0.6875,37.83789622245779
+v1s,dV_total_fixed,resolvable,lowo,gp,0.9,48,0.7708333333333334,48.564414036102335
+v1s,dV_total_fixed,resolvable,lowo,gp,0.95,48,0.8125,57.86806855116006
+v1s,dV_total_fixed,resolvable,lowo,evi_general,0.5,48,0.5208333333333334,14.40083503319689
+v1s,dV_total_fixed,resolvable,lowo,evi_general,0.8,48,0.8125,39.853552855613714
+v1s,dV_total_fixed,resolvable,lowo,evi_general,0.9,48,0.9375,55.75319844468168
+v1s,dV_total_fixed,resolvable,lowo,evi_general,0.95,48,0.9583333333333334,76.09560905263307
+v1s,dV_total_fixed,resolvable,lowo,ppt_all,0.5,48,0.5625,17.984470086018806
+v1s,dV_total_fixed,resolvable,lowo,ppt_all,0.8,48,0.8125,39.80305975831246
+v1s,dV_total_fixed,resolvable,lowo,ppt_all,0.9,48,0.9166666666666666,55.66939006700384
+v1s,dV_total_fixed,resolvable,lowo,ppt_all,0.95,48,0.9583333333333334,75.76358339125879
+v1s,dV_total_fixed,resolvable,lowo,eq_b,0.5,48,0.5,17.134888855881265
+v1s,dV_total_fixed,resolvable,lowo,eq_b,0.8,48,0.8541666666666666,40.451213457572095
+v1s,dV_total_fixed,resolvable,lowo,eq_b,0.9,48,0.9583333333333334,59.12759484863741
+v1s,dV_total_fixed,resolvable,lowo,eq_b,0.95,48,0.9791666666666666,83.56306783204938
+v1s,dV_total_fixed,resolvable,lowo,lgbm,0.5,48,0.625,26.25157390366301
+v1s,dV_total_fixed,resolvable,lowo,lgbm,0.8,48,0.8541666666666666,55.80830609950335
+v1s,dV_total_fixed,resolvable,lowo,lgbm,0.9,48,0.875,75.01311420626008
+v1s,dV_total_fixed,resolvable,lowo,lgbm,0.95,48,0.9791666666666666,105.76644541078726
+v1s,dV_total_fixed,resolvable,lowo,two_stage_ml,0.5,48,0.5208333333333334,15.190768232080154
+v1s,dV_total_fixed,resolvable,lowo,two_stage_ml,0.8,48,0.8125,37.105903178644056
+v1s,dV_total_fixed,resolvable,lowo,two_stage_ml,0.9,48,0.9375,54.381642530912934
+v1s,dV_total_fixed,resolvable,lowo,two_stage_ml,0.95,48,0.9583333333333334,77.94593668723515
+v1s,dV_total_fixed,resolvable,lowo,hybrid,0.5,48,0.5,19.837560775615458
+v1s,dV_total_fixed,resolvable,lowo,hybrid,0.8,48,0.8541666666666666,39.42285610296167
+v1s,dV_total_fixed,resolvable,lowo,hybrid,0.9,48,0.9166666666666666,59.68083263712189
+v1s,dV_total_fixed,resolvable,lowo,hybrid,0.95,48,0.9583333333333334,84.47733810179602
+v1s,dV_total_fixed,resolvable,holdout_2013-14,gp,0.5,12,0.3333333333333333,17.2449857346531
+v1s,dV_total_fixed,resolvable,holdout_2013-14,gp,0.8,12,0.6666666666666666,32.766010839474085
+v1s,dV_total_fixed,resolvable,holdout_2013-14,gp,0.9,12,0.75,42.054719621942944
+v1s,dV_total_fixed,resolvable,holdout_2013-14,gp,0.95,12,0.8333333333333334,50.11128922863717
+v1s,dV_total_fixed,resolvable,holdout_2013-14,evi_general,0.5,12,0.6666666666666666,15.326089519174053
+v1s,dV_total_fixed,resolvable,holdout_2013-14,evi_general,0.8,12,0.9166666666666666,43.43094326939825
+v1s,dV_total_fixed,resolvable,holdout_2013-14,evi_general,0.9,12,1.0,58.10991409371433
+v1s,dV_total_fixed,resolvable,holdout_2013-14,evi_general,0.95,12,1.0,91.3764579386011
+v1s,dV_total_fixed,resolvable,holdout_2013-14,ppt_all,0.5,12,0.5,18.443595575702176
+v1s,dV_total_fixed,resolvable,holdout_2013-14,ppt_all,0.8,12,0.8333333333333334,36.36637087693066
+v1s,dV_total_fixed,resolvable,holdout_2013-14,ppt_all,0.9,12,0.8333333333333334,50.49443889389395
+v1s,dV_total_fixed,resolvable,holdout_2013-14,ppt_all,0.95,12,1.0,77.15435364541723
+v1s,dV_total_fixed,resolvable,holdout_2013-14,eq_b,0.5,12,0.5833333333333334,18.231513590715902
+v1s,dV_total_fixed,resolvable,holdout_2013-14,eq_b,0.8,12,0.8333333333333334,35.700874812070886
+v1s,dV_total_fixed,resolvable,holdout_2013-14,eq_b,0.9,12,1.0,75.4072172522026
+v1s,dV_total_fixed,resolvable,holdout_2013-14,eq_b,0.95,12,1.0,110.75490230679179
+v1s,dV_total_fixed,resolvable,holdout_2013-14,lgbm,0.5,12,0.9166666666666666,36.101554542903564
+v1s,dV_total_fixed,resolvable,holdout_2013-14,lgbm,0.8,12,1.0,62.88339776308274
+v1s,dV_total_fixed,resolvable,holdout_2013-14,lgbm,0.9,12,1.0,97.12772382867367
+v1s,dV_total_fixed,resolvable,holdout_2013-14,lgbm,0.95,12,1.0,111.31370554316152
+v1s,dV_total_fixed,resolvable,holdout_2013-14,two_stage_ml,0.5,12,0.5,15.037121372592336
+v1s,dV_total_fixed,resolvable,holdout_2013-14,two_stage_ml,0.8,12,0.9166666666666666,43.87108190324228
+v1s,dV_total_fixed,resolvable,holdout_2013-14,two_stage_ml,0.9,12,1.0,57.1811278686022
+v1s,dV_total_fixed,resolvable,holdout_2013-14,two_stage_ml,0.95,12,1.0,92.64534993032693
+v1s,dV_total_fixed,resolvable,holdout_2013-14,hybrid,0.5,12,0.5833333333333334,21.8368174552065
+v1s,dV_total_fixed,resolvable,holdout_2013-14,hybrid,0.8,12,0.9166666666666666,41.65208699302042
+v1s,dV_total_fixed,resolvable,holdout_2013-14,hybrid,0.9,12,1.0,76.13030130075312
+v1s,dV_total_fixed,resolvable,holdout_2013-14,hybrid,0.95,12,1.0,97.68445368559397
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),gp,0.5,14,0.2857142857142857,17.11671390220408
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),gp,0.8,14,0.6428571428571429,32.52229035648302
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),gp,0.9,14,0.7857142857142857,41.74190776857062
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),gp,0.95,14,0.8571428571428571,49.738550915330045
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.5,14,0.6428571428571429,15.326089519174051
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.8,14,0.9285714285714286,43.43094326939824
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.9,14,1.0,58.10991409371433
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.95,14,1.0,91.3764579386011
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.5,14,0.42857142857142855,18.443595575702176
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.8,14,0.8571428571428571,36.36637087693066
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.9,14,0.8571428571428571,50.49443889389396
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.95,14,1.0,77.15435364541723
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.5,14,0.5714285714285714,18.231513590715902
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.8,14,0.8571428571428571,35.700874812070886
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.9,14,1.0,75.4072172522026
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.95,14,1.0,110.75490230679179
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.5,14,0.9285714285714286,36.101554542903564
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.8,14,1.0,62.88339776308273
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.9,14,1.0,97.12772382867367
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.95,14,1.0,111.31370554316153
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.5,14,0.5,15.037121372592336
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.8,14,0.9285714285714286,43.87108190324228
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.9,14,1.0,57.181127868602196
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.95,14,1.0,92.64534993032694
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.5,14,0.5714285714285714,21.836817455206504
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.8,14,0.9285714285714286,41.652086993020426
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.9,14,1.0,76.13030130075312
+v1s,dV_total_fixed,resolvable,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.95,14,1.0,97.68445368559398
+v1s,dV_total_fixed,all,lowo,gp,0.5,51,0.5098039215686274,21.234351998383307
+v1s,dV_total_fixed,all,lowo,gp,0.8,51,0.7647058823529411,40.345931185673535
+v1s,dV_total_fixed,all,lowo,gp,0.9,51,0.8627450980392157,51.783442061723306
+v1s,dV_total_fixed,all,lowo,gp,0.95,51,0.9019607843137255,61.70377702519338
+v1s,dV_total_fixed,all,lowo,evi_general,0.5,51,0.49019607843137253,16.959047066560572
+v1s,dV_total_fixed,all,lowo,evi_general,0.8,51,0.8235294117647058,44.792285889409904
+v1s,dV_total_fixed,all,lowo,evi_general,0.9,51,0.9215686274509803,70.83141821427789
+v1s,dV_total_fixed,all,lowo,evi_general,0.95,51,0.9607843137254902,119.24922557006113
+v1s,dV_total_fixed,all,lowo,ppt_all,0.5,51,0.5294117647058824,19.162371040454023
+v1s,dV_total_fixed,all,lowo,ppt_all,0.8,51,0.7843137254901961,45.471691582989614
+v1s,dV_total_fixed,all,lowo,ppt_all,0.9,51,0.9215686274509803,68.07178239297828
+v1s,dV_total_fixed,all,lowo,ppt_all,0.95,51,0.9607843137254902,89.43570598070991
+v1s,dV_total_fixed,all,lowo,eq_b,0.5,51,0.49019607843137253,19.670358941224457
+v1s,dV_total_fixed,all,lowo,eq_b,0.8,51,0.8235294117647058,50.76705371537997
+v1s,dV_total_fixed,all,lowo,eq_b,0.9,51,0.9215686274509803,76.21829029813446
+v1s,dV_total_fixed,all,lowo,eq_b,0.95,51,0.9411764705882353,108.81475339235836
+v1s,dV_total_fixed,all,lowo,lgbm,0.5,51,0.6274509803921569,22.66302150818527
+v1s,dV_total_fixed,all,lowo,lgbm,0.8,51,0.803921568627451,55.314328154426676
+v1s,dV_total_fixed,all,lowo,lgbm,0.9,51,0.9215686274509803,84.36344973847436
+v1s,dV_total_fixed,all,lowo,lgbm,0.95,51,0.9411764705882353,106.77951759312901
+v1s,dV_total_fixed,all,lowo,two_stage_ml,0.5,51,0.45098039215686275,19.501779367409537
+v1s,dV_total_fixed,all,lowo,two_stage_ml,0.8,51,0.8431372549019608,59.58570960940073
+v1s,dV_total_fixed,all,lowo,two_stage_ml,0.9,51,0.9019607843137255,88.48286133872233
+v1s,dV_total_fixed,all,lowo,two_stage_ml,0.95,51,0.9411764705882353,117.53447894869888
+v1s,dV_total_fixed,all,lowo,hybrid,0.5,51,0.5490196078431373,19.451086053688087
+v1s,dV_total_fixed,all,lowo,hybrid,0.8,51,0.803921568627451,47.42834671794452
+v1s,dV_total_fixed,all,lowo,hybrid,0.9,51,0.9215686274509803,73.00058312789226
+v1s,dV_total_fixed,all,lowo,hybrid,0.95,51,0.9607843137254902,108.05362955681244
+v1s,dV_total_fixed,all,holdout_2013-14,gp,0.5,12,0.3333333333333333,16.9873804446846
+v1s,dV_total_fixed,all,holdout_2013-14,gp,0.8,12,0.6666666666666666,32.276552752741516
+v1s,dV_total_fixed,all,holdout_2013-14,gp,0.9,12,0.75,41.4265069687434
+v1s,dV_total_fixed,all,holdout_2013-14,gp,0.95,12,0.8333333333333334,49.362727682048096
+v1s,dV_total_fixed,all,holdout_2013-14,evi_general,0.5,12,0.4166666666666667,14.643890781134418
+v1s,dV_total_fixed,all,holdout_2013-14,evi_general,0.8,12,0.9166666666666666,50.9863631483729
+v1s,dV_total_fixed,all,holdout_2013-14,evi_general,0.9,12,1.0,107.20827023041626
+v1s,dV_total_fixed,all,holdout_2013-14,evi_general,0.95,12,1.0,193.64570844807972
+v1s,dV_total_fixed,all,holdout_2013-14,ppt_all,0.5,12,0.5,18.43458199655663
+v1s,dV_total_fixed,all,holdout_2013-14,ppt_all,0.8,12,0.8333333333333334,48.94290987606939
+v1s,dV_total_fixed,all,holdout_2013-14,ppt_all,0.9,12,0.9166666666666666,73.09796497550151
+v1s,dV_total_fixed,all,holdout_2013-14,ppt_all,0.95,12,1.0,179.84919827059545
+v1s,dV_total_fixed,all,holdout_2013-14,eq_b,0.5,12,0.5,17.73408989230259
+v1s,dV_total_fixed,all,holdout_2013-14,eq_b,0.8,12,0.6666666666666666,42.46007775943519
+v1s,dV_total_fixed,all,holdout_2013-14,eq_b,0.9,12,1.0,90.98198394113138
+v1s,dV_total_fixed,all,holdout_2013-14,eq_b,0.95,12,1.0,194.92308338651273
+v1s,dV_total_fixed,all,holdout_2013-14,lgbm,0.5,12,0.8333333333333334,25.760758079963505
+v1s,dV_total_fixed,all,holdout_2013-14,lgbm,0.8,12,1.0,70.01999232762246
+v1s,dV_total_fixed,all,holdout_2013-14,lgbm,0.9,12,1.0,95.58981360095372
+v1s,dV_total_fixed,all,holdout_2013-14,lgbm,0.95,12,1.0,178.29557451260533
+v1s,dV_total_fixed,all,holdout_2013-14,two_stage_ml,0.5,12,0.25,15.58662003946872
+v1s,dV_total_fixed,all,holdout_2013-14,two_stage_ml,0.8,12,0.8333333333333334,68.74867602941335
+v1s,dV_total_fixed,all,holdout_2013-14,two_stage_ml,0.9,12,0.9166666666666666,83.33235441117212
+v1s,dV_total_fixed,all,holdout_2013-14,two_stage_ml,0.95,12,1.0,193.527775439363
+v1s,dV_total_fixed,all,holdout_2013-14,hybrid,0.5,12,0.3333333333333333,14.018533111296223
+v1s,dV_total_fixed,all,holdout_2013-14,hybrid,0.8,12,0.6666666666666666,45.21772854101416
+v1s,dV_total_fixed,all,holdout_2013-14,hybrid,0.9,12,1.0,102.53089636553081
+v1s,dV_total_fixed,all,holdout_2013-14,hybrid,0.95,12,1.0,170.61597079697958
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),gp,0.5,14,0.2857142857142857,16.841626703408036
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),gp,0.8,14,0.6428571428571429,31.999616097643855
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),gp,0.9,14,0.7142857142857143,41.071062620017855
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),gp,0.95,14,0.8571428571428571,48.93918961726507
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.5,14,0.35714285714285715,14.643890781134418
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.8,14,0.9285714285714286,50.9863631483729
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.9,14,1.0,107.20827023041626
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),evi_general,0.95,14,1.0,193.64570844807972
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.5,14,0.5,18.43458199655663
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.8,14,0.8571428571428571,48.94290987606939
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.9,14,0.9285714285714286,73.09796497550153
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),ppt_all,0.95,14,1.0,179.84919827059545
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.5,14,0.42857142857142855,17.73408989230259
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.8,14,0.7142857142857143,42.46007775943519
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.9,14,1.0,90.98198394113138
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),eq_b,0.95,14,1.0,194.9230833865127
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.5,14,0.8571428571428571,25.760758079963505
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.8,14,1.0,70.01999232762248
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.9,14,1.0,95.5898136009537
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),lgbm,0.95,14,1.0,178.29557451260536
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.5,14,0.21428571428571427,15.586620039468722
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.8,14,0.8571428571428571,68.74867602941335
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.9,14,0.9285714285714286,83.33235441117213
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),two_stage_ml,0.95,14,1.0,193.52777543936298
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.5,14,0.2857142857142857,14.018533111296223
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.8,14,0.7142857142857143,45.217728541014154
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.9,14,1.0,102.53089636553082
+v1s,dV_total_fixed,all,holdout_2013-14..2014-15(train<= 2012-13),hybrid,0.95,14,1.0,170.61597079697958

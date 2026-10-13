@@ -189,18 +189,19 @@ def run_ablations(ev, iv, tag):
     return pd.DataFrame(rows), pd.DataFrame(target_rows)
 
 
-def load_v1():
+def load_v1(suffix=""):
+    """suffix "_slopefix" = Agent A's alternative tables with the corrected runup foreshore slope."""
     from evi.io import load_hydro
-    info = {"events": P.file_info(P.EVENTS_V1), "intervals": P.file_info(P.INTERVALS_V1)}
-    ev, iv = P.load_events()
+    ev_p, iv_p = P.DATA / f"events_trucvert{suffix}.parquet", P.DATA / f"intervals_trucvert{suffix}.parquet"
+    info = {"events": P.file_info(ev_p), "intervals": P.file_info(iv_p)}
+    ev, iv = P.load_events(ev_p, iv_p)
     return ev, iv, load_hydro(), info, [("holdout", P.HOLDOUT_TRAIN_LAST, P.HOLDOUT_TEST)], FEATURES, 4.224
 
 
-def load_v2():
+def load_v2(suffix=""):
     """Agent A's v2 table (Castelle 2020 profiles w740 + hourly waves with direction)."""
-    from evi.io import load_hydro  # noqa: F401
     dp = P.DATA
-    ev_p, iv_p = dp / "events_trucvert_v2.parquet", dp / "intervals_trucvert_v2.parquet"
+    ev_p, iv_p = dp / f"events_trucvert_v2{suffix}.parquet", dp / f"intervals_trucvert_v2{suffix}.parquet"
     info = {"events": P.file_info(ev_p), "intervals": P.file_info(iv_p)}
     ev, iv = P.prepare(pd.read_parquet(ev_p), pd.read_parquet(iv_p))
     info["n_imputed_pre_state_past_only"] = ev.attrs.get("n_imputed", {})
@@ -237,7 +238,9 @@ def run(tag="v1", do_figs=True):
     P.seed_everything()
     t0 = time.time()
     OUT_TAB.mkdir(parents=True, exist_ok=True)
-    ev, iv, hydro, info, holdouts, feats, hs95 = {"v1": load_v1, "v2": load_v2, "v2C": load_v2c}[tag]()
+    ev, iv, hydro, info, holdouts, feats, hs95 = {"v1": load_v1, "v2": load_v2, "v2C": load_v2c,
+                                                         "v1s": lambda: load_v1("_slopefix"),
+                                                         "v2s": lambda: load_v2("_slopefix")}[tag]()
     ev = add_shorefor(ev, hydro)
     models = {**baseline_models(), **ml_models(feats)}
     names = {k: m.name for k, m in models.items()}
@@ -281,7 +284,7 @@ def run(tag="v1", do_figs=True):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data", default="v1", choices=["v1", "v2", "v2C"])
+    ap.add_argument("--data", default="v1", choices=["v1", "v2", "v2C", "v1s", "v2s"])
     ap.add_argument("--no-figs", action="store_true")
     a = ap.parse_args()
     run(a.data, do_figs=not a.no_figs)
