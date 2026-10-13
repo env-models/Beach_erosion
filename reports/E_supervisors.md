@@ -1,7 +1,7 @@
 # E — Supervisors' recent work, lineage and hooks
 
 **Agent E, session of 13 Oct 2026 (22:50–00:10 CEST).** Read-only literature work; nobody was contacted.
-**Status:** Part 1 complete. Parts 2–4 in progress (see the bottom of this file for anything unfinished).
+**Status:** Parts 1–4 complete. Open `[verify]` items are listed in §5.
 
 Verification method: every DOI below was resolved against the **Crossref API** (`api.crossref.org/works/<doi>`; title, authors, volume and pages checked) and/or `curl -sIL https://doi.org/<doi>`. Abstracts were read from **HAL** (`api.archives-ouvertes.fr`) or **OpenAlex**. Items marked `verified: yes` were matched on title, authors and venue. Items that could not be resolved are tagged `[verify]`.
 
@@ -78,11 +78,11 @@ The numbers are close but not identical, which suggests the model was re-run bet
 #### (c) Who has cited the EWS paper since (OpenAlex, 12 citing works, queried 13 Oct 2026)
 
 These are useful for the paper's introduction and show the EVI is known internationally:
-- Leaman, Harley, Splinter et al. (2021), "A storm hazard matrix combining coastal flooding and beach erosion", *Coastal Engineering* 170:104001 — https://doi.org/10.1016/j.coastaleng.2021.104001 (OpenAlex-listed; volume/page `[verify]`)
+- Leaman, Harley, Splinter et al. (2021), "A storm hazard matrix combining coastal flooding and beach erosion", *Coastal Engineering* 170:104001 — https://doi.org/10.1016/j.coastaleng.2021.104001 — verified: yes (Crossref)
 - Ferreira, Ó. (2026), "A review of early warning systems for storm-induced coastal flooding and erosion on wave-dominated open coasts", *Cambridge Prisms: Coastal Futures* 4:e7 — https://doi.org/10.1017/cft.2026.10026 — **verified: yes** (Crossref). Its Table 1 lists "Lerma et al. (2018) | Aquitaine (France) | Erosion | Collision Regime + Eroded Volume | Parametric formulae". It recommends that "EWS should include accurate and updated morphological data", that data-driven techniques "must be properly trained", and that "there is a clear need for intensive and continuous field observations during storm events". **This is a direct positioning hook for our paper.** (The handoff called it a "2025 review"; Crossref gives 2026.)
-- Garzón, Plomaritis, Ferreira (2023), *JGR Oceans*, uncertainty from beach morphology and storm duration for EWS — https://doi.org/10.1029/2022jc019339 (OpenAlex; details `[verify]`)
-- Stockdon et al. (2023), *Communications Earth & Environment* — https://doi.org/10.1038/s43247-023-00817-2 (OpenAlex; `[verify]` details)
-- Itzkin et al. (2024), decision-tree (ML) runup model with uncertainty, *Coastal Engineering* — https://doi.org/10.1016/j.coastaleng.2024.104641 (OpenAlex; `[verify]` details). **ML-for-TWL precedent.**
+- Garzón, J.L., Plomaritis, T.A., Ferreira, Ó. (2023), Uncertainty Analysis Related to Beach Morphology and Storm Duration for More Reliable Early Warning Systems for Coastal Hazards, *JGR Oceans* 128(6):e2022JC019339 — https://doi.org/10.1029/2022jc019339 — verified: yes
+- Stockdon, H.F., Long, J.W., Palmsten, M.L., et al. (2023), Operational forecasts of wave-driven water levels and coastal hazards for US Gulf and Atlantic coasts, *Communications Earth & Environment* 4:169 — https://doi.org/10.1038/s43247-023-00817-2 — verified: yes
+- Itzkin, M., Palmsten, M.L., Buckley, M.L., Birchler, J.J., Torres-Garcia, L.M. (2025), Developing a decision tree model to forecast runup and assess uncertainty in empirical formulations, *Coastal Engineering* 195:104641 — https://doi.org/10.1016/j.coastaleng.2024.104641 — verified: yes. **ML-for-TWL precedent.**
 - Biausque, M. (2018), PhD thesis (Univ. Bordeaux), multi-proxy beach response to storms incl. recovery — https://doi.org/10.70675/be1e1d82z7499z4cffzb586z959f25d8f784 (OpenAlex). **Source of the Biscarrosse data.**
 
 ### 1.2 Seed list verification (HANDOFF §3-E)
@@ -142,3 +142,142 @@ Dunes (his main line since about 2020):
 6. **Uncertainty for warnings.** Calibrated prediction intervals (GP/Bayesian, conformal) fit the EWS use-case. The 2018 paper did a ±10 % forcing sensitivity on the CRI, and the 2026 Ferreira review asks for validated, morphology-updated EWS.
 
 ---
+
+## Part 2 — Gilles ARNAUD-FASSETTA (Université Paris Cité, UMR 8586 PRODIG)
+
+His own site (https://gilles-arnaud-fassetta.org/, read 13 Oct 2026) describes him as "Professor of Geography (Hydrogeomorphology & Geoarchaeology) at Paris Cité University since September 2012". Listed roles: Council of Doctoral School ED 624; member of the GFG (Groupe Français de Géomorphologie); CNFG Continental Hydrosystems commission; co-head of the CIST "PAST" research area; scientific council of the journal *Méditerranée*. The roles page does **not** mention DYNARISK or the *Géomorphologie* editorial board. HAL lists 286 records.
+
+### 2.1 Seed list verification
+
+| # | Seed item | Verified | Corrected citation + DOI | Summary | Relevance |
+|---|---|---|---|---|---|
+| 1 | Aude 2018 flood, *Géomorphologie* 32(1) | **yes** | Arnaud-Fassetta, G., Brun, M., Dupuis, M., Bellon, T., Perrine, L., Brousse, G., Fort, M. (2026). When geomorphological field data and systemic analysis help refine the uncertainties of numerical hydrometeorological models in extreme values. Case study: The catastrophic flood event of October 14–15, 2018, in the Aude watershed (southern France). *Géomorphologie : relief, processus, environnement* 32(1):41–74. https://doi.org/10.4000/15rpd (→ journals.openedition.org/geomorphologie/21382). Licence per Crossref: CC BY-SA 4.0. | A systemic analysis of all "predisposing, triggering, and aggravating/mitigating factors" of the event, focused on the Rieu Sec (an Orbiel tributary, Minervois). The event was extraordinary in meteorology, hydrology, geomorphology, sediment budget and riparian impact, with an estimated "recurrence interval … 204-378 yrs". It proposes a model of small (<40 km²) mountain catchments "in which high-magnitude/low-frequency flood events play a key role". It closes on "improving flood forecasting, and the effective dissemination of these forecasts". | **Strongest framing hook** (see 2.3). The abstract does not detail *how* field data constrain the numerical models; the full text was not read → the precise method is `[verify]`. |
+| 2 | Réunion 2024–25 flood risk, *Géomorphologie* 32(4) | **yes** | Arnaud-Fassetta, G., Larive, J., Torczinski, L., Lepetit, D., Staal, S., Lorion, D., Taglioni, F., Amri, M., Méchain, A., Dahech, S. (2026). Feedback (2024-2025) on flood risk in Réunion Island (France, Indian Ocean): From the analysis of temporal and spatial dimensions to the implementation of mitigation strategies. *Géomorphologie* 32(4):263–290. https://doi.org/10.4000/16a20 (CC BY-SA 4.0). His site gives the DOI as "10.4000/16a201", which is a typo. | Flood risk after cyclones Belal (2024) and Garance (2025): historical sources plus field geomorphology, stratigraphy and hydraulics. It argues for hydro-geomorphological mitigation despite valley-floor urbanisation. | A "retour d'expérience" genre for extreme events plus a mitigation framing. It parallels the 2013–14 winter as a stress test. |
+| 3 | Gautier et al. 2026, *Geomorphology* 511:110415 | **yes** | Gautier, E., Mesmin, E., Virmoux, C., Dépret, T., Saulnier-Copard, S., Arnaud-Fassetta, G., Martins, G., Fichet, V., Braud, S. (2026). Contribution of the Loire River to knowledge about hungry rivers – Three centuries of a lowland river trajectory. *Geomorphology* 511:110415. https://doi.org/10.1016/j.geomorph.2026.110415 | Trajectory of a 72 km Loire reach in Burgundy (1755–2023) from high-resolution elevation modelling. It separates the roles of embankments, hydrology and sediment mining in bed narrowing and incision ("hungry river"). | Sediment budget / sediment deficit thinking. It is analogous to chronic beach sediment deficit (e.g. Biscarrosse). Weak direct link. |
+| 4 | Fort et al. 2025, *Géomorphologie* 31(4) | **yes** | Fort, M., Gurung, N., Yvrard, P., Bell, R., Burrows, K., Rimal, B., Arnaud-Fassetta, G. (2025). The Kagbeni flood event (August 13, 2023), Mustang District (Nepal): Triggers, sediment cascades, aggravating infrastructures and disaster risk management. *Géomorphologie* 31(4):303–325. https://doi.org/10.4000/154up (CC BY-SA 4.0) | Hyper-concentrated flood probably triggered by a landslide-lake outburst, confirmed by Sentinel-1 InSAR coherence. Sediment cascade downstream; infrastructure aggravated the damage. | The "triggers / cascades / aggravating factors" vocabulary maps to storm → beach → dune sediment transfer. |
+| 5 | Fort, Bétard & Arnaud-Fassetta 2025 textbook | **yes** (publisher page) | Fort, M., Bétard, F., Arnaud-Fassetta, G. (2025). *Géomorphologie dynamique et environnement. Processus et relais dans les bassins versants*, 2nd ed. Armand Colin (Dunod group), Collection U, Paris, 352 p. ISBN 978-2-200-63772-9 (ebook 978-2-200-64159-7). Publication Feb 2025. Source: https://www.dunod.com/histoire-geographie-et-sciences-politiques/geomorphologie-dynamique-et-environnement-0 . No DOI found for the 2nd ed. (the 1st ed. 2015 is https://doi.org/10.3917/arco.fort.2015.01). | French reference textbook on process geomorphology at catchment scale. | Use it as the source for "relais" (process relays) and sediment-cascade terminology if the paper is framed for him. |
+
+**Other recent items worth knowing** (Crossref-verified unless stated):
+- Arnaud-Fassetta, G., Brun, M., Brousse, G., et al. (35 authors) (2024). Twenty-five years of hydromorphological restoration in the high-energy, gravel-bed rivers of southern France… *Géomorphologie* 30(2):115–146. https://doi.org/10.4000/12m3m — bedload and sediment balance in the Aude left-bank tributaries.
+- Mesmin, E., Gautier, E., Arnaud-Fassetta, G., Foucher, M., Martins, G., Gob, F. (2024). Characterization of periods of high and low hydrological activity in the Loire River, France, between the 14th and mid-19th centuries. *Journal of Hydrology* 633:130932. https://doi.org/10.1016/j.jhydrol.2024.130932 — **clustering of hydrological activity in time.** Conceptually close to storm clustering.
+- Dumont, M., Siccard, V., Arnaud-Fassetta, G., Gomez, C., Lissak, C., Viel, V. (2024). Mutations paysagères dans la région nord de Kyūshū (Japon)… *Géomorphologie* 30(4). https://doi.org/10.4000/13tov
+- Fort, M., Gurung, N., Arnaud-Fassetta, G. (2025). The "River Functional Flooding Space" Concept for Bridge Construction in Nepal. *Asian Journal of Engineering Geology* 2 (special issue):115–116. https://doi.org/10.64862/ajeg.2025.2sp.53.168 (his site lists Gurung as first author; Crossref lists Fort first).
+- **Coastal Aquitaine (Médoc) work:** Bertrand, F., Verdin, F., Eynaud, F., Arnaud-Fassetta, G., Stéphan, P., Costa, S., Suanez, S. (2019). Settlement potential and constraints on the lower Médoc coastline: results of the LITAQ project and considerations on coastal palaeo-risks… *Quaternaire* 30(1). https://doi.org/10.4000/quaternaire.11228 ; Verdin, F., …, Arnaud-Fassetta, G., …, Suanez, S., et al. (2019). Humans and their environment on the Médoc coastline from the Mesolithic to the Roman period. *Quaternaire* 30(1). https://doi.org/10.4000/quaternaire.11201 . → **He has published on the Aquitaine coast** (palaeo-coastal risk, North Médoc), so the coastal topic is not foreign to him.
+- Listed on his site as forthcoming (not verifiable yet → `[verify]`): Fort, M., Arnaud-Fassetta, G., Viel, V. (2026), "The Queyras…" chapter in *Landscapes and Landforms of France* (Springer); Arnaud-Fassetta, G., Melun, G., Peress, J., Millardet, L. (2026), *Comprendre pour agir : les inondations* (OFB, submitted); Astrade, L., …, Arnaud-Fassetta, G., Fort, M. (2026), "Les crues des 13-14 juin 1957 dans les Alpes…" (submitted).
+- **ML:** none found. His methods are field-based, historical and systemic. An ML paper would need clear physical and geomorphological interpretation to appeal to him (SHAP, symbolic regression, and an honest discussion of the limits).
+
+**Current themes (2024–2026):** extreme floods and *retours d'expérience* (Aude 2018, Réunion 2024–25, Kagbeni 2023, Kyūshū 2017, Alps 1957); sediment cascades, sediment deficit and river restoration (Aude tributaries, Montagne Noire, Loire "hungry river"); historical hydrology (Loire 14th–19th c.); fluvial geoarchaeology; political ecology of mining (Falémé).
+
+### 2.2 The journal *Géomorphologie : relief, processus, environnement* (candidate venue)
+
+| Item | Finding | Source |
+|---|---|---|
+| Publisher | **Groupe Français de Géomorphologie (GFG)**, with CNRS support. Created 1995. Hosted on **OpenEdition Journals**. e-ISSN 1957-777X. Quarterly. | journals.openedition.org/geomorphologie/32 and home page |
+| OA model / APC | The "Présentation" page describes **OpenEdition Freemium**: HTML free for all articles, PDF for subscribers. **No APC is mentioned** anywhere on the site. Crossref metadata for the 2025–26 articles (10.4000/154up, 15rpd, 16a20) carries a **CC BY-SA 4.0** licence, which suggests a move to full OA. The handoff's "diamond OA" claim is therefore **plausible but not confirmed** → `[verify]` with the journal (Raphaël's call). | as above + Crossref |
+| Languages | **French and English.** Title, abstract (**≤ 250 words**), keywords (≤ 6) and captions are in both languages, plus an **extended abridged version of ~7,000 characters** in the other language. | journals.openedition.org/geomorphologie/701 |
+| Length | "**15 à 20 pages (maximum), figures comprises**". Times 12, line spacing 1.5. No footnotes. Figures 9 or 18 cm wide. | same |
+| Submission | By email (geomorphologieGRPE[at]gmail.com), .doc text without illustrations, figures sent separately. Data-availability and peer-review type are not stated. | same |
+| Indexing / impact | The journal page says it is indexed in **Science Citation Index Expanded / JCR**. His own site gives a **2025 IF of 0.300 (Q4)**. | /32; gilles-arnaud-fassetta.org/publications |
+| Editorial board | EIC **Laurent Astrade** (Univ. Savoie Mont Blanc). Publication director Armelle Decaulne (GFG president). 17 associate editors, including **Emmanuèle Gautier** and **Candide Lissak** (both his recent co-authors) and **Serge Suanez** (co-author on the 2019 Médoc papers). **Arnaud-Fassetta is not on the board.** Astrade is a co-author on one of his submitted 2026 items `[verify]`. | journals.openedition.org/geomorphologie/19137 |
+
+Assessment: it is a good fit for a **French-English, geomorphology-framed** version co-signed by him. It is diamond or near-diamond, and bilingual, which suits the DYNARISK lineage. The trade-offs are low impact (Q4) and a modelling/ML readership smaller than *Coastal Engineering*, *NHESS* or *ESurf*. Raphaël/Agent F should weigh this. Several board members are close to him, so editorial conflict-of-interest handling should be considered (the handling editor should not be a close collaborator).
+
+### 2.3 Concrete hooks for Arnaud-Fassetta (hydrogeomorphology / risk framing)
+
+1. **"Field data constrain model uncertainty under extremes" (Aude 2026).** Our paper does the coastal equivalent: dense observed beach profiles constrain a data-driven erosion model, and the extreme 2013–14 winter is the stress test. Report it with his vocabulary: **predisposing factors** (antecedent beach state, berm, slope, bar state), **triggering factors** (storm energy and water level above HAT/dune foot) and **aggravating/mitigating factors** (storm clustering, recovery gaps, tide phase). That is a systemic reading of SHAP or feature-ablation results.
+2. **Magnitude–frequency and high-magnitude/low-frequency events.** His Aude model gives HM/LF events a key role (recurrence 204–378 yr). For us: the return period of the 2013–14 storm energy, whether the erosion–energy law holds or breaks for extremes (the "no energy floor" and nonlinearity questions in HANDOFF §1), and the clustering of events (cf. Mesmin et al. 2024 on clustered high-activity periods of the Loire).
+3. **Sediment cascades and relays ("relais").** The 2017 thesis observed cross-shore transfer (upper beach → lower beach after Xynthia; berm loss before 2013–14). Framing the beach–dune profile as a **coastal sediment cascade** with connectivity between compartments (dune, upper beach, lower beach, bars) is a natural bridge to the 2025 textbook's catchment "process relays". It also justifies modelling ΔV per compartment rather than one total.
+4. **Risk management and forecast dissemination.** The Aude and Réunion papers both end on forecasting and dissemination and mitigation strategies. Our EWS lineage (OCA bulletins for local authorities, RP-67418-FR) provides the operational outlet. A section on "what a local manager gets from the model" (alert level plus uncertainty interval) speaks to both supervisors.
+5. **The coast is not foreign to him:** the 2019 *Quaternaire* papers on North-Médoc coastal palaeo-risks give a natural line in an outreach message.
+
+---
+
+## Part 3 — Recurring names (co-author vs reviewer)
+
+Rule applied: anyone who has co-authored with Nicolae Lerma in the last ~5 years, or who owns or produced the data we use, is a **co-author or acknowledgement candidate and must not be a suggested reviewer**.
+
+| Person | Affiliation (as in recent papers) | 1–3 recent relevant papers (verified) | Likely role |
+|---|---|---|---|
+| **Bruno Castelle** | CNRS, UMR 5805 EPOC, Univ. Bordeaux (affiliation on the 2018 JCR paper; current title `[verify]`) | Castelle, Bujan, Marieu, Ferreira (2020) 16 years of topographic surveys… *Sci. Data* 7:410, https://doi.org/10.1038/s41597-020-00750-5 (**the Truc Vert dataset we extend**). Azorakos, Castelle, Idier, Marieu, Ibaceta, Splinter, Bertin, Masselink, Scott (2025) time-varying free parameters in equilibrium shoreline models via data assimilation, *ESPL* 50(15):e70221, https://doi.org/10.1002/esp.70221 . Burvingt & Castelle (2023) Storm response and multi-annual recovery of eight coastal dunes…, *Geomorphology* 435:108735, https://doi.org/10.1016/j.geomorph.2023.108735 | **Co-author candidate** (data owner, JCR 2018 co-author, ShoreFor/equilibrium-model expertise at Truc Vert). **Not a reviewer.** No pure-ML paper by him was found in Crossref searches. His group's work is equilibrium models + data assimilation + satellite shorelines, which is the "hybrid" baseline Agent C should compare against. |
+| **Olivier Burvingt** | Univ. Bordeaux / EPOC (per 2023–25 papers `[verify current]`) | Burvingt, Masselink, Russell, Scott (2017) Classification of beach response to extreme storms, *Geomorphology* 295:722–737, https://doi.org/10.1016/j.geomorph.2017.07.022 . Burvingt & Castelle (2023) above. Burvingt et al. (2025) *Remote Sensing* 17(9):1522 (Pléiades dunes). | **Co-author only if dune DEM data are used**; otherwise acknowledge. **Not a reviewer** (close co-author of Nicolae Lerma and Castelle). |
+| **Nadia Sénéchal** | EPOC, Univ. Bordeaux | Biausque & Senechal (2019) Seasonal morphological response of an open sandy beach to winter wave conditions: Biscarrosse, *Geomorphology* 332:157–169, https://doi.org/10.1016/j.geomorph.2019.02.009 . Lubac et al. (2022) *Remote Sensing* 14:2350. Nicolae Lerma et al. (2024) *Coastal Eng.* 193:104579. | **Co-author candidate if Biscarrosse data are used** (JCR 2018 co-author; ECORS-Truc Vert'08 runup data). **Not a reviewer.** |
+| **Mélanie Biausque** | Former EPOC PhD (2018); later work on multiple-intertidal-bar beaches (2021–23 papers with Ulster co-authors; current affiliation `[verify]`) | Biausque & Senechal (2019) above; Biausque, Grottoli, Jackson, Cooper (2023) *Geomorphology* 434:108728, https://doi.org/10.1016/j.geomorph.2023.108728 | **Co-author candidate if her Biscarrosse surveys are used** (JCR 2018 co-author). Not a reviewer. |
+| **Nicolas Robin** | CEFREM, Univ. Perpignan `[verify]` | Robin et al. (2026) *JGR-ES* 131:e2025JF008886 (storm wind flow on dunes). Aparicio, Almar, Lacaze, Robin (2026) Coastlines retreat tipping point under storm climate changes, *Sci. Rep.* 16:10311, https://doi.org/10.1038/s41598-026-40886-9 . Robin et al. (2020) Truc Vert GPR recovery, *JCR* SI 95. | Unlikely co-author (dune/aeolian focus). **Not a reviewer** (frequent co-author of Nicolae Lerma). |
+| **Thomas Bulteau** | BRGM (Nouvelle-Aquitaine in 2018–19; current unit `[verify]`) | Bulteau et al. (2019) RP-67418-FR (OCA storm network). Louisor, Rohmer, Bulteau, et al. (2021) 100-year TWL around Corsica, *JMSE* 9(12):1347, https://doi.org/10.3390/jmse9121347 . Bulteau et al. (2014) RP-63797-FR (2013–14 winter impacts). | **Strong co-author candidate** if the paper evaluates the OCA operational indicator (he is first author of RP-67418-FR and co-author of JCR 2018). Not a reviewer. |
+| **Cyril Mallet** | BRGM Nouvelle-Aquitaine (OCA operator; exact role `[verify]`) | Nicolae Lerma et al. (2022) *Appl. Geogr.* 139:102645. Nicolae Lerma et al. (2019) *CSR* 189:103974. Vandenhove et al. (2024) *Geomorphology* 445:108972. | Institutional/data contact for OCA. Acknowledgement, or co-author if OCA data are central. Not a reviewer. |
+| Others recurring with Nicolae Lerma on storms/EWS | **Héloïse Muller, François Paris** (BRGM; JCR 2018 + RP-67418-FR co-authors); **Clément Decarsin** (2016 BRGM intern, CRI; JCR 2018 co-author); **Vincent Marieu, Stéphane Bujan** (EPOC; Truc Vert surveys and data); **Arthur Robinet, Déborah Idier** (BRGM; shoreline modelling, Mingo et al. 2026); **Marine Vandenhove** (PhD 2024 with Castelle and Nicolae Lerma) | see Part 1 | Acknowledgements or co-authors depending on data used; none should be reviewers. |
+
+**Candidate independent reviewers** (they cite or work on storm-erosion EWS/ML, but each needs a **co-authorship/COI check** before being suggested. Checked against all 90 HAL records of Nicolae Lerma: none of the names below appears as his co-author, except where flagged):
+- **Óscar Ferreira** (Univ. Algarve): 2026 EWS review that cites the EVI paper, https://doi.org/10.1017/cft.2026.10026 `[verify no co-authorship with Castelle]`
+- **Juan L. Garzón** (Univ. Algarve): EWS uncertainty from morphology and storm duration, https://doi.org/10.1029/2022jc019339
+- **Michael Itzkin** (USGS): ML (decision-tree) runup with uncertainty, https://doi.org/10.1016/j.coastaleng.2024.104641 . **Exclude Margaret Palmsten**: she co-authored with Nicolae Lerma (Sea State from Single Optical Images, *Remote Sensing* 2021, https://doi.org/10.3390/rs13040679).
+- **Christopher Leaman / Mitchell Harley** (UNSW): storm hazard matrix, https://doi.org/10.1016/j.coastaleng.2021.104001 . Harley's SCW is the CRI's ancestor. `[verify COI: Splinter co-authored with Castelle]`
+- Avoid: Masselink and Scott (co-authors of Nicolae Lerma: Castelle et al., Coastal Sediments 2023) and Splinter (recent co-author of Castelle, e.g. Azorakos et al. 2025).
+
+---
+
+## Part 4 — Material for Raphaël (he sends it himself, later; nothing has been sent)
+
+### 4.1 Project summary — English (adapt per supervisor)
+
+> **Revisiting the Eroded Volume Indicator (EVI) at Truc Vert, nine years on**
+>
+> In 2017, during my DYNARISK Master's internship at BRGM, I developed an energy-based indicator relating storm wave energy delivered above HAT to the beach volume eroded at Truc Vert. A version of it was published as the EVI in Nicolae Lerma et al. (2018, *Journal of Coastal Research* SI 85, 666–670, doi:10.2112/SI85-134.1), and the internship was one of the inputs to the OCA storm-network indicator (BRGM/RP-67418-FR, 2019). Both documents noted that validation was limited to a handful of storms and that storm clusters and the pre-storm beach state needed more work.
+>
+> I am now revisiting this work as an independent researcher, with an open, reproducible workflow. The plan is to (1) reproduce the 2017/2018 results from the original data and correct known issues (energy units, threshold consistency, target-dependent filtering, data leakage); (2) extend the event record with the published 2003–2019 Truc Vert surveys (Castelle et al., 2020, *Scientific Data*) and open wave and water-level data; (3) compare the EVI against physics-based and equilibrium baselines and a small set of interpretable statistical/ML models (e.g. gradient boosting with SHAP, Gaussian processes for uncertainty, symbolic regression), using leave-one-winter-out validation with 2013–14 reported separately; and (4) report the results honestly, including if the simpler models are not beaten.
+>
+> The goal is a peer-reviewed paper. I would value your view on whether this is worth pursuing together and, if so, on the framing, the data, and your possible role as co-author. Code and derived data would be released openly (GitHub + Zenodo), respecting third-party data licences. No results are claimed at this stage.
+
+*Per-supervisor adaptation (one paragraph to add):*
+- **For A. Nicolae Lerma:** mention the OCA operational indicator (wave power 100/200 kW/m, PMVE and dune-foot thresholds). Ask whether testing its alert levels against observed ΔV at Truc Vert would be useful to the OCA, and whether OCA/BD Tempêtes data and the "Nicolae-Lerma 2018" runup formulation could be used or cited.
+- **For G. Arnaud-Fassetta:** mention the hydrogeomorphological framing (predisposing / triggering / aggravating factors; magnitude–frequency; sediment relays across the beach–dune profile) and *Géomorphologie : relief, processus, environnement* as a possible bilingual venue.
+
+### 4.2 Résumé du projet — français
+
+> **Revisiter l'indicateur de volume érodé (EVI) au Truc Vert, neuf ans après**
+>
+> En 2017, lors de mon stage de Master 2 DYNARISK au BRGM, j'ai élaboré un indicateur hydro-géomorphologique reliant l'énergie des vagues de tempête parvenant au-dessus des PHMA au volume de plage érodé au Truc Vert. Une version en a été publiée sous le nom d'EVI dans Nicolae Lerma et al. (2018, *Journal of Coastal Research* SI 85, 666–670, doi:10.2112/SI85-134.1), et le stage a fait partie des travaux mobilisés pour l'indicateur du réseau tempêtes de l'OCA (rapport BRGM/RP-67418-FR, 2019). Ces deux documents soulignaient que la validation portait sur un nombre limité de tempêtes et que les successions de tempêtes et l'état pré-tempête de la plage restaient à approfondir.
+>
+> Je reprends aujourd'hui ce travail en chercheur indépendant, avec une démarche ouverte et reproductible : (1) reproduire les résultats de 2017/2018 à partir des données d'origine et corriger les problèmes identifiés (unités de l'énergie, cohérence des seuils, filtrage dépendant de la variable cible, fuite d'information entre calage et validation) ; (2) étendre la série d'événements avec les levés publiés du Truc Vert 2003–2019 (Castelle et al., 2020, *Scientific Data*) et des données ouvertes de houle et de niveau marin ; (3) comparer l'EVI à des modèles physiques et d'équilibre, puis à quelques modèles statistiques/apprentissage automatique interprétables (gradient boosting avec SHAP, processus gaussiens pour l'incertitude, régression symbolique), avec une validation « un hiver laissé de côté » et l'hiver 2013–14 traité à part ; (4) présenter les résultats honnêtement, y compris si les modèles simples ne sont pas dépassés.
+>
+> L'objectif est un article dans une revue à comité de lecture. Votre avis me serait précieux : l'intérêt de poursuivre ensemble, le cadrage, les données, et votre éventuelle participation comme co-auteur. Le code et les données dérivées seraient publiés en accès ouvert (GitHub + Zenodo), dans le respect des licences des données tierces. Aucun résultat n'est annoncé à ce stade.
+
+### 4.3 Draft authorship and contribution proposal (CRediT, for discussion)
+
+This is a *proposal* to agree before submission. The order and roles are open. Nothing here has been agreed.
+
+| Contributor | Proposed CRediT roles | Condition / note |
+|---|---|---|
+| **Raphaël Gillet** (first, corresponding; "Independent researcher, [city], France" unless an associate affiliation is offered) | Conceptualization; Methodology; Software; Formal analysis; Investigation; Data curation; Visualization; Writing – original draft; Project administration | — |
+| **Alexandre Nicolae Lerma** (BRGM) | Conceptualization (original EVI/EWS design, 2017–2018); Methodology (runup/TWL, thresholds); Validation (operational relevance, OCA); Resources (OCA data, if provided); Writing – review & editing; Supervision (of the original 2017 work) | Lead author of the 2018 EVI paper. |
+| **Gilles Arnaud-Fassetta** (Univ. Paris Cité, PRODIG) | Conceptualization (hydrogeomorphological framing); Writing – review & editing; Supervision (academic, 2017) | Required if the *Géomorphologie* route is chosen. |
+| Optional: **Thomas Bulteau** (BRGM) | Resources / Validation (OCA storm-network indicator, BD Tempêtes) | Only if the operational indicator is evaluated. |
+| Optional: **Bruno Castelle** and/or EPOC data team (Marieu, Bujan) | Resources / Data curation (Truc Vert surveys) | The 2003–2019 dataset is public (Sci. Data). Citation is the default; co-authorship is offered only if they contribute data beyond the public release or analysis. Raphaël's call. |
+| Optional: **Nadia Sénéchal / Mélanie Biausque** | Resources (Biscarrosse high-frequency surveys) | Only if the Biscarrosse transfer test uses their data. |
+
+Notes for the authorship conversation: (i) agree the **author order and corresponding author** in writing before drafting; (ii) agree the **affiliation line** (independent vs an associate affiliation); (iii) agree the **data-access terms** (OCA, BD Tempêtes, EPOC); (iv) declare **AI-assisted analysis/writing** according to the chosen journal's policy; (v) suggested reviewers must exclude everyone in the table above and their close collaborators (Part 3).
+
+---
+
+## 5. Open items and limits (`[verify]` list)
+
+- "Nicolae-Lerma 2018" runup formulation (direction + tide modulation) cited only in RP-67418-FR Table 6. Not found on HAL or Crossref. It may be internal or unpublished.
+- *Géomorphologie* OA model: the site says Freemium, Crossref says CC BY-SA 4.0 for recent articles, and no APC is mentioned. Confirm "diamond".
+- Full text of the Aude 2026 paper was not read. How field data refine the model uncertainty is taken from the title and abstract only.
+- Current affiliations and titles of Castelle, Burvingt, Biausque, Robin, Bulteau and Mallet were taken from recent papers and not checked against institutional pages.
+- COI checks for the candidate reviewers (Ferreira, Harley/Leaman, Garzón, Itzkin) against Castelle, Bulteau and Arnaud-Fassetta (only Nicolae Lerma's HAL list was checked).
+- ResearchGate (Nicolae Lerma profile; RP-67418-FR entry 340966399) returned HTTP 403 to automated fetching. Google Scholar was not scraped. HAL + Crossref + OpenAlex + theses.fr were used instead.
+- Forthcoming Arnaud-Fassetta items listed only on his site (Queyras chapter, OFB guide, 1957 Alps floods).
+
+## Reproduce
+
+```
+# EWS paper (open access, HAL)
+curl -sL -o ews.pdf 'https://brgm.hal.science/hal-01719953/file/ICS2018-FinalPaper-A1578-Nicolae-Lerma.pdf'
+# RP-67418-FR (public, OCA site; InfoTerre URL returns 404)
+curl -sL -o rp67418.pdf 'https://www.observatoire-cote-aquitaine.fr/IMG/pdf/rp-67418-fr_oca-reseautempetes.pdf'
+# DOI checks
+curl -s https://api.crossref.org/works/10.2112/SI85-134.1 | python3 -m json.tool | head
+# HAL publication list
+curl -s 'https://api.archives-ouvertes.fr/search/?q=authFullName_s:"Alexandre Nicolae Lerma"&fl=title_s,producedDateY_i,doiId_s&rows=200'
+```
