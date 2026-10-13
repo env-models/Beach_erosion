@@ -1,3 +1,5 @@
+[← reports index](README.md) · [project README](../README.md)
+
 # E — Supervisors' recent work, lineage and hooks
 
 **Agent E, session of 13 Oct 2026 (22:50–00:10 CEST).** Read-only literature work; nobody was contacted.

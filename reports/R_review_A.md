@@ -1,3 +1,5 @@
+[← reports index](README.md) · [project README](../README.md)
+
 # R — Independent review of Agent A (clean EVI pipeline, v1 event table, A_audit.md)
 
 Reviewer R, 2026-10-13, ~23:10–23:25 CEST. Reviewed commits: `08cf9fb` (HAT = 1.75 m) and `41e8dee`

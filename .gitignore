@@ -17,6 +17,9 @@ data/raw/*
 !data/raw/.gitkeep
 !data/raw/README.md
 
+# WEPA index is CC BY-NC-ND: the processed local copy must never be committed (data/README.md §4b)
+data/processed/wepa_winter_local.parquet
+
 # Large processed artefacts are allowed only if < 5 MB (event tables are small)
 *.nc
 !datasets/**/*.nc

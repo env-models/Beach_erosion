@@ -1,3 +1,5 @@
+[← reports index](README.md) · [project README](../README.md)
+
 # D — State of the art, 2016–2026 (annotated bibliography)
 
 **Agent D deliverable** for HANDOFF §3-D. Branch `revisit-2026`. Compiled 13 Oct 2026.

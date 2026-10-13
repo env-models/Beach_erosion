@@ -1,3 +1,5 @@
+[← reports index](README.md) · [project README](../README.md)
+
 # C — Modelling report: physics-first baselines, then ML (Agent C)
 
 Branch `revisit-2026`. All numbers below were produced in this session by `python -m evi.models.run_all`

@@ -1,3 +1,5 @@
+[← reports index](README.md) · [project README](../README.md)
+
 # B — Data expansion report (Agent B)
 
 Prepared 2026-10-13 on branch `revisit-2026`. Full provenance for every source is in `data/README.md`.

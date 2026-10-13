@@ -15,3 +15,6 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+# Only test_*.py is collected; tests/review_*.py are reviewer checks run explicitly
+# (e.g. tests/review_time_alignment.py fails on purpose, see reports/R_review_A.md F1).
+python_files = ["test_*.py"]

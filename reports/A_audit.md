@@ -1,3 +1,5 @@
+[← reports index](README.md) · [project README](../README.md)
+
 # A — Reproduction and audit of the 2017/2020 EVI pipeline
 
 Agent A, 2026-10-13. Code: `src/evi/` (clean package), tests: `tests/` (24 passing), data products:
