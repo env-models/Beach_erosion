@@ -1,0 +1,2052 @@
+
+
+===== PAGE 1 =====
+  
+ 
+Élaboration d'un indicateur hydro-géomorphologique : un 
+outil pour prévoir le risque d'érosion lors de tempêtes sur 
+les plages sableuses aquitaines 
+GILLET Raphaël 
+Mémoire présenté pour l’obtention du  Master II Géographie et Sciences des Territoires, 
+spécialité Dynamique des milieux et risques. 
+ Année universitaire 2016-2017 
+ 
+Responsable du stage :                                                            Tuteur universitaire : 
+NICOLAE LERMA Alexandre                                        ARNAUD-FASSETTA Gilles
+
+
+===== PAGE 2 =====
+ 
+ 
+RESUME 
+ 
+ La côte sableuse Aquitaine recule de 1 à 3 m/an en moyenne, notamment sous 
+l’action des tempêtes de l’Atlantique Nord.  Afin d’améliorer la compréhension de ce 
+phénomène, le BRGM est à l’initiative d’un projet, au travers du 
+réseau  Vigilance Erosion, visant à élaborer un indicateur de risque à l’usage des 
+collectivités territoriales du littoral qui permettrait de prévoir le caractère érosif des 
+tempêtes. Ce dernier nommé EVI (pour Eroded Volume Indicator ), s’appuie sur 
+l’adaptation d u SCW (pour Safe Corridor Width ) qui permet de déterminer le niveau 
+d’eau instantanée sur une plage afin de déterminer les volumes de plage érodés en 
+fonction des conditions météo -marines (Energies développées par les tempêtes). Il se 
+base en entrée sur la  hauteur significative des vagues ( Hs) et les niveaux d’eau ( η) et se 
+focalise sur l’analyse des vagues de tempêtes ayant atteint le haut de plage ( runup 
+dépassant le niveau de la Plus Haute Mer Astronomique). L’indicateur est développé au 
+niveau de la plage du Truc Vert, sur la commune du Cap -Ferret, pendant la pér iode 
+2009-2013. Il est ensuite validé sur la période 2014 -2015 et extrapolé aux plages de 
+Biscarrosse. Bien que, dans sa première version, l’indicateur n’ai que de faibles 
+performances (R²=0.55), l’utilisation des profils pré -tempête et l’observation de 
+l’érosion aussi bien sur le haut que sur le bas de plage, permettent une nette 
+amélioration des performances (R²=0.85) avec une erreur relative de l’ordre de 25% 
+pour les tempêtes les plus importantes. Cette dernière version permet de bonnes 
+prévisions des v olumes de sable érodés au Truc Vert lors des événements de fortes 
+intensités survenus lors de l’hiver 2013-2014. 
+ 
+Mots clés : Erosion,   Indicateur de tempête,    Système d’alerte,    Dynamique 
+morphologique littorale 
+ 
+ 
+ 
+ABSTRACT 
+ 
+The French Aquitanian sandy coastline (located in the SW of France) retreats at a 
+mean rate of 1 to 3 m/yr. This erosion process is particular influenced by North Atlantic 
+storms. In order to better understand this phenomenon, the Geological French Survey 
+(BRGM), through a nationa l collaborative network on erosion studies (Réseau Vigilance 
+Erosion), is developing a Storm Impact Indicator in order to predict the erosive impact 
+
+===== PAGE 3 =====
+ 
+of upcoming storms and help local communities cope with erosion related hazards. This 
+indicator is based on  the Safe Corridor Width and aims at assessing beach eroded 
+volumes by looking at the energy released by storms upon the beach. Using simulated 
+data of significant wave heights and water levels, it focuses more specifically upon 
+waves reaching Highest Astr onomical Tide level and eroding the upper beach part. The 
+indicator is calibrated on Truc Vert sandy beach from 2009 to 2013, tested from 2014 to 
+2015, then extrapolated to Biscarrosse beaches, some 20 kilometers south of Truc Vert. 
+Although in its first s tage it exhibits poor performances (R²=0.55), the use of pre -storm 
+morphological states as well as the extension of eroded volume calculation to the lower 
+part of the beach, greatly enhances its performances (R²=0.85) with a relative error of 
+around 25% fo r the most intense storms. The last version allows in particular a good 
+prediction of the outstanding 2013-2014 winter morphological impact. 
+ 
+Key Words : Erosion,    Storm Impact Indicator,    Early Warning System,   Beach 
+morphodynamics 
+ 
+ 
+ 
+ 
+Remerciements  
+ 
+Je remercie Thomas Bulteau, Franck Desmazes et Francois Paris pour leur expérience et 
+leurs conseils avisés 
+ 
+Merci à Stefan Hahnenkamp pour son opiniâtreté bienveillante  et salutaire. Vielen Dank  
+ 
+Enfin un grand merci  à Alexandre Nicolae Lerma pour so n aide précieuse et le temps 
+qu’il a pris pour m’expliquer en profondeur  les processus littoraux. 
+ 
+ 
+
+===== PAGE 4 =====
+ 
+Table des matières 
+ 
+Introduction ..................................................................................................................... 1 
+Partie I - Contexte de l’étude ............................................................................................. 5 
+I-1 LA COTE AQUITAINE ................................................................................................................. 5 
+I-1-1 Caractéristiques d’une cote sableuse .......................................................................... 5 
+I-1-2 Caractéristiques hydrodynamiques générales ............................................................ 8 
+I-1-3 La houle de tempête ................................................................................................... 9 
+I-1-4  Les niveaux d’eau à la cote. ..................................................................................... 10 
+I-2 DYNAMIQUES SEDIMENTAIRES ET EROSION ................................................................................. 12 
+I-2-1 Principes généraux .................................................................................................... 12 
+I-2-2 Profils d’équilibres et  clusters de tempêtes ............................................................. 12 
+I-3 SITES ET PERIODES D’ETUDE ..................................................................................................... 15 
+I-3-1 Spécificités des sites étudiés ..................................................................................... 15 
+I-3-2 Les tempêtes de l’hiver 2013-2014 ........................................................................... 17 
+Partie II -  Méthodologie et données ............................................................................... 19 
+II -1 METHODOLOGIE ................................................................................................................. 19 
+II-1-1 Fonctionnement général .......................................................................................... 19 
+II-1-2 Variantes du modèle ................................................................................................ 21 
+II-1-3 Estimation du niveau d’eau à la côte ....................................................................... 23 
+II-2 DONNEES. .......................................................................................................................... 25 
+II-2-1 Données hydrodynamiques ...................................................................................... 25 
+II-2-2 Données morphologiques ........................................................................................ 26 
+Partie III -  Resultats & Discussions .................................................................................. 28 
+III-1 ELABORATION ET CALIBRATION DU MODELE (2009-2013) ......................................................... 28 
+III-1-1  Modèle général ...................................................................................................... 28 
+III-1-2 Modifications apportées au modèle général .......................................................... 35 
+
+===== PAGE 5 =====
+ 
+III-2 EXTRAPOLATION DU MODELE ................................................................................................. 38 
+III-2-1 Application de l’EVI à la période 2014-2015 ........................................................... 38 
+III-2-2 Tentatives de prévision de l’évolution du trait de côte ........................................... 40 
+III-3 UTILISATION DU MODELE AU SEIN D’UN SYSTEME D’ALERTE EROSION ............................................. 45 
+III-3-1 Scénario ................................................................................................................... 45 
+III-3-1 Limites et perspectives ............................................................................................ 50 
+Conclusion ...................................................................................................................... 51 
+Bibliographie .................................................................................................................. 53 
+ 
+ 
+ 
+ 
+ 
+ 
+Table des figures 
+ 
+Figure 1 : Schéma de fonctionnement du système d’alerte de la côte d’Emilia-Romagna 
+(D’après Ciavola et al, 2011) ................................ ................................ ................................ .......................  2 
+Figure 2 : Subdivision du littoral aquitain en Cellules hydro-sédimentaires (Source : 
+Observatoire de la cote Aquitaine) ................................ ................................ ................................ ........... 6 
+Figure 3 : Profil plage-dune type sur la côte Aquitaine (Favennec, 2002) ................................  7 
+Figure 4 : Exemple du continuum terre-mer sur la côte Aquitaine (Source : Observatoire 
+de la cote Aquitaine) ................................ ................................ ................................ ................................ ....... 7 
+Figure 5 : Nature des contributions au niveau d’eau à la cote ................................ .................... 11 
+Figure 6 : Variabilité saisonniere des profils de plage  ( Source : Observatoire de la cote 
+Aquitaine) ................................ ................................ ................................ ................................ ........................  13 
+Figure 7 : Schématisation des comportements des plages en reponse aux tempetes ....... 15 
+Figure 8 : Profils de plage et localisation des sites d'étude ....... Erreur ! Signet non défini. 
+Figure 9 : Commune de Biscarrosse -18 mars 2014  (Source : Observatoire de la côte 
+Aquitaine) ................................ ................................ ................................ ................................ ........................  17 
+Figure 10 : Cartes de synthèse de l’érosion du trait de côte entre 2013 et 2014 sur la cote 
+sableuse Aquitaine (Bulteau et al., 2014)  ................................ ................................ ..........................  18 
+Figure 11 : Shéma de synthèse de la methodologie mise en place ................................ ............ 21 
+Figure 12 : Ensemble de profils et profil moyen à Truc Vert sur la periode 2009-2013.. 22 
+Figure 13 : Methode et critères de selection des tempetes ................................ ..........................  23 
+
+===== PAGE 6 =====
+ 
+Figure 14 : Evaluation du SCW et comparaison aux reculs du trait de côte observé lors de 
+deux tempêtes en 2016. (Decarsin, 2016) ................................ ................................ ..........................  25 
+Figure 15 : Position de la bouée Cap Ferret ................................ ................................ .......................  26 
+Figure 16 : Modèle général à Truc Vert sur la période 2009-2013 ................................ ........... 29 
+Figure 17 : Hauteurs significatives des vagues à la bouée du Cap Ferret  pendant la 
+tempête Xynthia ................................ ................................ ................................ ................................ ............ 30 
+Figure 18 : Impact morphologique de la tempête Xynthia sur la plage du Truc Vert ........ 31 
+Figure 19 : Hauteurs significatives des vagues à la bouée du Cap Ferret  pendant la 
+tempête Joachim ................................ ................................ ................................ ................................ ........... 32 
+Figure 20 : Impact morphologique de la tempête Joachim sur la plage du Truc Vert ....... 32 
+Figure 21 : Hauteurs significatives des vagues à la bouée du  Cap Ferret de janvier à mai 
+2009 ................................ ................................ ................................ ................................ ................................ ... 33 
+Figure 22 : Evolution morphologique de la plage du Truc Vert sur Mars - Avril 2009 ..... 34 
+Figure 23 : Modèles TPTE sur la période 2009-2013................................ ................................ ..... 37 
+Figure 24 : Modèle PPT sur la période 2009-2013 ................................ ................................ ......... 37 
+Figure 25 : Hauteurs significatives des vagues à la bouée du Cap Ferret pendant l'hiver 
+2013-2014 ................................ ................................ ................................ ................................ .......................  39 
+Figure 26 : Prévisions du modèle général sur la période 2014-2015 ................................ ...... 39 
+Figure 27 :  Comparaison entre érosions observée et prédite par les modèles TPTE et 
+PPT lors des tempêtes de l’hiver 2013-2014 ................................ ................................ ..................... 40 
+Figure 28 : Performances statistiques des modèles ................................ ................................ ....... 40 
+Figure 29 : Evolution de la position cross-shore de plusieurs altitudes sur la plage du 
+Truc Vert de 2009 à 2015 ................................ ................................ ................................ .........................  41 
+Figure 30 : Altitude des différents indicateurs utilisés pour déterminer l’évolution 
+topographique du littoral à Truc Vert ................................ ................................ ................................ .. 42 
+Figure 31 : Evolution de la position cross-shore (observée et modélisée) de l’altitude  
+2.14m en référence IGN69 correspondant à la PHMA sur la période 2009-2013 .............. 43 
+Figure 32 :  Evolution de la position cross-shore (observée et modélisée) de l’altitude  
+2.14m en référence IGN69 correspondant à la PHMA sur la période 2014-2015 .............. 43 
+Figure 33 : Résultats du modèle général à Biscarrosse ................................ ................................ . 45 
+Figure 34 : Conditions hydrodynamiques en janvier 2009................................ ..........................  46 
+Figure 35 : Hauteurs significatives des vagues et niveaux d'eau pendant la tempête Klaus 
+à la fréquence d’une donnée toutes les 3 heures ................................ ................................ ............. 48 
+Figure 36 : Niveaux atteints par le run up des vagues sur la plage et énergies libéréeq sur 
+le haut de plage lors de la tempête Klaus ................................ ................................ ............................  48 
+Figure 37 : Scénario correpondant aux conditions de vagues de la tempete Klaus 
+associées à de forts coefficients de marée ................................ ................................ ..........................  49 
+Figure 38 : Niveaux atteints par le runup des vagues sur la plage et énergies libérées sur 
+le haut de plage en utilisant des niveaux d’eau fictifs pour la tempête Klaus.......................  49 
+
+===== PAGE 7 =====
+1 
+I N T R O D U C T I O N  
+ 
+ L’érosion du littoral est actuelle ment un des enjeux environnementaux majeurs 
+auxquels doivent faire face les populations et les Etats à travers le globe. 
+Intrinsèquement lié au réchauffement climatique, du fait de l’élévation du niveau de la 
+mer, elle focalise l’attention de nombreux scie ntifiques dans l’optique d’en appréhender 
+les causes et les mécanismes à différentes échelles spatio -temporelles. Elle mobilise 
+également les politiques publiques dans le but d’y faire face et d’aménager le territoire 
+de manière durable. 
+ 
+ La dynamique séd imentaire régissant l’érosion des littoraux sableux est un 
+processus  complexe particulièrement dépendant des conditions hydrodynamiques. En 
+effet ce sont de manière prédominante les vagues, par leurs actions mécaniques sur le 
+sédiment, qui  façonnent une grande diversité de structures  et modèlent en permanence 
+l’état morphologique des plages. Les tempêtes, en décuplant l’action des vagues,  jouent 
+un rôle essentiel sur ces transferts sédimentaires. Dans la plupart des cas elles sont à 
+l’origine d’une éros ion particulièrement marquée mais peuvent parfois avoir un effet 
+contraire et ramener d’importants volumes de sables vers la côte. Cette action 
+paradoxale qui dépend de paramètres aussi bien hydrodynamiques que 
+géomorphologiques reste mal comprise de la co mmunauté scientifique, ce qui en fait à 
+l’heure actuelle l’objet de nombreuses recherches.  
+ 
+A la lumière du potentiel destructif des tempêtes, de nombreux pays possédant 
+une façade maritime étendue tentent de développer des outils afin de se prémunir face  
+au risque d’érosion. Or, à cause de limites économiques évidentes, il n’est pas possible de 
+construire des ouvrages au niveau de chaque portion du littoral vulnérable au risque 
+d’érosion. Cette approche est en général réservée de manière ponctuelle aux cô tes sur 
+lesquelles sont présents de forts enjeux économiques. D’autres méthodes doivent donc 
+être privilégiées pour protéger les territoires et les populations. A cette fin la mise en 
+place de systèmes d’alerte en temps réel, permettant de quantifier le ri sque d’érosion et 
+d’alerter à bon escient les pouvoirs publiques et les populations, parait être un nouvel 
+outil efficace,  peu couteux et  théoriquement applicable à tout type de littoral . C’est la 
+méthode qui est mis en avant par le projet européen MICOR E (Morphological Impacts 
+and COastal Risks induced by Extreme storm events) dont le but est notamment de 
+permettre une meilleure compréhension des phénomènes physiques à l’œuvre dans les 
+processus érosifs et de développer des  indicateurs de risque ( Storm Impact Indicators). 
+
+===== PAGE 8 =====
+2 
+D’une manière générale, la mise en place de ces systèmes d’alerte nécessite un certain 
+nombre d’étapes : 
+- Une analyse historique des évènements morphogènes 
+- Une campagne de récolte de données de terrain afin de quantifier les impacts 
+de certains évènements le long d’un profil précis du littoral. 
+- La calibration puis la validation de modèles numériques à partir des données 
+récoltées sur le terrain. 
+- Le développement de prototypes de systèmes d’alerte le long de portions 
+restreintes du littoral. 
+- La mise en collaboration de ces systèmes d’alerte avec les autorités 
+décisionnaires locales. 
+- A plus long terme, l’extension des systèmes d’alerte à l’ensemble du littoral 
+considéré. 
+ 
+ 
+ 
+FIGURE 1 : SCHEMA DE FONCTION NEMENT DU  SYS TEME D’ALERTE  DE LA COTE D’EMILIA -ROMAGNA  
+(D’APRES CIAVOLA ET AL, 2011)  
+
+
+===== PAGE 9 =====
+3 
+ 
+ 
+Dans cette démarche, les indicateurs de risque choisis sont un point essentiel du 
+dispositif car ils permettent de traduire l’aléa en termes simples et facilement 
+compréhensibles par le public. Ils se font la plupart du temps la synthèse des conditions 
+hydrodynamiques et peuvent intégrer les surcotes, comme le Coastal Storm Impulse   
+(Basco et al., 2012) utilisé en Caroline du Nord, et des données sur la morphologie des 
+plages, comme le Storm Erosion Index utilisé en Floride  (Jennifer Wehof et al., 2014), et  
+le Safe Corridor Width (SCW) (Harley et al., 2016). Ce dernier, que l’on pourrait traduire 
+par la l argueur du corridor de sécurité , a été mis en place sur la côte d’Emilia Romagna  
+(Italie) dans le cadre du système d’alerte régional ( Sistema di allerta costiero da 
+mareggiata) présenté sur la figure 1 . Il permet de calculer, le long du littoral, la distance 
+du niveau d’eau dynamique au pied de dune. A l’approche d’une tempête, cet in dicateur 
+permet ainsi d’alerter les populations se trouvant sur les plages afin qu’elles disposent 
+d’un corridor de sécurité pour évacuer la plage en toute sécurité. C’est cet indicateur qui 
+sera reprit dans cette étude et, moyennant certaines modification s, appliqué sur les 
+plages de la côte Aquitaine. 
+ 
+ 
+La côte sableuse Aquitaine recule de 1 à 3 m/an en moyenne. Cette valeur peut 
+atteindre 6 m/an  à proximité des zones d’embouchure comme à Biscarrosse ou à 
+Capbreton. La quasi -totalité de la côte est affect ée par ce phénomène  bien que les 
+vitesses de recul diffèrent généralement d’un endroit à l’autre,  la Gironde étant, d’une 
+manière générale,  plus fortement impactée (recul moyen de 2.5m/an) que les Landes 
+(recul moyen de 1.7m/an). On estime qu’à l’horizon 2020, 53 % du littoral sera concerné 
+par un aléa faible (recul<1m/an), 33 % par un aléa moyen (recul de 1 à 2 m/an) et 14 % 
+par un aléa fort (recul >2m/an) ( Aubié et al., 2011).  Pour faire face à cet aléa, l’Etat a 
+mis en place dès 2012 des stratégies d e gestions régionales du trait de côte et a chargé 
+divers organismes publiques dont le BRGM de collecter des données et de mettre en 
+place des outils de prévisions du risque érosion. Le réseau ‘vigilance érosion’ s’inscrit 
+dans ce contexte et a pour but, n otamment à travers la réalisation de ce projet de stage, 
+de mettre en place un système d’alerte en prévision d’évènements morphogènes. 
+ 
+La dynamique hydro -sédimentaire est un processus très spécifique au littoral 
+considéré et à la morphologie des plages. N otre travail sera donc de développer un 
+indicateur qui soit fonctionnel à un niveau local. A l’approche d’une tempête, ce dernier 
+devra être en mesure, en intégrant les prévisions hydrométéorologiques, de déterminer 
+s’il s’agira  ou non d’un évènement morphogène et, le cas échéant, de quantifier au mieux 
+les volumes de sédiments érodés. Pour l’instant, un tel système n’existe pas, ce qui 
+explique que les collectivités territoriales puissent être prises de cours lors 
+d’évènements érosifs. Pour ce faire, nou s allons poursuivre une analyse initiée l’année 
+
+===== PAGE 10 =====
+4 
+précédente par un stagiaire, C. Decarsin,  au sein de la Direction Risques et Préventions 
+du BRGM. Le travail de ce dernier a entre autre consisté à calibrer puis appliquer 
+l’indicateur SCW à certaines portio ns du littoral aquitain, notamment au niveau des 
+plages de Biscarrosse et du Truc Vert. Le SCW fournit une bonne indication des niveaux 
+d’eau dynamiques au niveau de la plage et pourra ainsi servir de base à un nouvel 
+indicateur, visant lui à quantifier le s volumes de sables érodés lors d’une tempête à 
+l’image des travaux effectués sur le sujet par Splinter et al., (2014) et Castelle et al., 
+(2017). L’indicateur développé dans cette étude sera ainsi baptisé Eroded Volume 
+Indicator (EVI) pour indicateur de volumes érodés. 
+ 
+ 
+Afin de calibrer un modèle prédictif, il faut effectuer un travail statistique sur des 
+séries temporelles de données consistantes. D’autre part, afin d’observer précisément 
+l’impact érosif des tempêtes, il est important d’avoir accès à un suivi morphologique 
+pré/post tempête, c’est -à-dire des données avant et après chaque évènement. Afin de 
+satisfaire au mieux ces deux conditions, le choix a été fait de travailler sur la base de 
+données morphologique établie au niveau de la plage de Truc Ve rt. La méthode générale 
+est de déterminer une loi robuste, permettant de relier les volumes de sables érodés aux 
+forçages météo -marins, sur une série de donnée importante (2009 -2013), avant de la 
+tester ensuite de manière prédictive sur la période 2014 -2015. Ce travail sera motivé 
+par les problématiques suivantes :  
+ 
+ 
+- Dans quelle mesure l’indicateur permet –il de rendre compte fidèlement des 
+volumes érodés au cours des tempêtes  ? Aurait-il été entre autre possible de 
+prédire l’impact érosif considérable de l ’hiver 2013 -2014 sur le littoral 
+aquitain ? 
+ 
+ 
+- Dans quelle mesure est t- il possible d’extrapoler ce modèle, calibré au niveau 
+de la plage du Truc Vert, à d’autres portions du littoral aquitain ? 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===== PAGE 11 =====
+5 
+P A R T I E  I  -  C O N T E X T E  D E  L ’ E T U D E 
+ 
+I-1 LA COTE AQUITAIN E 
+ 
+I-1-1 Caractéristiques d’une cote sableuse 
+ 
+ La côte Aquitaine borde le golfe de Gascogne sur environ 280 km, entre l’estuaire 
+de la Gironde et celui de Bidassoa qui délimite la frontière franco -espagnole. Les plages 
+sableuses représentent 85% de ce lin éaire et s’étendent de la Pointe de Grave en 
+Gironde à la Pointe Saint -Martin dans les Pyrénées Atlantiques. Le reste de la côte est 
+rocheuse et s’étend de Biarritz à la frontière espagnole. La côte, orientée globalement 
+Nord-Sud, est rectiligne et continu e, à l’exception de quelques zones comme  au niveau 
+du bassin d’Arcachon   ou à l’embouchure de l’Adour.  
+ 
+Il s’agit d’une côte très peu urbanisée, bordée de hautes dunes éoliennes dont le 
+sédiment est principalement constitué de grains de quartz de diamèt re compris entre 
+200 et 400 µm (Pedreros et al., 1996).  Au large, un plateau continental situé à 200 
+mètres de profondeur et d’une largeur d’environ 80 kilomètres, longe la côte en se 
+rétrécissant du nord vers le sud. D’un point de vue géologique, les form atons affleurant 
+qui datent du plio -quaternaire reposent sur un substratum marin, d’âge Oligocène (34 -
+23.5Ma) à Miocène (23.5-5.3 Ma) 
+ 
+Bien que la côte Aquitaine présente un relatif continuum géomorphologique du 
+nord au sud, il est possible de différentier  des portions du littoral possédant des 
+caractéristiques hydro -sédimentaires propres, des cellules hydro -sédimentaires. Ces 
+dernières sont notamment différenciées par une action plus ou moins importante de la 
+dérive littorale, courant parallèle à la côte g énéré par la réfraction des vagues et leur 
+déferlement, qui peut atteindre lors des tempêtes une vitesse de 1.75 m/s et un débit de 
+2000 m3/s (Migniot, 1979). A l’échelle régionale l’érosion et les dépôts de sédiments dus 
+à cette dérive littorale tendent à  diminuer du nord vers le sud (Manaud et al., 2001). 7 
+cellules hydro-sédimentaires principales peuvent être répertoriées (Figure 2). A des fins 
+descriptives elles peuvent être subdivisées en sous cellules. On détaille ci -dessous celles 
+au sein desquelles se trouvent nos zones d’étude. 
+ 
+
+===== PAGE 12 =====
+6 
+-La cellule “Médoc”: De Dépé à Cap Ferret, la cellule principale du littoral girondin 
+est caractérisée par une dérive littorale résultante du Nord vers le Sud. Elle s’arrête au 
+niveau de la flèche sableuse du Cap Ferret à l’ endroit où les processus d’embouchure du 
+Bassin d’Arcachon commencent à influencer la morphologie de la plage. 
+- La cellule “Passes d’Arcachon”. De cap ferret à Biscarosse, elle représente la 
+limite naturelle entre les côtes landaise et girondine et est ca ractérisée par une  
+dynamique hydro-sédimentaire propre à  l’embouchure   
+- La cellule  “Landes”  : De Biscarrosse à Cap Breton, elle comprend la majeur 
+partie du littoral des Landes. Limitée auord par le bassin d’Arcachon et au sud par le 
+Gouf de Capbreton. 
+ 
+ 
+FIGURE 2 : SUBDIVISION DU LIT TORAL AQUITAIN EN CE LLULES HYDRO -SEDIMENTAIRES ( SOURCE  : 
+OBSERVATOIRE DE LA C OTE AQUITAINE)  
+ 
+En observant la côte non pas longitudinalement (approche long-shore) mais 
+perpendiculairement (approche cross-shore, détaillée sur les figure 3 et 4 ) on peut 
+délimiter trois zones qui fonctionnent de manière interdépendante. D’une part l’avant 
+côte qui correspond à la partie située sous la zone de battement des marées. Puis 
+viennent ensuite l’estran (constit ué par  l’avant plage et l’arrière plage) et enfin le 
+système de dunes dont les plus anciennes sont vieilles de plusieurs siècles  recouvertes 
+
+
+===== PAGE 13 =====
+7 
+de forêts (Castelle et al., 2017). Ces trois environnements échangent en permanence du 
+sédiment et ne peuvent don c être considérés indépendamment lorsque l’on analyse le 
+phénomène d’érosion. 
+ 
+ 
+FIGURE 3 : PROFIL PLAGE -DUNE TYPE SUR LA COT E AQUITAINE (FAVENNE C, 2002)  
+ 
+ 
+ 
+FIGURE 4 : EXEMPLE  DU CONTINUUM TERRE -MER SUR LA  COTE AQUITAINE  (SOURCE  : OBSERVATOIRE 
+DE LA COTE AQUITAINE ) 
+ 
+ 
+La  topographie de l’avant côte, la bathymétrie,  revêt une importance toute 
+particulière du point de vue de la dynamique sédimentaire. En effet, les  systèmes de 
+barres sous-marines influencent la localisation de la zone de déferlement des vagues et, 
+ce faisant, modulent l’impact que ces dernières peuvent avoir sur la plage. D’autre part 
+ces  barres peuvent servir de réserve de sédiment et, dans certain cas, permettre la 
+
+
+===== PAGE 14 =====
+8 
+redistribution de ce sa ble au niveau de la plage. D’après des observations, la côte 
+aquitaine présente dans la majorité des cas deux barres sableuses parallèles à la côte 
+(Desmazes et al, 2002; Almar, 2009). 
+ 
+Bien que la majorité de la côte soit laissée à l’état naturel, on obse rve localement 
+des ouvrages en dur mis en place afin de protéger la façade maritime de certaines 
+communes, notamment à Lacanau, Soulac -Sur-Mer ou Capbreton. Ces ouvrages ne sont 
+pas sans effet sur la dynamique sédimentaire. En effet on peut observer, lors des 
+tempêtes, une accentuation de l’érosion à la base ou de part et d’autre des ouvrages. 
+Dans le cas d’ouvrages perpendiculaires à la côte, la dérive littorale provoque 
+généralement un engraissement des plages en amont de la dérive et une érosion en aval. 
+ 
+ 
+I-1-2 Caractéristiques hydrodynamiques générales 
+ 
+Sur la côte Aquitaine, la marée est de type semi -diurne avec une période de 
+12h25. Le marnage de 3.10m en moyenne augmente progressivement du sud vers le 
+nord et peut atteindre 5.5m en période de vives e aux. Son influence est très importante 
+dans l’étude des processus érosifs car, en faisant varier le niveau marin, elle modifie la 
+zone d’action de la houle sur la plage. D’autre part, elle peut être à l’origine de forts 
+courants dit de marée  qui modifient la dynamique sédimentaire, particulièrement au 
+niveau des zones d’embouchure. 
+ 
+La côte Aquitaine est soumise à un régime de houle venant principalement des 
+dépressions nord atlantiques. On y observe une grande variabilité aussi bien saisonnière 
+qu’interannuelle. Cette dernière est liée à des cycles climatiques à grande échelle tel que 
+l’Oscillation Nord Atlantique qui modulent périodiquement le climat de houle (Dupuis et 
+al., 2008). Au niveau de la bouée du Cap Ferret, on observe sur la période 2001 -2013 
+que 70% des vagues sont inférieures à 2m, 25% sont comprises entre 2 et 4m et 
+seulement 5% dépassent 4m (Bulteau et al., 2014). On y distingue clairement deux 
+régimes hydrodynamiques: 
+- Un régime de vague hivernal d’octobre à avril pendant lequel 45% des vag ues 
+dépassent 2m. 
+- Un régime de vague estival le reste de l’année pendant lequel uniquement 25% 
+dépassent 2m. 
+ 
+
+===== PAGE 15 =====
+9 
+I-1-3 La houle de tempête 
+ 
+ C’est le frottement du vent sur la surface de l’eau qui est à l’origine des vagues. 
+Comme toutes les ondes, ces vagu es  sont caractérisées par leur amplitude et leur 
+périodicité, elle -même souvent associée à la longueur d’onde. Une fois formées, ces 
+dernières se propagent ensuite à la surface des océans grâce au gradient de pression du 
+à la gravité terrestre, d’où leur nom d’ondes gravitaires. Lorsque les vagues se propagent 
+en dehors de la zone d’action du vent qui les a générées, on parle alors de houle. Lorsque 
+les vagues arrivent à proximité du littoral, la diminution de la profondeur provoque un 
+déséquilibre entre l a vitesse de l’eau en surface et sur le fond. La crête de la vague 
+avance alors plus rapidement que sa base, provoquant le déferlement lorsque la hauteur 
+des vagues (H) est du même ordre de grandeur que la profondeur (h), (H  /h = 0.78 
+d’après la théorie de Munk) 
+ 
+ 
+ Afin de caractériser l’intensité d’une tempête, on a la plupart du temps recours 
+aux variables hydrodynamiques suivantes : 
+ 
+-  La hauteur significative de vague   (Hs) : Proportionnelle à la vitesse à laquelle le 
+vent souffle sur la mer, elle   correspond à une hauteur qui n’est dépassée que par 
+un tiers des vagues. Cette définition vient de l'estimation de la hauteur des 
+vagues par l'observation visuelle, la hauteur significative étant proche de celle 
+estimée par un observateur. 
+ 
+- La période pic (Tp)  : Elle correspond  à la période des vagues dominantes. Etant 
+donné que la période associée à des conditions de mer est une donnée statistique 
+(densité spectrale de hauteurs et de périodes), cette variable permet de se limiter 
+à la période la plus fréquent e. A la différence de la hauteur des vagues, la période 
+est davantage proportionnelle à la longueur du fetch, la zone d’action effective du 
+vent sur la mer. 
+ 
+Ces variables permettent d’évaluer de manière efficace l’intensité d’une tempête. 
+Toutefois certains auteurs ont recours à des variables composites telles que la densité 
+d’énergie ou de puissance afin de mieux appréhender cette intensité. De plus la période 
+de temps sur lesquelles sont intégrées ces densités permet de rendre compte de la durée 
+des tempêtes, donnée essentiel pour caractériser leur potentiel érosif. L’énergie (E) et la 
+puissance (P) développées par les tempêtes sont résumées par les équations suivantes :  
+ 
+𝐸 =  ∫ 𝜌𝑔𝐻𝑆2∆𝑡
+𝑁
+0
+ 
+ 
+ 
+
+===== PAGE 16 =====
+10 
+𝑃 =  ∫ 𝜌𝑔2
+64𝜋 𝐻𝑆2𝑇𝑃∆𝑡
+𝑁
+0
+ 
+ 
+Avec :  
+-  ρ :   La masse volumique de l’eau de mer, 1030 kg/m3 
+-  g :   La densité de la pesanteur, 9.81 m/s² 
+- HS :  La hauteur significative des vagues, en mètres 
+- Tp : La période pic, en secondes  
+- Δt :  Le pas de temps, en heures   
+- N :   La durée de la tempête, en heures 
+ 
+ 
+I-1-4  Les niveaux d’eau à la cote. 
+ 
+ Afin d’appréhender au mieux l’impact des tempêtes sur les plages, il est essentiel 
+de préciser le niveau atteint par la mer au  niveau de la côte (η) (Figure 5). Ce niveau  
+dépend des paramètres suivants (Nicolae Lerma et al., 2015) : 
+ 
+ η = ηdat + Δηm + Δηsb + Δηsa + Δηd + Δηj 
+ 
+ηdat : Le zéro hydrographique, référence altimétrique  correspondant au niveau d’eau en 
+dessous duquel l a mer ne descend jamais. Il est fixé par le Service Hydrographique et 
+Océanographique de la Marine (SHOM) et spécifique à chaque point du littoral (SHOM, 
+2016). 
+Δηm : Les variations du niveau de la mer dues aux marées astronomiques. 
+Δηsb : La surcote barom étrique correspondant à une élévation du niveau d’eau statique 
+associée à la présence de conditions atmosphériques dépressionnaires.  Cette variation 
+du niveau d’eau est au maximum de quelques dizaines de centimètres sur la côte 
+Aquitaine. Par contre dans des situations extrêmes, par exemple lors de passages de 
+cyclones en zone intertropicale, elle peut atteindre plusieurs mètres. 
+Δηsa : La surcote de vent provoque une augmentation du niveau marin lorsque les 
+masses d’eau en surface sont poussées vers la côte et que la faible profondeur ne permet 
+pas la mise en circulation d’un courant inverse. Cette composante est généralement 
+assez faible, de l’ordre de quelques dizaines de centimètres. 
+Δηd : La surcote de vague (le setup) intervient au niveau du littoral lorsque les vagues 
+subissent une modification de leur forme suite à une diminution de la profondeur. Dans 
+
+===== PAGE 17 =====
+11 
+le cas de déferlement de vagues exceptionnels, cette valeur peut atteindre 1m. (Nicolae 
+Lerma et al., 2017) 
+Δηj : Le jet de rive, plus souvent désigné par son nom anglo -saxon swash, correspond à 
+l’extension maximale atteinte par chacune des vagues. On utilise généralement le te rme 
+anglo-saxon runup qui désigne la somme de la surcote de vague et du jet de rive (Δη d + 
+Δηj ) et qui correspond donc à la surélévation du niveau causée uniquement par le 
+déferlement des vagues. La valeur du runup, qui peut atteindre plusieurs mètres, dépend 
+évidemment des conditions de houle mais aussi de la morphologie de la plage, en 
+particulier de la pente intertidale (Holman, 1986). Etant donné que la valeur du runup 
+est propre à chaque vague, on la considère le plus souvent de manière statistique en  
+prenant par exemple un seuil qui n’est dépassé que par 2% des vagues (le plus souvent 
+sur une période d’observation de 15 à 20 minutes). 
+ 
+ 
+ Il est important de préciser que, aussi bien le setup que le swash (et donc le 
+runup), varient en fonction de la mo rphologie des plages et de la bathymétrie. Par 
+conséquent, ils ne sont pas constants le long du littoral, même pour une houle de 
+hauteur et de période identique au large. A défaut de pouvoir les mesurer directement, 
+par exemple en mettant en place un systè me de caméras, ils sont la plupart du temps 
+approchés par des équations paramétriques. 
+ 
+ 
+ 
+ 
+FIGURE 5 : NATURE DES CONTRIBUT IONS AU NIVEAU D’EAU  A LA COTE  
+ 
+ 
+ 
+
+
+===== PAGE 18 =====
+12 
+I-2 DYNAMIQUES SEDIMEN TAIRES ET EROSION  
+ 
+I-2-1 Principes généraux 
+ 
+ Le sédim ent a la caractéristique d’être très mobile entre la plage subtidale, 
+l’estran et le cordon dunaire. Il peut aussi bien être stocké au niveau du front de dune ou 
+des bermes en haut de plage que ramené dans la zone subtidale pour y former des 
+barres sableus es. Parfois encore le sable peut être  emmené vers la large ou encore 
+soufflé vers les terres par déflation éolienne. Dans ce cas  il quitte réellement le système 
+littoral et n’entre plus en compte dans la variabilité saisonnière, on peut alors 
+effectivement parler d’érosion. La typologie développée par Sallenger (2000) et 
+abondamment utilisée pour les études sur l’érosion stipule à ce propos que l’on observe 
+une érosion de la plage dès que les vagues atteignent le pied de dune (on parle alors de 
+régime de collision). Le pied de dune peut donc être un seuil hydro -morphologique 
+intéressant afin de déterminer un régime de vague érosif. De manière générale, ce sont 
+les processus turbulents, caractéristiques de la zone de déferlement, qui génèrent les 
+conditions nécessaires pour mobiliser le sédiment et éroder les plages (Hughes et al., 
+1997; Masselink and Puleo, 2006). 
+ 
+ Bien que les processus longshore comme la dérive littorale puissent être eux aussi 
+responsables d’un transport sédimentaire important, il appar ait que sur les côtes 
+ouvertes comme celle d’Aquitaine, ce sont les processus cross-shore qui dominent 
+lorsque l’on observe les transferts sur un pas de temps mensuel ou annuel.  Au contraire, 
+ce sont les processus longshore qui expliquent les variations q ue l’on peut observer sur 
+un pas de temps plus longs, typiquement décennal. (Davidson et Turner, 2009  ; Yates et 
+al., 2009) 
+ 
+I-2-2 Profils d’équilibres et  clusters de tempêtes 
+ 
+ Une des notions très importante afin de caractériser l’érosion et la résilien ce des 
+plages  est celle de profil d’équilibre. Selon ce concept, la plage adopte un profil type  en 
+fonction du régime de vagues auxquelles elle est soumise et de la granulométrie des 
+éléments qui la constitue (plus ou moins grossier) (Yates et al., 2009  ; Castelle et al., 
+2014).  Après chaque perturbation, la plage tendra à retourner vers cet état d’équilibre, 
+caractéristique du régime hydrodynamique prédominant. Ces changements ne sont pas 
+à mettre au compte de l’érosion mais de la dynamique cyclique et naturelle des plages. 
+Le sable n’est pas à proprement parlé érodé mais simplement redistribué différemment 
+
+===== PAGE 19 =====
+13 
+le long du profil de la plage (Shepard, 1950; Bascom, 1953). On observe généralement 
+les deux profils suivants  pour les saisons d’été et d’hiver (Figure 6) :  
+- En hivers, la plage est plus érodée et prend un profil de type «  dissipatif ».  Le 
+pied de dune tend à reculer et le sable s’accumule préférentiellement vers le bas 
+des profils pour former une ou plusieurs barres (interdidales ou subtidales). 
+- En été,  le régime hydrodynamique plus calme permet un rechargement du haut 
+de plage avec, le plus souvent, la constitution des bermes voir une avancée du 
+front de dune. 
+ 
+D’après le concept de profil d’équilibre, la première tempête de l’hiver  a un 
+potentiel érosif plus important car elle génère un grand déséquilibre en termes 
+d’énergie. La plage sera d’autant plus facilement érodée qu’elle se sera  abondamment  
+rechargée en sédiment à la faveur d’un régime de vagues estival.  Par contre, une fois 
+entré en r égime hivernale, les tempêtes successives sont supposées perdre 
+progressivement  leur capacité érosive du simple fait que la plage adopte alors une 
+morphologie plus résiliente correspondant à un régime de vagues énergétique. 
+ 
+FIGURE 6 : VARIABILITE SAISON NIERE DES PROFILS DE  PLAGE  (  SOURCE  : OBSERVATOIRE DE LA C OTE 
+AQUITAINE)  
+ 
+
+
+===== PAGE 20 =====
+14 
+Parallèlement à la théorie du profil d’équilibre une autre approche est celle de 
+l’érosion cumulée ; l’érosion due aux paquets de tempêtes ( clusters). Ce phénomène dû à 
+une succession de tempêtes dans un court lapse de temps que l’on observe fréquemment 
+sur la côte Atlantique, peut être à l’origine d’une érosion très importante. De 
+nombreuses études ont été menées   sur ce sujet et la majorité des auteurs s’ accorde à 
+dire que l’impact cumulé d’une série de petites tempêtes peut être bien plus important 
+que celui d’un unique évènement de forte intensité (Birkemeier et al., 1999; Callaghan et 
+al., 2009; Carley and Cox, 2003; Castelle et al., 2008; Cox and Pirre llo, 2001; Ferreira, 
+2002, 2005; Thom and Hall, 1991). Bien que d’autres auteur tels que Coco et al.(2014) 
+ou Yates (2009) ne parviennent pas à ces résultats, tous s’accordent pour dire que le 
+comportement des plages n’est pas linéaire et que la notion de seuil est essentielle afin 
+d’appréhender correctement l’érosion. 
+ 
+L’intervalle de temps maximum entre deux tempêtes pour pouvoir considérer 
+qu’elles font toujours parti du même cluster reste très variable au sein de la littérature. 
+Pour Karunarathna et al. (2014), cet intervalle de temps doit être inférieur à  9 jours.  
+Pour Ferreira (2005) il ne faut pas dépasser 3 semaines  alors que Splinter et al. (2014) 
+s’autorise sous certaines conditions à pousser cette limite à 2 mois. Cette diversité est 
+due, d’une  part aux différentes côtes étudiées (Australie, Portugal,  …) et donc aux 
+caractéristiques des systèmes météorologiques auxquelles elles sont soumises. D’autre 
+part, à la définition du terme de cluster est avant tout morphologique. En effet, on parle 
+de cluster lorsque l’on observe une succession de tempête dans un intervalle de temps 
+ne permettant pas à la plage de se recharger en sédiment (Morton et al., 1995). 
+ 
+Les processus de rechargement sédimentaire à la suite d’une tempête font 
+intervenir une multit ude de facteurs.  Tout d’abord lorsque les conditions de mer sont 
+plus clémentes les vagues ramènent une partie du sédiment qui avait été précédemment 
+prélevé et déposé au niveau de l’avant côte (Dubarbier et al., 2015; Fernandez -Mora et 
+al., 2015). Dans c ertains cas, les processus longshore peuvent entrainer une 
+accumulation ou une remobilisation de bancs de sable qui circulent parallèlement à la 
+côte. D’autre part les processus éoliens, gouvernés entre autre par la distance de fetch 
+sur l’estran et l’orie ntation du vent (Bauer and Davidson -Arnott, 2003), jouent un rôle 
+important dans la remobilisation par les dunes  du sable de l’estran (Houser et al., 
+2013). Enfin les processus de  végétalisation permettent de fixer le sable et de stabiliser 
+et pérenniser  les dunes. Le temps nécessaire  pour remobiliser le sédiment de l’avant 
+côte peut être assez court permettant parfois à la plage de commencer à se recharger 
+alors même que la tempête n’est pas encore finit (Roberts et al., 2013). Pour autant le 
+retour à u n état d’équilibre complet (état pré -tempête) est beaucoup plus long et peut 
+parfois prendre des années voir des décennies en cas de tempête majeure (Houser et al., 
+2015). 
+
+===== PAGE 21 =====
+15 
+ 
+ A l’énoncé des concepts d’état d’équilibre et de clusters de tempêtes, il semble 
+que  la plage soit soumise à deux dynamiques contraires (Figure 6). Il est toutefois 
+possible qu’elles soient conciliables car elles ne s’exercent pas sur la même échelle de 
+temps, les clusters étant à considérer sur un pas de temps plus court que la dynami que 
+du profil d’équilibre. Quoi qu’il en soit il est essentiel de prendre en compte ces deux 
+concepts pour toute analyse de l’érosion, et ceci bien que leur action paradoxale 
+complexifie encore davantage la dynamique sédimentaire.  
+ 
+ 
+FIGURE 7 : SCHEMATISATION DES C OMPORTEMENTS DES PLA GES EN REPONSE AUX T EMPETES  
+ 
+I-3 SITES ET PERIODES D’ETUDE  
+ 
+I-3-1 Spécificités des sites étudiés 
+Les plages de Truc Vert et de Biscarrosse sont situées de part et d'autre du bassin 
+d'Arcachon. Malgré le  fait qu'elles appartiennent à des cellules hydro -sédimentaires 
+différentes elles sont relativement semblables du point de vue de leur morphologie 
+(Figure 8). Nous détaillons ci -dessous leurs caractéristiques au niveau de différentes 
+zones de la plage. 
+- Le système de barre -baïne : Caractéristique de la côte Aquitaine, il se présente 
+sous la forme d'un système de barre intertidale oblique entrecoupé de chenaux 
+de vidanges, les baïnes, orientés dans le sens de la dérive littorale. Les baïnes ont 
+une profonde ur d'environ 2m et se répètent tous les 500m en moyenne. Le 
+système de double barre, présent aussi bien au Truc Vert qu’à Biscarrosse, tend à 
+
+
+===== PAGE 22 =====
+16 
+migrer en direction de la plage en été et à se dissiper en hiver (De Melo 
+Apoluceno, 2003).  
+- La berme : La berme est une barre sableuse située en haut de plage, au niveau 
+des laisses de mer. Cette dernière se forme préférentiellement en été à la faveur 
+d'un régime hydrodynamique plus clément, conformément à de nombreux 
+modèle d'évolution saisonnière des plages (Alma r, 2009   Komar, 1998). Sur la 
+plage de Biscarrosse la berme est en permanence remaniée et réalimentée en 
+sable par la collectivité alors qu'à Truc Vert elle évolue de manière naturelle. 
+- La dune embryonnaire  : Présente entre la dune principale et la berme , elle 
+prend généralement la forme d'une terrasse colonisée par divers espèces 
+végétales. Elle n'est présente que sur la plage du Truc Vert, le cordon dunaire 
+ayant été complètement aménagé à Biscarrosse. 
+  
+ 
+ 
+ 
+FIGURE 8 : PROFILS DE PLAGE ET LOCALISATION DES SIT ES D'ETUDE  
+
+===== PAGE 23 =====
+17 
+Les deux plages sont constituées de sédiments à  base de quartz dont le diamètre 
+moyen est d'environ 0,35mm. La plage du Truc Vert est associée à des dunes vieilles 
+d'approximativement 200 ans et, d'après l’étude des photographies historiques, n'a pas 
+subi d’épisode d’érosion importante  depuis au moins  1950. (Castelle et al., 2017). Au 
+contraire, la plage de Biscarrosse est soumise à une érosion récurrente, ceci bien que la 
+migration régulière de bancs de sable en provenance du bassin d'Arcachon puisse 
+fournir occasionnellement un supplément de sédiment à la plage (Dehouck et al, 2012). 
+ 
+I-3-2 Les tempêtes de l’hiver 2013-2014 
+ 
+L’hiver 2013 -2014 a été remarquable du point de vue de la fréquence et de 
+l’intensité des tempêtes.  On en compte 23 du 25 décembre 2013 au 30 mars 2014 parmi 
+lesquelles 4 sont d’une intensité exceptionnelle. Les tempêtes Hercules, Petra, Ruth et 
+Christine ont toutes dépassé la période de retour décennale au niveau de la bouée du 
+Cap Ferret (Bu lteau et al., 2014). De plus, la hauteur des vagues n’est qu’à de rares 
+occasions descendue  sous le seuil de délimitation des tempêtes au cours de cet hiver. 
+D’un point de vu morphologique l’hiver  2013 -2014 est à l’origine d’une érosion très 
+importante sur la quasi -totalité du  littoral aquitain (Figure 9). D’une manière générale 
+l’érosion est plus marquée en Gironde (plus de 20m et localement jusqu’à 40m) que 
+dans les Landes (de 10 à 15m) bien que, sur tout le long du littoral, on observe  la 
+formation de falaises vives entaillant le cordon dunaire, signes d’une forte érosion. 
+ 
+FIGURE 9 : COM MUNE DE BISCARROSSE -18 MARS 2014   (SOURCE : OBSERVATOI RE DE LA COTE 
+AQUITAINE ) 
+
+
+===== PAGE 24 =====
+18 
+ 
+ 
+ 
+FIGURE 10  : CARTES DE SYNTHESE  DE L’EROSION DU TRAIT  DE COTE ENTRE 2013 E T 2014 SUR LA 
+COTE SABLEUSE AQUITA INE (BULTEAU ET AL.,  2014)   
+Les carrée rouges représentent les profils OCA, les étoiles bleues les reculs cross-shore 
+mesurés, les triangles verts l’érosion altimétrique 
+
+
+===== PAGE 25 =====
+19 
+P A R T I E  II -   M E T H O D O L O G I E  E T  
+D O N N E E S 
+ 
+II -1 METHODOLOGIE  
+ 
+II-1-1 Fonctionnement général 
+ 
+L’objet de cette étude est de trouver une corrélation entre forçages météo -marins 
+et signatures d’érosion ou volumes de sable érodés sur l’estran.  Pour se faire on doit 
+dans un premier temps  traduire ces deux phénomènes par des variables de synthèse. A 
+ce propos, certains auteurs ont cherché une corrélation entre l’énergie d’une tempête et 
+la largeur de plage érodée (Harley et al., 2009) ou encore entre la période de retour 
+d’une tempête et  les volumes de plage érodés (Ferreira, 2005).  En l’occurrence nous 
+privilégierons  la méthode utilisée par Splinter et al. (2014)  qui met en relation les 
+variables suivantes :  
+ 
+- Le volume de sédiment érodé (ΔV)  : Cette variable traduit l’érosion que subit 
+le profil de la plage. Etant donné qu’elle est définit au niveau d’un unique 
+point du littoral (sous forme d’un profil perpendiculaire à la plage d’une 
+largeur de 1 mètre), elle s’exprime en mètre cube de sédiment érodé par 
+mètre de lit toral (m3/m). Ainsi pour obtenir le volume érodé au niveau de la 
+totalité de la plage, il faudra multiplier cette valeur par la longueur de la plage.  
+Notons que cette variable peut prendre aussi bien des valeurs positives 
+(volumes de plage érodés) que des  valeurs négatives (volumes de plage 
+déposés). Dans ce dernier cas la plage verra donc son volume de sédiment 
+augmenter. 
+-  L’énergie libérée par la tempête (E)  : Cette variable, proportionnelle à la 
+durée de la tempête et  au carré de la hauteur des vagues,  rend compte de 
+l’énergie développée par une tempête au niveau d’une surface d’un mètre 
+carré. Elle correspond à l’intégrale sur la durée de la tempête de la densité 
+d’énergie et s’exprime en joules par mètre carré (J/m²). 
+  
+On cherche à paramétrer une loi  qui mettrait en lumière la relation de 
+proportionnalité qui existe entre énergie des vagues  et volumes érodés. Obtenir  une 
+
+===== PAGE 26 =====
+20 
+fonction qui relierait la majorité des points entre ces deux variables reviendrait  à  
+déterminer la relation de dépendance  qui l es relie,  ce  qui permettrait de  mieux 
+comprendre les causes de l’érosion. Afin d’assurer une meilleure cohérence entre les 
+variables  et ainsi réduire la dispersion des résultats, il est important de fixer la 
+condition suivante, qui délimite la fenêtre d’observation des résultats: 
+ 
+On observe les énergies libérées et les volumes érodés  au niveau de la même 
+section des profils de plage. 
+ 
+D’après la typologie de Sallenger (2000), le seuil morphologique pertinent pour     
+observer l’érosion est le pied de  dune. Etant donné qu’il est utilisé par Harvey  et al 
+(2016) pour définir l’indicateur SCW, il aurait été logique de le sélectionner ici pour 
+calibrer la fenêtre d’observation. Toutefois le pied de dune est la plupart du temps 
+positionné  à dire d’expert c ar il est difficile à appréhender de manière systématique 
+avec une lecture topographique. Or cette analyse se base sur une importante base de 
+donné topographique et la position exacte du pied de dune  pour chaque profil est une 
+information laborieuse à collecter et pouvant parfois être imprécise. Par conséquent le 
+choix a été fait de se reporter sur un datum de marée, référence altimétrique immuable 
+et accessible en chaque point du littoral.  En l’occurrence  c’est la Plus Haute Mer 
+Astronomique (PHMA) qui a été utilisée comme seuil. Parfois utilisée comme indicateur 
+du trait de côte, elle correspond à l’altitude qui n’est atteint par le niveau d’eau que lors 
+des plus forts coefficients de marée. Cela permet de sélectionner une limite qui n’est que 
+rarement dépassée par les vagues et de se limiter à l’observation des conditions 
+(niveaux d’eau + vagues) potentiellement les plus érosives. Nous pouvons désormais 
+déterminer  les 2 seuils délimitant la fenêtre d’observation des résultats : 
+ 
+- Un seuil topographique  : Nous observerons les volumes de plage érodés  au-
+dessus de la PHMA (Figure 11) 
+ 
+- Un seuil hydrodynamique : Nous observerons les énergies des vagues dont le 
+runup atteint au moins la PHMA 
+ 
+Finalement, une fois obtenue une corrélation claire entre forçages e t volumes 
+érodés, il sera intéressant de tenter d’extrapoler ces résultats à l’évolution du trait de 
+côte. En effet il faut garder à l’esprit que notre indicateur doit être un outil pratique à 
+l’usage des collectivités territoriales. Par conséquent, obteni r un indicateur permettant 
+de prédire les variations cross -shore du trait de côte fournirait à ces collectivités une 
+information claire et plus simple à interpréter que des volumes de sédiments érodés. 
+
+===== PAGE 27 =====
+21 
+Pour ce faire, nous calculerons  les variations cross-shore de  la référence topographique 
+correspondant à  la PHMA, l’indicateur choisit pour repérer le trait de côte. Cette 
+information, mise en relation avec les données de forçages météo -marins, pourrait 
+permettre  de prédire, à l’approche d’une tempête, da ns quelles proportions le trait de 
+côte est susceptible de varier. 
+ 
+ 
+FIGURE 11  : S HEMA DE SYNTHESE DE LA METHODOLOGIE MISE  EN PLACE  
+ 
+II-1-2 Variantes du modèle  
+ 
+ Afin d’observer les épisodes d’érosion les plus importants, une att ention toute 
+particulière a été portée aux calculs  des énergies et des volumes relatifs au haut de 
+plage. Toutefois cette approche ne permet pas d’analyser la réponse morphologique de 
+la totalité de la plage et en particulier d’appréhender les vitesses d’érosion différentes en 
+fonction des hauteurs de plage. Par exemple une érosion marquée du front de dune à 
+l’origine d’une redistribution du sable et d’un rechargement du bas de la plage ne sera 
+pas correctement analysé e par notre indicateur, ce dernier se concentrant uniquement 
+sur l’érosion du haut de plage. Pour pallier à ces imprécisions nous observerons dans 
+quelles mesures la prise en compte de l’érosion aussi bien sur le haut que sur le bas de 
+plage, permet d’améliorer les résultats du modèle. 
+
+
+===== PAGE 28 =====
+22 
+ 
+D’autre part, il sera pertinent d’implémenter dans le modèle la notion de profil 
+d’équilibre. Comme nous l’avons vu précédemment, le profil d’équilibre joue un rôle 
+majeur dans la résilience de la plage à l’érosion. Etant donné qu’il est assez difficile de 
+définir un profil d’équilibre type car il dépend de l’historique des tempêtes et de la 
+saison, il sera approché par la notion de profil moyen . Ce dernier correspond à la 
+moyenne dans le temps de tous les profils de plage utilisés po ur calibrer le modèle 
+(Figure 12). A l’approche d’une tempête, on pourra alors facilement déterminer si le 
+profil (pré-tempête) est plus ou moins érodé par rapport à ce profil moyen, donc plus ou 
+moins résilient. 
+ 
+FIGURE 12  : ENSEMBLE DE PROFILS ET P ROFIL MOY EN A TRUC VERT SUR L A PERIODE 2009 -2013  
+ 
+Enfin, certaines tempêtes ont pour effet de recharger la plage en sable. La prise en 
+compte de ces évènements (associé s par le modèle à des volumes érodés négatifs) 
+augmente irrémédiablement la dispersion des résult ats. Afin de diminuer cette 
+dispersion et, étant entendu que nous cherchons à caractériser spéc ifiquement le risque 
+d’érosion, nous nous limiterons, dans une partie annexe, à l’étude des tempêtes 
+uniquement érosives. 
+ 
+ 
+ 
+
+
+===== PAGE 29 =====
+23 
+II-1-3 Estimation du niveau d’eau à la côte 
+ 
+Comme présenté  dans la partie I -1-4, le niveau d’eau à la co te est la somme de 
+différentes contributions. Afin de déterminer ces valeurs, nous avons recours à plusieurs 
+types de données et méthodes. En ce qui concerne les données hydrodynamiques, 
+l’indicateur utilise  la hauteur significative des vagues (Hs), et le niveau d’eau, définit 
+comme les variations de hauteur d’eau uniquement dues à la marée. Ces données sont 
+issues de modèles numériques pour deux raisons principales. D’une part, la mise en  
+place de l’indicateur EVI doit répondre à des objectifs de prévisions. Les seules données 
+disponibles dans ce cadre seront les données de prévision s météo-marines issues de 
+modèle. D’autre part, les données observées sont relativement discontinues, notamm ent 
+lors des tempêtes, ce qui empêche souvent la comparaison avec les données de profils 
+de plage. 
+ 
+ 
+Une fois les données obtenues, il est important de les filtrer afin d’observer les 
+processus érosifs uniquement pendant les tempêtes. Pour ce faire nous dé finirons, en 
+adéquation avec la bibliographie (Splinter et al., 2014, Masselink et al., 2014), 2 seuils au 
+niveau des hauteurs de vagues (Figure 13). 
+ 
+- Le seuil de définition des tempêtes  : On définit l’occurrence d’une tempête 
+lorsque Hs est supérieure à  un seuil qui n’est dépassé, tout au long de l’année,  
+que par 5% des vagues. Au niveau du site d’étude cette valeur correspond à Hs 95% 
+= 4.3m 
+ 
+- Le seuil de délimitation des tempêtes  : Ce seuil permet de délimiter la date de 
+début et de fin de chaque temp ête et ainsi de définir l’intervalle de temps en 
+conditions tempête. Il est définit par la valeur qui n’est dépassé que par 25% des 
+vagues, soit Hs75% = 2.3m 
+ 
+ 
+FIGURE 13  : METHODE ET CRITERES DE SELECTION DES TEM PETES  
+
+
+===== PAGE 30 =====
+24 
+ 
+ 
+  
+           Afin de sélectionner l’énergie des vagues ayant atteint la PHMA, il est essentiel de 
+déterminer le niveau atteint par les vagues sur la plage. Pour obtenir cette information 
+on recherche  la valeur du  runup qui n’est dépassée que par 2% des vagues (not é R2%). 
+Nous utiliserons pour trouver cette valeur les équations empiriques données par 
+Stockon et al. (2006) et qui dépendent du nombre d’Iribareen (є).  Ce nombre, qui peut 
+être définit comme la pente dynamique de la plage (Battjes 1974) permet de différencier 
+les plages où l’énergie des vagues aura plutôt  tendance à être dissipée (plages 
+dissipatives) de celles où elle sera préférentiellement réfléchit (plages réflectives). Le 
+Nombre d’Iribarren est déterminé tel que :   
+ 
+𝜖 =  𝛽
+√𝐻𝑆𝐿0
+ 
+Avec  - β   : La pente de plage intertidale 
+- Hs : La hauteur significative de vague 
+- Lo : La longueur d’onde des vagues en haute mer 
+ 
+ 
+            Le runup est donc paramétré en fonction de є par les équations 
+suivantes   (Stockdon et al., 2006):  
+ 
+- Si є < 0.3 la plage est considérée comme dissipative, le runup sera paramétré par : 
+Runup= 0.016√𝐻𝑆𝐿0 
+ 
+- Si є > 0.3 la plage est considérée comme réflective, le runup sera paramétré par : 
+Runup =   1.1(0.35β√HSL0 + 
+1
+2 [√HSL0(0.563β2 + 0.004 ] ) 
+ 
+ 
+
+===== PAGE 31 =====
+25 
+D’après les résultats de C. Decarsin sur le niveau atteint par le runup lors de 
+divers tempêtes en 2014 et 2016, on observe une bonne corrélation entre les niveaux 
+modélisés par ces équations et les niveaux effectivement observés sur la pla ge, à la 
+condition toutefois  que les hauteurs de vagues simulées correspondent bien à celles 
+observées (Decarsin, 2016). D’autre part une analyse a été menée sur la distance entre le 
+niveau d’eau et le pied de dune (indicateur SCW), en observant tout part iculièrement les 
+périodes de temps pour lesquelles il y a un régime de collision, c’est -à-dire un régime 
+pour lequel les vagues atteignent le niveau du pied de dune. En effet c’est à ces occasions 
+que l’on est censé observer une érosion importante du front de dune. La position du pied 
+de dune étant parfois difficile à déterminer avec précision, le choix à ici été fait de 
+calculer l’indicateur  pour 3 hauteurs différentes du pied de d une 4,5 et 6m NGF.  La 
+figure 14 présente les résultats de C. Decarsin et d écrit l’évolution cross –shore du pied 
+de dune et les niveaux atteint pas les vagues au niveau d’un profil de Biscarosse pour 
+deux tempêtes, en janvier et février 2016. On y observe d’une part que lorsque 
+l’indicateur décrit des conditions de collision, on  observe effectivement un recul du pied 
+de dune. D’autre part on distingue qu’il peut y avoir un recul du pied de dune dès lors 
+que l’indicateur rend compte d’une distance inférieure à 5m. 
+ 
+ 
+FIGURE 14  : EVALUATION DU SCW ET  COMPA RAISON AUX RECULS DU  TRAIT DE COTE OBSERV E LORS 
+DE DEUX  TEMPETES EN 2016. (D ECARSIN, 2016)  
+ 
+II -2 DONNEES.  
+ 
+II-2-1 Données hydrodynamiques 
+ 
+Les données de hauteurs de vague sont extraites du modèle ATNE (Atlantique 
+Nord Est) à raison d’une donnée toutes les  3 heures. Elles sont basées sur des 
+
+
+===== PAGE 32 =====
+26 
+simulations du modèle spectral de houle Wave Watch III forcées par des données de 
+vents issues du modèle GFS (Global Forecast System) . Il s’agit de données produite s et 
+archivées par l’IFREMER. Elles ont également subi une réanalyse, c’est à dire des 
+modifications ultérieures (intégration de corrections en fonction des observations de 
+différentes sources) afin que les données correspondent au mieux à la réalité. Par 
+conséquent, ces données ne sont utiles que pour calibre r au mieux le modèle et ne 
+pourrons pas être utilisé sur un mode prédictif. Les données utilisées sont simulées au 
+niveau des coordonnées géographiques correspondant à la bouée Candhis du Cap Ferret 
+(Figure 15).  
+ 
+Les données de niveaux d’eau sont obtenues , à raison d’une donnée toutes les 
+heures, en utilisant le modèle MARS2D (Modélisation et Analyse pour la Recherche 
+Côtière) au niveau des mêmes coordonnées géographiques. MARS2D fournit des 
+données de surcote et de niveaux d’eau avec une résolution de 250  mètres, à partir de 
+données sur la géographie de la côte et des fonds, ainsi que des données 
+météorologiques et océaniques. C’est données ont également été produites par les 
+services de l’IFREMER. 
+ 
+ 
+ 
+ 
+FIGURE 15  : POSITION DE LA BOUEE CAP FERRET  
+ 
+II-2-2 Données morphologiques 
+ 
+a- Truc Vert: 
+ 
+Les données morphologiques utilisées à Truc Vert sont des profils 
+topographiques de plage. Ils ont la particularité d'être moyennés le long du littoral sur 
+
+
+===== PAGE 33 =====
+27 
+une distance de 750 mètres (de 2008 à 20 11) puis de 1500m (à partir de 2012). Ce 
+traitement permet de s’affranchir des variations morphologiques longshore (tel que les 
+croissants de plage ou les systèmes de barre baïne) et ainsi d’obtenir une série de 
+données représentatives de la morphologie mo yenne longshore. Ces relevés 
+topographiques sont effectués à raison d’un point tous les 10 cm et  à une fréquence de 
+l’ordre d’un profil toutes les 2 semaines, soit 102 profils sur la période 2009 -2012. Les 
+profils sont référencés par rapport au niveau moy en de la mer afin de faciliter 
+l’observation des niveaux d’eau statiques à la cote (donné par rapport au niveau moyen). 
+Le zéro  des profils correspond donc à une altitude de 0.39m  en référence IGN69, 
+hauteur du niveau moyen à la plage du Truc Vert. 
+ 
+ 
+b- Biscarrosse 
+Les profils de plages de Biscarrosse sont relevés dans le cadre des travaux de thèse 
+de Mélanie Biausque du laboratoire EPOC. Ils ont la particularité d’être effectués à une 
+haute fréquence, tous les 2 jours, voir tous les jours lors des tempêtes. C ela fournit une 
+information rare sur la dynamique sédimentaire pendant les évènements de tempête. En 
+revanche ces relevés couvrent des périodes relativement courtes et ne permettent pas 
+de constituer une base de données suffisamment longue pour effectuer u n traitement 
+statistique. Les profils sont réalisés sur 4 sections de la plage espacés en moyenne de 
+100m. A la différence des profils de Truc Vert, ces données sont référencées par rapport 
+au 0 IGN et nécessite donc une conversion lorsque l’on observe les  niveaux d’eau par 
+rapport aux profils de plage. Afin de couvrir une distance cross -shore maximale, ils sont 
+effectués en majorité à marée basse. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===== PAGE 34 =====
+28 
+P A R T I E  I I I  -   R E S U L T A T S  &  
+D I S C U S S I O N S 
+ 
+ Cette partie aura pour but de présenter les différents résultats obtenus et sera 
+construite autour des trois axes suivants. Tout d’abord, à partir du traitement des 
+données réalisé nous présenterons les éléments  utiles à la construction d’un  modèle 
+permettant de prévoir, à l’approche d’une tempête,   les volumes susceptibles d’être 
+érodés en haut de plage. Nous détaillerons ensuite les différentes méthodes de 
+calibration  en observant l’i nfluence de divers paramètres (é rosion du bas de plage, 
+profils d’équilibre, etc) sur les résultats du modèle. Nou s regarderons ensuite dans 
+quelle mesure il est possible d’extrapoler le modèle dans le temps (sur la période 2014 -
+2015) et dans l’espace (aux plages de Biscarrosse). 
+ 
+III -1 ELABORATION ET CAL IBRATION DU MODELE ( 2009 -2013)  
+ 
+III-1-1  Modèle général 
+ 
+Afin d’é laborer le modèle nous avons utilisé 102 profils de plage (pour rappel, 
+profils moyennés sur 750m jusqu’en 2011, puis sur 1500m) relevés du 9 février 2009 au 
+2 janvier 2014. Sur cette période il a été relevé (selon la méthode des seuils 
+probabilistes dével oppée dans la partie II -1-3)  51 épisodes de tempête. Parmi ces 51 
+tempêtes, la plus courte est de 22 heures, la plus longue est une série de tempête 
+pendant laquelle la hauteur des vagues n’est pas descendue sous le seuil de 2.4m 
+pendant plus de 12 jours (du 28 octobre  au 9 novembre 2009). 
+ 
+Les relevés morphologiques ne sont réalisés qu’à une fréquence bimensuelle et il 
+arrive parfois que plusieurs tempêtes distinctes se succèdent entre deux relevés. Dans 
+ces cas, il est impossible de connaitre l’impact m orphologique de chacune des tempêtes 
+et le modèle les considère alors comme un unique évènement. Au final  sur les 51 
+tempêtes relevées à partir des données de houle, les profils morphologiques nous 
+limitent à l’étude de 37 évènements. Les volumes érodés a insi que l’énergie développée 
+pour chacun de ces évènem ents sont présentés en figure 16 . Parmi ces évènements une 
+majorité a développé une énergie inférieure à 1 MJ/m²  bien que les plus fortes aient pu 
+atteindre 2MJ/m² voir 3.5MJ/m² (tempête Joachim). Afi n de se rendre compte de ce que 
+représente cette énergie, on rappelle qu’un homme creusant pendant 8 heures à l’aide 
+
+===== PAGE 35 =====
+29 
+d’une pelle fournira une énergie équivalente à 200 000 joules, soit 0.2 MJ. Une tempête 
+de 1MJ/m² fournit donc la même énergie à 1 m de littoral  que 5 hommes creusant toute 
+une journée. 
+ 
+ Sur les 37 évènements, 22 ont érodé le haut de plage (Volumes érodés  >0) alors  
+que 15 sont à l’origine d’un rechargement en sédiment (Volumes érodés <0). Les 
+volumes érodés sur le haut de plage (au -dessus de la PHMA) peuvent atteindre 30m3/m 
+et le rechargement 27m3/m.  Etant donné que ces évolutions morphologiques on toutes 
+eu lieu à l’occasion de tempêtes, la variabilité de ces transferts sédimentaires semble 
+particulièrement importante, et ce notamment pou r les tempêtes de faible énergie.  Afin 
+de détailler ces résultats nous présenterons une évaluation plus précise de trois de ces 
+tempêtes ; Xynthia, Joachim et la tempête à l’origine  du rechargement de 27m3/m, dite 
+‘tempête post Klaus’. 
+ 
+ 
+FIGURE 16  : MODELE  GENERAL A TRUC VERT SUR LA PERIODE 2009 -2013  
+ 
+ 
+ 
+Xynthia: La tempête Xynthia se présente d’après les données de houle  sous la 
+forme d’un cluster de 3 tempêtes ayant atteint la côte Aquitaine successivement du 24 
+au 28 février 201 0 (Figure 17 ). Avec des Hs modélisées au niveau de la bouée du Cap 
+Ferret de l’ordre de 7m, elle est à l’origine d’une érosion particulièrement marquée, 
+notamment sur le haut de plage avec un recul du pied d e dune de plus de 5 m (Figure 
+
+
+===== PAGE 36 =====
+30 
+18).  Cette érosion est très importante, notamment quand on prend en compte le fait que 
+la tempête est arrivée en fin de saison, sur une plage qui était déjà particulièrement 
+érodée.  
+ 
+En comparant les profils topographiques avant et après la tempête, on remarque 
+que la tempête a érodé principalement le haut de plage et qu’une partie de ce sédiment a 
+servi à recharger le bas de la plage. Le modèle ne rend pas compte de cette dynamique ‘à 
+deux étages’  car il ne prend en compte uniquement que  les transferts sédimentaires 
+ayant eu lieux au -dessus de la PHMA. En l’occurrence, étudier ces transferts sur 
+l’entièreté du profil aurait donné des volumes érodés moins importants. 
+ 
+ 
+ 
+ 
+FIGURE 17  : HAUTEURS SIGNIFICA TIVES DE S VAGUE S A LA BOUEE DU CAP FE RRET  PENDAN T LA 
+TEMPETE XYNTHIA  
+ 
+
+
+===== PAGE 37 =====
+31 
+ 
+FIGURE 18  : IMPACT MORPHOLOGIQ UE DE LA TEMPETE XYN THIA SUR LA PLAGE DU  TRUC VERT  
+ 
+Joachim : La tempête Joachim est référencée par le modèle comme l’évènement 
+ayant développé la plus forte énergie et érodé le s plus gros volumes de plage. Le centre 
+dépressionnaire est passé sur le Finistère et la Manche, toutefois la houle qu’il a formé 
+en Atlantique a fortement affecté le littoral aquitain. D’un point de vue hydrodynamique, 
+les  conditions tempête s’établissen t  du 11/12/2011 au 18/12/2011, période pendant 
+laquelle il a eu 3 jours consécutifs où la hauteur de la houle a été supérieure à 6m 
+(Figure 19). 
+ 
+Joachim est la deuxième tempête de l’hiver 2011 -2012 et il est donc arrivé sur 
+une plage au profil d’été avec  une berme très développée qu’il a complètement effacé 
+(Figure 20). Le pied de dune n’a par contre pas reculé et on n’observe aucune érosion au 
+niveau du front de dune.  Au contraire le profil a eu tendance à se recharger  au niveau 
+du pied de dune, ce qui  est peut être dû à un effet de moyenne  longshore ou à un 
+potentiel transfert retour vers le haut de plage lors de la tempête suivante. En effet, il 
+faut noter  que l’énergie de 3.5MJ/m² retenue par le modèle ne correspond pas 
+uniquement à celle de Joachi m, mais également à celle d’une deuxième tempête 
+survenue quelques semaines plus tard et qui se trouve également dans la période de 
+temps comprise entre les deux levés de profils de plage utilisés (Figure 19). Quoi qu’il en 
+soit cet exemple illustre parfai tement le rôle crucial de la berme dans la protection du 
+front de dune. 
+ 
+
+
+===== PAGE 38 =====
+32 
+ 
+FIGURE 19  : HAUTEURS SIGNIFICA TIVES DE S VAGUE S A LA BOUEE DU CAP FE RRET  PENDANT LA 
+TEMPETE JOACHIM  
+ 
+ 
+ 
+FIGURE 20  : IMPACT MORPHOLO GIQUE DE LA TEMPETE JOACHIM SUR LA PLAGE  DU TRUC VERT  
+ 
+ 
+ 
+Tempête post Klaus : Cette tempête qui a touché la côte Aquitaine au début du 
+mois de mars 2009 est celle qui montre la plus forte dispersion lors de la mise en 
+relation des volumes érodés et des  énergies développées (Figure 16 ). En effet, bien 
+
+
+===== PAGE 39 =====
+33 
+qu’elle ait apporté une houle de 8m  et une énergie relativement importante (1.58 
+MJ/m²), c’est l’évènement à l’origine du plus fort rechargement en sable de la plage (27 
+m3/m de sable apportés). Ce rechargement s édimentaire est clairement vi sible sur la 
+figure 22. Il est important de regarder les conditions de mer avant et après la tempête 
+ainsi que les dates d’occurrence des relevés morphologiques pour expliquer ces chiffres. 
+ 
+Cette te mpête intervient en fin d’hi ver, sur une plage déjà très érodée par le 
+passage de Klaus, la tempête à l’origine des plus fortes houles observée sur la période 
+2008-2017. Il est probable qu’elle ait remobilisé le sable, déposé au niveau de l’avant 
+côte par Klaus, pour le ramener vers le haut de plage. Pour autant cela n’est qu’une 
+suggestion car la dynamique du sable au niveau de l’avant côte, donnée fournie par les 
+relevés bathymétriques, est un paramètre qui n’est pas pris en compte par le modèle et 
+qui en limite significativement la  précision. D’autre part il faut noter que les relevés 
+morphologiques utilisés pour évaluer cette tempête sont espacés de plus de 2 mois 
+pendant lesquels les conditions de mer étaien t relativement calmes (Figure 21 ). Ce 
+rechargement peut donc aussi bien  a voir eu lieu après la tempête mais, faute de profils 
+plus fréquents, il est impossible d’en dire davantage. 
+ 
+ 
+ 
+FIGURE 21  : HAUTEURS SIGNIFICA TIVES DE S VAGUE S A LA BOUEE DU  CAP FERRET DE JANVIE R A MAI 
+2009  
+
+
+===== PAGE 40 =====
+34 
+ 
+FIGURE 22  : EVOLUTION MORPHOLO GIQUE DE LA PLAGE DU  TRUC VERT SUR MARS - AVRIL 2009  
+  
+ 
+Bien que le modèle mette en évidence une certaine corrélation entre érosion et 
+énergie, les cas particuliers cités ci -dessus soulignent une forte hétérogénéité des 
+réponses du système plage. En effet, l’approche statistique utilisée ne prend pas en 
+compte le contexte spécifique à chaque évènement (la période de temps et le nombre de 
+tempêtes entre 2 profils, la saisonnalité,…). Or ce contexte joue un rôle important dans la 
+dynamique érosive de chaque tempête et c’est pourquoi on observe une dispersion 
+importante dans les résultats. Afin de réduire cette dispersion certaines modifications 
+seront apportées au modèle, ce qui  est l’objet de la partie suivante. Toutefois nous 
+pouvons dès à présent présenter quelques conclusions. 
+ 
+- Toutes les tempêtes peuvent être érosives . Au regard du graphique  16,  il 
+n’existe pas de seuil énergétique au-dessous duquel il n’y aurait pas  d’érosion car 
+même les plus faibles tempêtes érodent parfois des volumes importants. 
+-  Toutes les tempêtes sont érosives au-delà de 1.6 MJ/m². Parmi les tempêtes qui 
+ont dépassé ce seuil,  toutes sont à l’origine d’une érosion de la plage. 
+- Le taux de rechargement sédimentaire en période calme est de l’ordr e de 
+6m3/m/mois. Cette valeur correspond à l’ordonnée à l’origine de la régression 
+linéaire (multipliée par 2 car il y a en moyenne deux profils par mois) et rend 
+compte de la dynamique sédimentaire lorsqu’il n’y aucune énergie fournie. 
+
+
+===== PAGE 41 =====
+35 
+Attention toutefois  à prendre cette valeur avec précaution car, dans la réalité,  la 
+majeure partie du sable réintroduit vers la plage l’est à l’occasion de tempêtes. 
+ 
+Pour le modèle général l’équation de la droite de régression définiss ant la corrélation 
+entre volume érodé et énergie est :  
+Volume érodé = 10.2 x Energie – 3.2 
+ 
+III-1-2 Modifications apportées au modèle général 
+ 
+En l’état, le modèle présente des traits intéressants permettant de rapprocher les 
+énergies de volumes érodés en haut de plage. Il reste toutefois caractérisé par un 
+coefficient de corrélation très faible (R²=0.26) et une erreur importante (RMSE=22.4 
+m3/m). Dans cette partie, plusieurs pistes seront envisagées afin d’améliorer ses 
+performances. 
+ 
+- L'analyse des événements uniquement érosifs .  La finali té de notre 
+modèle étant la mise en place d’un système d’alerte érosion, cette 
+modification semble nécessaire. D’autre part, comme on l’a vu à travers 
+l’exemple de la tempête «  post Klaus  », les processus de rechargements 
+sédimentaires  semblent plus diffi cile à appréhender et à l’origine d’une 
+dispersion importante. On sélectionnera donc uniquement les tempêtes 
+qui sont à l’origine d’une érosion de la plage. Ce faisant il ne sera plus 
+possible de délimiter le seuil au -delà duquel on observe uniquement de 
+l’érosion (fixé à 1.6MJ/m² ci -dessus), mais au profit d’une meilleure 
+corrélation entre les variables. 
+ 
+- L'analyse des volumes érodés sur la totalité des profils de plage.  Cette 
+modification reconsidère l'approche méthodologique du modèle général 
+selon laquelle l’énergie des vagues dépassant la PHMA doit être corrélée à 
+l'érosion de la plage au-dessus de la PHMA. Toutefois l'exemple de Xynthia 
+démontre qu'on observe des transferts de sable de part et d'autre de cette 
+limite et que ceux -ci sont à l'origine d ’une importante dispersion par 
+rapport à  la régression linéaire. Observer l'érosion sur la totalité de la 
+plage et non pas seulement sur le haut de plage permettrai t donc de 
+réduire cette dispersion tout en fournissant une information 
+
+===== PAGE 42 =====
+36 
+complémentaire. De p lus il est tout aussi légitime de parler d'érosion 
+lorsque le haut de plage est érodé que lorsque c’est la totalité du profil qui 
+est affectée. Nous garderons par contre le même filtre sur les énergies afin 
+de se limiter aux vagues les plus hautes (celles dont le runup dépasse la 
+PHMA). 
+- L’implémentation du profil d'équilibre pré -tempête. Comme on l'a 
+développé précédemment, la période à laquelle arrive une tempête (en 
+début ou en fin d'hiver, en été,...) affecte considérablement la réponse 
+morphologique de la plage. Cette notion, qui est à mettre en relation avec 
+le profil d'équilibre de la plage, n'est pas prise en compte par le modèle. 
+Prendre en compte l'état pré -tempête de la plage, que l'on définira par 
+rapport au profil moyen calculé sur 2009-2013, permet de distinguer deux 
+groupes d’évènements en fonction du profil de la plage avant l’arrivée des 
+tempêtes. Une loi de proportionnalité sera ensuite établie pour chacun de 
+ces groupes. 
+ 
+A partir de ces différentes modifications on définit 2  nouveaux modèles. 
+ 
+- Modèle TPTE (Tout le Profil – Tempêtes Erosives) : Ce modèle ne sélectionne 
+que les tempêtes érosives. L es volumes érodés sont calculés sur la totalité du 
+profil de la plage (aussi bien au-dessus qu’en dessous de la PHMA) (Figure 23) 
+- Modèle PPT  (Profil Pré -Tempête) : Ce modèle reprend la calibration du 
+modèle TPTE en y implémentant les profils d’équilibre. (Figure 24) 
+ 
+ 
+
+===== PAGE 43 =====
+37 
+ 
+FIGURE 23  : MODELES TPTE SUR LA PERIODE 2009 -2013  
+ 
+ 
+FIGURE 24  : MODELE PPT SUR LA PERIODE 2009 -2013  
+ 
+ 
+ 
+A partir de ces nouvelles calibrations nous pouvons définir de nouvelles 
+équations reliant  les volumes érodés aux énergies. Ces équations seront ensuite testées 
+afin d’évaluer leurs performances  sur la période 2014-2015 
+ 
+
+
+===== PAGE 44 =====
+38 
+- Modèle TPTE : Volume érodé = 18.7 x Energie + 2.1 
+ 
+- Modèle PPT :  
+Si la plage est engraissée : Volume érodé = 20.9 x Energie + 2.6 
+Si la plage est érodée :       Volume érodé = 14.9 x Energie + 2.7 
+ 
+III -2 EXTRAPOLATION DU M ODELE  
+ 
+III-2-1 Application de l’EVI à la période 2014-2015 
+ 
+ 
+Observer  les résultats  pour la période sur laquelle le modèle  est calibré n’est 
+pas suffisant  pour juger de ses performances. Pour le valider il est nécessaire de tester 
+de quelle manière il réagit sur une période de temps différente.  En l’occurrence nous 
+avons choisi la période 2014-2015. Cela permettra ainsi de regarder comment le modèle 
+évalue l’impact  morphologique  de l’hiver 2013 -2014. Afin de prendre en compte la 
+première tempête de l’hiver (Dirk), on fera commencer cette étape  de validation au 1 er 
+décembre 2013. 
+ 
+Afin de faciliter la lecture des résultats, nous avons sélectionné les 8 plus fortes  
+tempêtes de l’hiver 2013 -2014 (Figure 25). Parmi celles -ci, certaines ne sont pas 
+distinguables du point de vue de leur impact morph ologique car elles se sont succédées 
+de manière très rapprochée. Ainsi compte tenu des données disponibles, l’érosion 
+provoquée par Christina et Hercules est par exemple sommée. C’est aussi le cas de Petra 
+et Ruth. Ces 8 tempêtes sont à l’origine d’une éro sion cumulée de 185 m 3/m, ce qui 
+représente la plus grande partie des volumes érodés durant la période 2014-2015. Sur le 
+haut de plage les tempêtes ont érodé plusieurs dizaines de m 3/m  (Hercules et 
+Christina : 25m 3/m,  Andrea  : 27m 3/m, Dirk  : 29m 3/m, etc) . Si l’on prend aussi en 
+compte le bas de la plage ces volumes dépassent souvent les 40m 3/m de sable érodés. 
+D’une manière générale on observe que ce sont les premières tempêtes, et pas 
+forcément les plus fortes,  qui ont le plus érodé les plages. Ces temp êtes (ou clusters) ont 
+développé une énergie exceptionnelle, dépassant pour la plupart le seuil de 1.6MJ/m². 
+Le cluster Petra et Ruth a fournit 3.83MJ/m², soit l’énergie la plus importante observée 
+sur 2009-2015.  
+ 
+
+===== PAGE 45 =====
+39 
+ 
+FIGURE 25  : HA UTEURS SIGNIFICATIVE S DE S VAGUE S A LA BOUE E DU CAP FERRET PEND ANT L'HIVER  
+2013 -2014  
+ 
+FIGURE 26  : PREVISIONS DU MODE LE GENERAL SUR LA PE RIODE 2014 -2015  
+ 
+ 
+ Les modèles TPTE et PPT rendent bien mieux compte de la dynamique érosive, 
+avec un coefficient de corrélation de respectivement 0.61 et 0.85 (et un  RMSE de 
+
+
+===== PAGE 46 =====
+40 
+respectivement 11.9 m 3/m et 7.5m 3/m). La limite établie sur les tempêtes érosive s et la 
+prise en compte des profils d’équilibre améliorent donc sensiblement les résultats. Le  
+modèle PPT a efficacement et presque systématiquement réduit les erreurs entre 
+mesures et prévisions.  En effet à l’exception de la tempête Dirk, la prise en compte du 
+profil d’équilibre a dans tous les cas donné des volumes érodés plus proches de la réalité 
+(Figure 27).   Ce dernier modèle présente une erreur relative de l’ordre de 25% pour les 
+tempêtes les plus importantes. L’impact de la tempête Andréa est notamment reproduit 
+avec moins de 2% d’erreur. Pour autant ces pourcentages augmentent sensibleme nt 
+lorsque l’on prend en compte les tempêtes de plus faible intensité, notamment Nadja 
+pour laquelle le modèle surestime les volumes érodé de près de 100%. 
+ 
+  
+ 
+FIGURE 27  :  COMPARAISON ENTRE ER OSIONS OBSERVEE ET P REDITE PAR LES MO DELES TPTE ET PPT 
+LORS DES TEMPETES DE  L’HIVER 2013 -2014  
+ 
+ 
+FIGURE 28  : PERFORMANCES STATIST IQUES DES MODELES  
+ 
+III-2-2 Tentatives de prévision de l’évolution du trait de côte 
+ 
+ 
+
+
+===== PAGE 47 =====
+41 
+ 
+ La prévision des volumes de plages érodés est une in formation pertinente afin de 
+mettre en place un système d’alerte. Toutefois, cette information peut s’avérer difficile à 
+interpréter notamment pour une communication aux collectivités  locales. Nous tentons 
+ici de convertir l’estimation du volume érodé/acc rété en une information plus pratique 
+et plus explicite telle que l’évolution potentielle du trait de côte. Le trait de côte est une 
+notion polysémique, parfois associée à la limite de végétation, au pied de dune ou à la 
+PHMA. Etant donné que cette dernièr e nous  a servi de seuil afin d’élaborer notre 
+indicateur, c’est la définition que nous utiliserons pour déterminer le trait de côte. La 
+méthode employée sera la même que pour la détermination des volumes à ceci près qu’il 
+sera cette fois possible d’observ er l’évolution de cette variable dans le temps.  En effet, 
+alors qu’un volume de plage érodé  au temps t+1  n’est pas corrélé avec le volume érodé 
+au temps t, la position du trait de côte après une tempête dépend évidemment de sa 
+position antérieure.  Il e st ainsi possible, uniquement à partir des profils 
+morphologiques de plage, d’observer l’évolution dans le temps de la topographie du 
+littoral (Figure 29). 
+ 
+ 
+ 
+ 
+FIGURE 29  : EVOLUTION DE LA POSITION CROSS -SHORE DE PLUSIEURS A LTITUDE S SUR LA PLAGE DU 
+TRUC VERT DE 2009 A 2015  
+
+
+===== PAGE 48 =====
+42 
+ 
+FIGURE 30  : ALTITUDE DES DIFFE RENTS INDICATEURS UT ILISES POUR DETERMIN ER L’EVOLUTION 
+TOPOGRAPHIQUE DU LIT TORAL A TRUC VERT  
+ 
+ En observant  l’évolution de la topographie du littoral sur l a période 2009 -2015, 
+on repère clairement une périodicité, conséquence de la succession des hivers et des 
+étés. Les courbes de niveaux ont tendance à s’avancer vers la mer en été et à reculer en 
+période hivernale. Ces variations sont la plupart du temps li mitées au bas de la plage 
+bien que, notamment pendant l’hiver 2013 -2014, elles puissent aussi affecter le front de 
+dune (courbe de niveau  6m). 
+ 
+ 
+ D’autre part il est intéressant de remarquer comment varie la courbe de niveau 
+4m, positionnée plus ou moins à l’altitude ou se forme la berme en été.  Il semble que 
+cette dernière, présente pendant les étés 2011 et 2012,  n’ai pas pu se constituer avant 
+l’arrivée des premières tempêtes de l’hiver 2013-2014. Celle-ci ne pouvant pas jouer son 
+rôle de protection, c ’est à cette occasion que l’on observe un fort recul du front de dune, 
+ce qui n’a pas eu lieu lors des autres hivers.  Outre l’intensité exceptionnelle et le nombre 
+d’évènements de l’hiver 2013-2014, l’absence de berme apparait donc comme un facteur 
+aggravant. 
+ 
+ 
+ L’utilisation des énergies afin d’expliquer les variations du trait de côte ne donne 
+pas de bons résultats. Bien que le modèle semble fonctionner sur les tendances à long 
+terme, il ne permet pas de rendre compte des variations saisonnières (Figure 31). 
+L’extrapolation entreprise sur la période 2014 -2015 ne correspond pas du tout à ce qui 
+a été observé. Par exemple l’hiver 2013-2014 a  provoqué qu’un recul d’une vingtaine de 
+mètres à Truc Vert alors que le modèle prévoit un recul de plus de 40 mètres  (Figure 
+32). On observe d’autre part un rapide rechargement sédimentaire notamment à partir 
+de 2015. Ce rechargement n’est pas corrélé avec les conditions hydrodynamiques et 
+
+
+===== PAGE 49 =====
+43 
+suggère que d’autres mécanismes morphodynamiques sont à l’œuvre et permettent à l a 
+plage de développer une certaine résilience. 
+ 
+ 
+ 
+FIGURE 31  : EVOLUTION DE LA POSITION CROSS -SHORE (OBSERVEE ET M ODELISEE) DE L’ALTIT UDE  
+2.14M  EN REFERENCE IGN69 C ORRESPONDANT A LA PH MA SUR LA PERIODE 20 09-2013  
+ 
+ 
+FIGURE 32  :  EVOLUTION DE LA POSI TION CROSS -SHORE (OBSERVEE ET M ODELISEE) DE L’ALTIT UDE  
+2.14M EN REFERENCE I GN69 CORRESPONDANT A  LA PHMA SUR LA PERIO DE 2014 -2015  
+ 
+  
+III-2-3 Application de l’EVI aux plages de Biscarrosse 
+ 
+ La dynamique sédimentai re est en général spécifique à une plage donnée. On 
+comprend donc la difficulté à élaborer un système d’alerte  qui modélise fidèlement 
+cette dynamique et permette des prévisions efficaces sur la totalité des 280 kilomètres 
+de la côte sableuse Aquitaine. C ependant, compte tenu d’une exposition aux conditions 
+marines et de caractéristiques granulométriques et morphologiques relativement 
+
+
+===== PAGE 50 =====
+44 
+homogènes le long de  la côte sableuse Aquitaine, une tentative d’ application du modèle 
+est réalisé sur le site de Biscaros se. Nous observerons dans cette partie comment réagit 
+l’EVI sur les plages de Biscarosse situées à l’autre extrémité de l’embouchure  du bassin 
+d’Arcachon, au sein d’une cellule hydro-sédimentaire différentes. 
+ 
+ 
+Les 4 profils de plage, pourtant situés à proximité les uns des autres, présente une 
+réponse morphologique très différente, ce qui illustre une fois de plus la difficulté de 
+prendre en compte aussi bien la dynamique cross -shore que longshore. Par conséquent 
+afin de faciliter la lecture et la compréh ension des résultats mais également afin d’être 
+cohérent avec l’approche développée pour la plage du Truc Vert,  nous utiliserons la 
+moyenne des 4 profils comme variable d’étude. Un certain nombre de différences entre 
+les plages de Truc Vert et de Biscarro sse compliquent d’autre part cette étape 
+d’extrapolation :  
+ 
+ 
+-  Biscarrosse est une plage aménagée et entretenue par la collectivité. Par 
+conséquent il est assez fréquent que les services techniques modifient l’allure 
+de la plage, notamment en la rechargean t en sable. Cela limite évidemment la 
+possibilité d’observer efficacement la dynamique sédimentaire naturelle et 
+peut être à l’origine d’une variabilité importante dans nos résultats. 
+ 
+- La plage appartient à une section du littoral qui est en déficit sédime ntaire et 
+s’érode de manière continue. Il est donc difficile d’utiliser notre notion de 
+profil moyen car ce dernier nécessite que la plage soit relativement stable sur 
+le long terme. Le petit nombre de profils à notre disposition limite de plus 
+l’utilisation de cette méthode. Par conséquent on ne pourra pas utiliser sur la 
+plage de Biscarrosse le modèle implémentant les profils pré-tempêtes. 
+ 
+A la lecture des résultats (Figure 33), la corrélation est assez fa ible  entre les 
+prévisions de notre modèle et les  observations. Les volumes de plage érodés paraissent 
+relativement indépendants des conditions de mer, particulièrement pour les faibles 
+énergies (<0.5MJ/m²).  On distingue une certaine amélioration des résultats pour les 
+énergies plus importantes mais, étant donné leur  très forte variabilité et le petit nombre 
+de points considérés, il n’est pas souhaitable d’en tirer de conclusions. Afin de pouvoir 
+juger de manière plus pertinente de l’applicabilité du modèle aux plages de Biscarrosse, 
+il serait nécessair e de disposer de données morphologiques plus nombreuses et de 
+déterminer le profil d’équilibre d’été et d’hiver de la plage. L’observation des processus 
+long-shore à l’origine de la variabilité entre les 4 profils de plage semble être, elle aussi, 
+un prérequis à toute analyse plus poussée. 
+ 
+
+===== PAGE 51 =====
+45 
+ 
+FIGURE 33  : RESULTATS DU MODEL E GENERAL  A BISCARROSSE  
+ 
+ 
+ 
+III -3 UTILISATION DU MOD ELE AU SEIN D’UN SYS TEME 
+D’ALERTE EROSION  
+ 
+III-3-1 Scénario 
+ 
+ 
+Les résultats obtenus sur la corrélation entre é nergies et volumes de plages 
+érodés sont relativement concluants dès lors que l’on prend en compte le stock de sable 
+disponible au travers de la morphologie pré -tempête. Le modèle prévoit en effet avec 
+une bonne efficacité (R²=0.85, RMSE =7.5m3/m) les volumes de plage érodés à Truc Vert 
+sur la période 2014-2015. Pour autant la variabilité reste importante, ce qui sous-entend 
+qu’un certain nombre de processus affectant la dynamique sédimentaire n’ont pas été 
+pris en compte. Il semble toutefois intéressant de  réfléchir à la manière d’intégrer notre 
+indicateur à un système de prévision de l’érosion.  
+ 
+ 
+On se propose ici d’évaluer les projections de notre modèle pour une tempête qui 
+n’a pas été prise en compte jusqu’alors, Klaus. Cette tempête, dont le centre 
+dépressionnaire est passé au niveau même de la côte Aquitaine fin janvier 2009, est à 
+l’origine de Hs de 14.2 m au niveau de la bouée du Cap Ferret (selon le modèle ATNE). La 
+
+
+===== PAGE 52 =====
+46 
+tempête Klaus à également comme particularité d’avoir circulé alors que les coeffic ients 
+de marée étaient relativement faibles. Il sera donc intéressant d’observer les différences 
+de prévisions  si la tempête avait touché terre à l’occasion de forts coefficients de 
+marées. Ceci permettra de mettre en avant la pertinence de l’utilisation de l’estimation 
+des niveaux d’eaux dans notre modèle afin de retranscrire fidèlement l’impact érosif des 
+tempêtes. On calculera donc successivement les prévisions de volumes érodés pour la 
+tempête Klaus telle qu’elle a effectivement eut lieu, puis en simul ant des hauteurs d’eau 
+correspondant à de plus forts coefficients de marée (scénario fictif). On observera de 
+plus les conséquences, en termes d’énergie et de volumes érodés, de la  coïncidence du 
+pic de hauteur de vague avec la marée haute (Figure 36). D’ autre part, bien que nous ne 
+disposions pas de donnée morphologiques pré -tempête pour cet évènement, il sera 
+intéressant d’observer de quelle manière varient les prévisions en observant les 
+résultats du modèle pour un profil pré -tempête érodé ou engraissé.  Notons que cette 
+analyse se déroule sur 60 heures, soit une durée bien moindre de celle utilisée pour 
+élaborer notre indicateur (en moyenne 2 semaines). Par conséquent, les énergies 
+développées seront moins importantes que si l’on avait utilisé la fenêtre  temporelle 
+conventionnelle. Par contre, cet exercice permettra d’évaluer les volumes érodés comme 
+si l’indicateur était utilisé en situation de prévision (finalité de l’indicateur développé) 
+donc sans prendre en compte les conditions de mer avant et après  la tempête. En 
+l’occurrence la tempête se déroule dans un contexte particulièrement agité avec de 
+fortes vagues avant et après l’évènement qui auraient fourni des valeurs d’énergie 
+beaucoup plus grandes si on avait utilisé une fenêtre d’observation de l’o rdre de 2 
+semaines. Nous avons de plus limiter la période de temps en omettant la sélection des 
+tempêtes à partir des 2 seuils probabilistes qui, une fois encore, aurait conduit à intégrer 
+beaucoup plus d’énergie que celle effectivement développée par Klaus (Figure 34) 
+ 
+ 
+FIGURE 34  : CONDITIONS HYDRODY NAMIQUES EN JANVIER 2009  
+
+
+===== PAGE 53 =====
+47 
+ 
+Le premier point à observer est que, paradoxalement, les énergies ne sont pas 
+plus importantes lorsque l’on fait coïncider le pic de tempête avec la marée hau te (dans 
+le scénario fictif). Dans les deux cas le modèle rend compte d’une énergie relâchée sur le 
+haut de plage de l’ordre de 1 MJ/m².  La raison en ai que, dans la réalité, les Hs observé s 
+les plus importants ont eu lieu le 24 janvier 2009 de 3  :00 à 18 :00 et que, pendant cette 
+période de temps, il y  a eu 2 marées hautes (Figure 35 ). De fait, il y a eu 2 occasions, 
+pour les vagues parmi les plus hautes, de relâcher leur énergie au -dessus de la PHMA. 
+Dans le scénario fictif cette occasion ne s’est présen tée qu’une seule fois (Figure 37) et, 
+malgré le fait qu’elle coïncide avec les vagues de 14m, l’énergie cumulée n’est au final 
+pas plus importante. Cela illustre l’importance de considérer, outre la coïncidence entre 
+niveaux d’eau et Hs, le nombre de cycles de marée sur lequel sévit une tempête. 
+ 
+ 
+D’autre part, il faut noter que l’utilisation de coefficients de marée plus 
+importants n’a pas non plus eu d’effets notoires. A ce propos, bien que lors des forts 
+coefficients de marée les vagues atteignent des ni veaux plus élevés sur la plage, ces 
+coefficients peuvent avoir un effet paradoxal. En effet le marnage étant alors plus 
+important, le run up des vagues recule d’autant plus à marée basse. Dans certain cas, de 
+faibles coefficients de marée associés à de for tes vagues, en ne permettant pas à la mer 
+de se retirer suffisamment loin, peuvent accentuer la durée d’action des vagues sur le 
+haut de plage. Bien que l’exemple précédent ne soit pas visible pour Klaus, on peut 
+toutefois observer que lors du pic des vale urs de Hs (le 24/01 à 9  :00), les faibles 
+coefficients de marée ont amené la mer, alors à marée basse, très proche du niveau de la 
+PHMA (Figure 36). Des hauteurs de vagues légèrement supérieures aurait alors conduit 
+le modèle à considérer des énergies beaucoup plus importantes en intégrant l’énergie du 
+pic. 
+  
+ 
+Finalement en appliquant les équations déduites de la calibration des modèles. 
+Klaus serait à l’origine d’une érosion de 7m 3/m d’après le modèle général, 20.8m 3/m 
+d’après le modèle TPTE, de 17.6m 3/m pour le modèle PPT -profil érodé et de 23.5 m 3/m 
+pour le modèle PPT -profil engraissé. Ces valeurs, bien que conséquentes, sont loin des 
+maximums observés sur la période 2009-2015, et ce malgré que la tempête ai généré les 
+vagues les plus hautes enregistrées sur cette période. La raison en ai, encore une fois, la 
+très courte fenêtre de temps  sur laquelle nous avons observé l’épisode (représenté par 
+le plus petit intervalle sur la figure 34). 
+ 
+
+===== PAGE 54 =====
+48 
+ 
+FIGURE 35  : HAUTEURS SIGNIFICA TIVES DE S VAGUE S ET NIVEAUX D'EAU PEN DANT LA TEMPETE 
+KLAUS  A LA FREQUENCE D’UNE  DONNEE TOUTES LES 3 HEURES  
+ 
+ 
+ 
+FIGURE 36  : NIVEAUX ATTEINTS P AR LE RUN UP DES VAG UES SUR LA PLAGE ET ENERGIES LIBEREEQ  
+SUR LE HAUT DE PLAGE  LORS DE LA TEMPETE K LAUS  
+Pour le graphique du haut, l’ordonnée correspond aux distances du runup à la PHMA. Lorsque cette valeur est  positive le 
+niveau est donc en dessous PHMA (l’énergie n’est alors pas intégrée). 
+ 
+ 
+ 
+ 
+
+
+===== PAGE 55 =====
+49 
+ 
+FIGURE 37  : SCENARIO CORREPONDAN T AUX CONDITIONS DE VAGUES DE LA TEMPETE  KLAUS 
+ASSOCIEES A DE FORTS  COEFFICIENTS DE MARE E 
+ 
+ 
+ 
+FIGURE 38  : NIVEAUX  ATTEINTS PAR LE RUNU P DES VAGUES SUR LA PLAGE ET ENERGIES LIBEREES  
+SUR LE HAUT DE PLAGE  EN UTILISANT DES NIV EAUX D’EAU  FICTIFS POUR LA TEMP ETE KLAUS  
+ 
+ 
+ 
+ 
+ 
+
+
+===== PAGE 56 =====
+50 
+III-3-1 Limites et perspectives 
+ 
+Afin d’appréhender la dynamique sédimentaire nous avons dû utiliser un certain 
+nombre d’approximation et omettre certaines caractéristiques propres au littoral.  Nous 
+détaillons ci-dessous certaines de ces limites dont la prise en compte pourrait permettre 
+des prédictions plus justes. 
+ 
+ 
+- La bathymétrie . La non prise en compte de la dynamique sédimentaire 
+sous-marine est une des limites principale de notre modèle. Le système de 
+barres sableuse s joue en effet un rôle prépondérant dans les processus 
+érosifs, d’une part en tant que barrière naturelle en affectant  la zone de 
+déferlement des vagues, de l’autre en servant de réservoir sédimentaire. 
+Afin d’améliorer les prévisions il est obligatoire d’inclure dans la 
+modélisation des données bathymétriques.   
+ 
+- Analyser de manière distingue les processus affectant la dune et la plage.  
+Faute de pouvoir distinguer systématiquement le pied de dune, notre 
+modèle  fait l’impasse sur cette distinction. Pourt ant, bien que ces deux 
+zones fonctionnent de manière interdépendante, elles sont caractérisées 
+par une dynamique sédimentaire différente. Il est donc important de 
+délimiter clairement l’érosion dunaire de l’érosion au niveau de la plage 
+afin d’améliorer les performances du modèle. 
+ 
+- L’approche moyennée en longshore.  Les données utilisées pour élaborer 
+notre modèle sont moyennées en longshore afin de rendre les profils plus 
+cohérents entre eux. Bien que cette méthode facilite le traitement des 
+données, elle l isse la variabilité longshore  dont on perd alors 
+l’information. L’utilisation de différents profils espacés d’une centaine de 
+mètres les uns des autres permettrait d’obtenir plus d’informations sur 
+cette variabilité et ainsi d’élaborer un indicateur plus fidèle à la réalité. 
+- L’utilisation des modèles n umériques. Les données issues des modèles 
+sont irrémédiablement entachées d’une certaine erreur. Le modèle ATNE 
+utilisé, à travers sa composante de réanalyse, permet d’obtenir des 
+données assez proches de cel les observées. Toutefois il serait intéressant 
+d’effectuer, quand cela est possible, une régression entre les données de 
+modèle et les données mesurées par les bouées Candhis afin de minimiser 
+ces erreurs. 
+- Sélectionner plus précisément les évènements de te mpête. A la lecture de 
+nos résultats, il apparait  que le seuil  de délimitation des tempêtes 
+(HS75%=2.3m) est trop bas et n’est donc pas assez restrictif  (exemple de la 
+
+===== PAGE 57 =====
+51 
+tempête Klaus). En incluant parfois des vagues qui, bien qu’elles soient 
+relativement fortes (supérieures à 2.3m),  sont indépendantes de la 
+tempête en elle -même, cette méthode de sélection tend à surestimer les 
+énergies effectivement développées au cours des tempêtes.  Dans l’optique 
+de mettre en place un système d’alerte pratique, basé su r des prévisions 
+météorologiques qui ne dépassent généralement pas une semaine,  il 
+serait nécessaire de réduire cette fenêtre d’observation afin de calibrer 
+l’indicateur pour qu’il se limite  aux vagues généré uniquement par les 
+tempêtes. 
+ 
+D’une manière g énérale la mise en place d’observations systématiques et 
+automatisées semble être une piste prometteuse. Différents travaux utilisant des suivis 
+vidéo ou des mesures topographiques par drone permettent, à ce propos, un suivi 
+continu de l’évolution du litto ral. La constitution de bases de données morphologiques 
+précises et sur de nombreuses années est une condition sine qua none à la meilleure 
+compréhension des processus littoraux. Bien souvent ces données manquent mais en 
+certains endroits, comme à Truc Vert ou à Lacanau, elles sont en phase de capitalisation. 
+ 
+ 
+C O N C L U S I O N  
+ 
+ 
+Au travers de  notre analyse,  il apparait tout d’abord que la dynamique 
+morphologique de la côte sableuse Aquitaine revêt un caractère éminemment complexe. 
+La concomitance des processu s longshore et cross -shore mais surtout  l’action 
+paradoxale des vagues, parfois é rosives, d’autre fois rechargeant les plages en sédiment, 
+participent de cette complexité . Cela nécessite de faire un certain nombre d’hypothèses 
+et d’approximations  afin de modéliser et de comprendre ces dynamiques car il n’est pas 
+possible de reproduire exactement les phénomènes physiques. En l’occurrence la mire a 
+été placée sur l’énergie des vagues, considérée comme la variable explicative principale 
+de l’érosion.  Par la suite un certain nombre d’hypothèses ont été réalisées dans le but de 
+cadrer précisément les fenêtres d’observations des phénomènes et ainsi de limiter le 
+large spectre des observations possibles. En limitant nos observations sur le haut de 
+plage, par le calcul de l’énergie des vagues ayant atteint le seuil de  la PHMA, nous avons 
+restreint notre analyse aux vagues potentiellement les plus érosives.  
+ 
+ 
+
+===== PAGE 58 =====
+52 
+A la lecture des résultats du modèle, il apparait  bien une corrélation entre 
+l’énergie des vagues ayant a tteint le haut de plage et l’érosion des profils.  L’impact 
+morphogène de l’hiver 2013 -2014 sur la plage du Truc Vert peut être expliqué entre 
+autre par ces cumuls d’énergie, à condition de prendre en considération l’état des plages 
+avant l’arrivée des tem pêtes. Malgré ses bonnes performances sur les périodes 
+considérées, l’implémentation de l’indicateur  EVI au sein d’un système d’alerte érosion 
+reste pour l’instant compliquée. D’une part l’ utilisation du seuil H S75% amène à 
+considérer des périodes de temp s parfois trop longues et incompatibles avec les 
+performances des prévisions météorologiques. D’autre part la nécessité  de connaitre 
+l’état pré-tempête de la plage pour déterminer au mieux sa réponse à une tempête limite 
+l’EVI aux portions du littoral entr etenues, pour lesquels les services techniques locaux 
+sont susceptibles d’effectuer des relevés topographiques fréquemment et rapidement. 
+De plus , les difficultés d’extrapolation de l’indicateur, soulevées par l’analyse de ses 
+performances sur les plages d e Biscarrosse, limitent actuellement sa portée aux plages 
+du Truc Vert.  Le traitement de données plus nombreuses est sur ce point indispensable 
+afin de tester comment réagit l’indicateur sur une autre partie du littoral. Cette étape 
+d’extrapolation est nécessaire afin de juger de la pertinence  des lois reliant énergies et 
+volumes et de leur applicabilité dans des contextes hydrosédimentaires variés. 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+===== PAGE 59 =====
+53 
+B I B L I O G R A P H I E 
+ 
+Almar, R., (2009). Morphodynamique littorale haute fréquence par imagerie vidéo . 
+Thèse, Université de Bordeaux, 233 p. 
+Aubié, S., Mallet, C. et Favennec, J. en collaboration avec Hoareau, A., (2011). 
+Caractérisation de l’aléa érosion (2020 -2040) de la Côte Aquitaine dans le cadre de 
+l’étude stratégique de gestion du trait de côte. Observatoire de la Côte Aquitaine, rapport 
+BRGM/RP-59095-FR, 59 illus. 97 p., 2 ann. 
+Battjes, J.A., (1974). Surf Similarity, Proceedings of the 14 th Conference of Coastal 
+Engineering, ASCE, pp. 466-480. 
+ 
+Basco, D.R., Walker, R., A., (2012). Application of coastal storm impulse (COSI) 
+parameter to predict coastal erosion. Coastal Engineering Proceedings, 1(32), 23. 
+ 
+Bascom, W.H., (1953). Characteristics of natural beaches,  Proc. Fourth Inter. Coastal Eng. 
+Conf. ( Am.Soc.Civ.End.),163. 
+ 
+Birkemeier, W.A., Nicholls, R.J., Lee, G., (1999). Storms, storm groups and nearshore 
+morphologic change. In: Kraus, N.C., McDougal, W. (Eds.), Coastal Sediments '99, 
+ASCE. ASCE, pp. 1109–1122. 
+ 
+Bulteau, T., Mugica, J., Mallet, C., Garnier, C., Rosebery, D., Maugard, F., Nicolae Lerma,  A., 
+Nahon, A., avec la collaboration de Millescamps, B., (2014). Evaluation de l’impact des 
+tempêtes de l’hiver 2013 -2014 sur la morphologie de la Côte Aquitaine. Rapport final. 
+BRGM/RP-63797-FR, 179 p., 135 fig., 8 tab., 2 ann. 
+ 
+Carley, J.T., Cox, R.J., (2003). A methodology for utilising time-dependent beach erosion 
+models for design events. Proc 16th Australasian Coastal and Ocean Engineering 
+Conference, Engineers, Auckland, NZ. 
+ 
+Castelle, B., Bonneton, P., Dupuis, H., Sénéchal, N., (2007a). Double bar beach dynamics 
+on the high -energy meso-macrotidal French Aquitanian Coast: a review. Mar. Geol. 245, 
+141-159. 
+ 
+ Castelle,B., Bujan, S., Ferreira, S., Dodet, G., (2017). Foredune morphological changes and 
+beach recovery from the extreme 2013/2014 winter at a high -energy sandy coast. 
+Marine Geology, Elsevier, 
+ 
+Castelle, B., Le Corre, Y., Tomlinson, R., (2008). Can the Gold Coast beaches withstand 
+extreme events. Geo-Mar. Lett. 28, 23–30. 
+ 
+
+===== PAGE 60 =====
+54 
+Ciavola,P., Ferreira,O., Haerens,P., Van Koningsveld,M., Armaroli,C., 5 (2011). Storm 
+impacts along European coastlines. Part 2: lessonslearned from the MICORE project. 
+Environmental Science &Policy 14(7):924-933. 
+ 
+Basco, D. R, Walker, R. A.,. (2012). Application of coastal storm impulse (COSI) 
+parameter to predict coastal. Coastal Engineering Proceedings, 1(32), 23. 
+ 
+Coco, G., Senechal, N., Rejas, A., Bryan, K.R., Capo, S., Parisot, J.P., Brown, J.A., MacMahan, 
+J.H.M., (2014). Beach response to a sequence of storms. Geomorphology 204, 493–501. 
+ 
+Cox, J.C., Pirrello,M.A., (2001) . Applying joint probabilities and cumulative effects to 
+estimate storm-induced erosion and shoreline recession. Shore Beach 69, 5–7. 
+ 
+Davidson, M.A., Turner, I.L., (2009). A behavioral template beach profile model for 
+predicting seasonal to interannual sh oreline evolution . Journal of Geophysical Research  
+114 (F1). 
+ 
+Decarsin C., (2016). Développement d’un indicateur d’alerte érosion pour le littoral 
+aquitain, Mémoire de Master, Université de Caen, Basse-Normandie. 
+ 
+Dehouck, A., Lafon, V., Senechal, N., Froi defond, J.M., Almar, R., Castelle, B., Martiny, N., 
+(2012). Inter -annual morphodynamic evolution of the south coast of the Gironde. Rev. 
+Francaise Photogramm. Teledection 197, 31–42. 
+ 
+De Melo Apoluceno D., (2003). Morphodynamique des plages à barres en dom aine méso 
+à macrotidal : exemple de la plage du Truc Vert, Gironde, France. Thèse de doctorat, 
+Université  de Bordeaux 1, 245 pages. 
+ 
+Desmazes, F.,Michel, D.,  Howa, H. & Pedreros, R., (2002). Etude morphodynamique du 
+domaine pré-littoral nord-aquitain, site atelier du truc vert, Proc. 7ème Journées Natio- 
+nales GCGC, Anglet, pp. 155{162. 
+ 
+Dubarbier, B., Castelle, B., Marieu, V., Ruessink, G., (2015). Process-based modeling of 
+cross-shore sandbar behavior. Coast. Eng. 95, 35–50. 
+Dupuis, H., Michel, D., Sott olichio A., (2006). Wave climate evolution in the Bay of Biscay 
+over two decades. Journal of Marine Systems, 63, (3-4), p, 105-114. 
+Favennec, J., (2002) ONF. Connaissance et gestion durable des dunes de la côte 
+atlantique - Manuel récapitulant les enseigne ments du projet européen Life -
+Environnement de "Réhabilitation et gestion durable de quatre dunes françaises.", 394 
+p. 
+ 
+Fernandez-Mora, A., Calvete, D., Falques, A., De Swart, H.E., (2015). Onshore sandbar 
+migration in the surf zone: new insights into the wave-induced sediment transport 
+mechanisms. Geophys. Res. Lett. 42 (8), 2869–2877. 2014GL063004. 
+ 
+
+===== PAGE 61 =====
+55 
+Ferreira, O., (2002). Prediction of the impact of storm groups and their importance in 
+coastal evolution. Proceedings of the International Conference on Coast al Engineering, 
+ASCE, pp. 2725–2730. 
+ 
+Ferreira, O., (2005). Storm groups versus extreme single storms: predicted erosion and 
+management consequences. J. Coast. Res. SI 42, 221–227. 
+ 
+Harley, M.D., Turner, I.L., Short, A.D., Ranasinghe, R., (2009). An empirical model of beach 
+response to storms — SE Australia. Coasts and Ports 2009: In a Dynamic Environment. 
+Engineers Australia, pp. 600–606. 
+ 
+Harley, M.D., Valentini, A., Armaroli, C., Perini, L., Calabrese, L. & Ciavola, P., (2016). Can 
+an early-warning system help minimize the impacts of coastal storms? A case study of 
+the 2012 Halloween storm, northern Italy. Nat. Hazards Earth Syst. Sci., 16, 209-222. 
+ 
+Holman, R.A., (1986). Extreme value statistics for wave run -up on a natural beach. 
+Coastal Engineering 9, 527–544. 
+ 
+Houser, C., Wernette, P., Rentschlar, E., Jones, H., Hammond, B., Trimble, S., (2015). 
+Post-storm beach and dune recovery: implications for barrier island resilience. 
+Geomorphology 234, 54–63. 
+ 
+Hughes, M.G., Masselink, G., & Brander R. W. (1997).  Flow velocity and sediment 
+transport in the swash zone of a steep beach. Marine Geology, 138, 91–103,  
+ 
+Idier, D., Castelle, B., Charles, E., Mallet, C., (2013). Longshore sediment flux hindcast  : 
+Spatio-temporal variability along  th SW Atlantic coast of  France. J. Coastal 
+Res.,SI65,1785-1790. 
+ 
+Karunarathna, H., Pender, D., Ranasinghe, R., Short, A.D., Reeve, D.E., (2014). The effect 
+of storm clustering on beach profile variability. Mar. Geol. 348, 103–112. 
+ 
+Komar, P.D., (1998). Beach Processes and Sedimentation. Prentice Hall, New Jersey 
+(429 pp.). 
+ 
+Manaud F., L'Yavanc J., Negre S., Tougeron C., Trut G., (2001) Elaboration d'un outil de 
+gestion prévisionnelle de la côte Aquitaine. Phase 3 : diagnostic d'évolution et 
+recommandations. Contribution de I'IFREMER. Rapport IFREMER DEL -Ar. Août 2001, 
+118p. 
+ 
+Mendoza, E. T. & Jimenez, J., (2006)0. Storm-induced  beach  erosion  potential  in  the 
+Catalonian Coast. Journal of Coastal Research SI 48, 41-48.  
+ 
+Masselink, G. & van Heteren, S. (2014). Response of wave -dominated and mixed -energy 
+barriers to storms, Marine Geology, 352,321-347. 
+ 
+
+===== PAGE 62 =====
+56 
+Masselink, G., Puleo J. A., (2006). Swash -zone morphodynamics, Continental Shelf 
+Research, 33 :1, 661–680. 
+ 
+Morton, R.A., Gibeaut, J.C., Paine, J.G., (1995). Mesoscale transfer of sand during and after 
+storms: Implications for prediction of shoreline movement. Marine Geology , 126,161 -
+117. 
+ 
+Nicolae  Lerma A., Thomas Y.F., Saffache P., Durand P.et Lamy M., (2014). Modélisation 
+des niveaux marins extrêmes associés à la circulation des cyclones Lenny (1999) et 
+Omar (2008), commune de saint -pierre, littoral nord -ouest de la Martinique.  VertigO, 
+vol. 14, n° 3. 
+ 
+Nicolae Lerma A.,  Pedreros R., Robinet A., Senechal N., (2017). Sumulating wave setup 
+and run -up during storm conditions on a complex barred beach. Coastal Engineering , 
+Volume 123, pp. 29-41 
+ 
+Pedreros, R., (1996).  Quantiﬁcation et modélisation du transport  éolien au nive au des 
+zones côtières- application au littoral aquitain, Ph.D. thesis, University Bordeaux I. 
+ 
+Pedreros, R., Howa, H., Michel, D.,  (1996). Application of grain size trend analysis for the 
+determination of sediment transport pathways in intertidal areas , Marine Geology, 135, 
+35–49. 
+ 
+Pedreros R., (2002). Un phénomène naturel contre lequel il faut lutter avec 
+discernement. Revue Espaces 191,19-20pp. 
+ 
+Roberts, T.M., Wang, P., Puleo, J.A., (2013). Storm-driven cyclic beach morphodynamics 
+of a mixed sand and gravel beach along the mid-atlantic coast, USA. Mar. Geol. 
+346, 403–421. 
+ 
+Sallenger, A., H., Jr., (2000). Storm Impact Scale for Barrier Islands. Journal of Coastal 
+Research, 16, (3), p. 890-895. 
+ 
+Senechal, N., Abadie, S., Ardhuin, F., Bujan, S., Capo, S., Ce rtain, R., Coco, G., Gallagher, E., 
+Garlan, T., Masselink, G., MacMahan, J.H.M., Michallet, H., Pedreros, R.,  Ad Reniers, J.H.M. 
+Rey, V., Ruessink,B.G., Russell, P., Turner, I., (2009). The ecors-truc vert 2008 field 
+experiment : extreme storm conditions over a three-dimensional morphology system 
+in a macro-tidal environment, In Preparation. 
+ 
+Shepard F. P., (1950). Beach cycles in southern California, Tech. Memo. 20, 26 pp., Beach 
+Erosion Board, U.S. Army Corps of Eng., Washington, D.C. 
+ 
+Stockdon, H.F., Ho lman, R.A., Howd, P.A., Sallenger, A.H., (2006). Empirical 
+parameterization of setup, swash, and runup. Coast. Eng. 53 (7), 573–588. 
+ 
+
+===== PAGE 63 =====
+57 
+Stockdon, H.F.,  Doran, K. S., Sallenger A. H., Thompson, D. S., Sopkin K. S., Plant N. G., 
+(2012). National Assessment of  Hurricane-induced Coastal Erosion Hazards: Gulf of 
+Mexico. U.S. Geological Survey, (2012-1084). 
+ 
+Service hydrographique et océanographique de la marine ( SHOM) (2014-b). Descriptif 
+technique du Trait de côte HistoLitt®, relevé sur le site internet du Servi ce 
+Hydrographique et Océanographique de la Marine http://www.shom.fr/ en novembre 
+2014. 
+Service hydrographique et océanographique de la marine (SHOM) (2016). Références 
+Altimétriques Maritimes. Ports de France métropolitaine et d’outre -mer. Côtes du zéro 
+hydrographique et niveaux caractéristiques de la marée.  
+Splinter, K.D.,Carley,J.T.,Goldshani, A. & Tomlinson, R.(2014). A relationship to describe 
+the cumulative impact of storm clusters on beach erosion. Coastal Engineering, 83,49-55. 
+ 
+Thom, B.G., Hall, W. (1991). Behaviour of beach profiles during accretion and erosion 
+dominated periods. Earth Surf. Proc. Land. 16, 113–127. 
+ 
+Wehof J., Miller J. K., & Engle J. (2014). Application of the storm erosion index (SEI) to 
+three unique storms. Coastal Engineering Proceedings, vol. 1, no 34, p. 39. 
+ 

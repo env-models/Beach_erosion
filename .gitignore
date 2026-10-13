@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+.mypy_cache/
+.ruff_cache/
+
+# OS / editor
+.DS_Store
+.vscode/
+
+# Raw downloaded data: never commit (scripted downloads instead, see data/README.md)
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/README.md
+
+# Large processed artefacts are allowed only if < 5 MB (event tables are small)
+*.nc
+!datasets/**/*.nc
+*.grib
+*.grb
+*.h5
+*.hdf5
+*.zip
+*.tar.gz
+
+# PySR / Julia artefacts
+hall_of_fame*.csv
+hall_of_fame*.pkl
+.julia/
+
+# Scratch
+scratch/
