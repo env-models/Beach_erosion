@@ -84,6 +84,7 @@ All files are in `data/processed/`. Times are UTC and tz-naive.
 | `waves_castelle2020.parquet` | 175,320 | time, hs, tp, dm, source, licence | hourly 2000–2019, buoy-corrected hindcast; Dm nautical "from" |
 | `tide_trucvert_castelle2020.parquet` | 175,321 | time, tide_msl, tide_ign69 | astronomical tide at Truc Vert, hourly 2000–2020 |
 | `tide_shom_gauges.parquet` | 498,851 | station, name, time, eta_zh, eta_ign69, eta_tide_ign69, residual, source, licence | hourly observed + UTide tide + non-tidal residual; Arcachon = 190 |
+| `trucvert_castelle2020_volumes_hat.parquet` | 701 | survey_id, date, campaign, window, vol_valid, v_total, v_upper_175, v_lower_175, v_upper_214, v_lower_214, v_upper_245, v_lower_245 | same fixed window; upper/lower split at HAT = 1.75 / 2.14 / 2.45 m MSL (see Vertical datums) |
 | `climate_indices.parquet` | 921 | date, year, month, nao, winter, nao_djfm | NAO monthly + DJFM winter mean (winter label = January's year) |
 
 Recommendations:
@@ -94,6 +95,59 @@ Recommendations:
   data/README.md §3c.
 - Independent confirmation: the legacy `Data_frame.csv` water level matches the Castelle tide at r = 0.995 only after a
   **1 h time shift**, which agrees with Agent A's clock-offset fix.
+
+## 3b. Vertical datums (answer to the HAT/PHMA question)
+
+**Source**: SHOM *Références Altimétriques Maritimes* (RAM), Licence Ouverte v2.0.
+- Read from the public INSPIRE WFS `https://services.data.shom.fr/INSPIRE/wfs` (typeName
+  `RAM_BDD_WLD_WGS84G_WFS:ram_3857`) by `scripts/download_shom_ram.py` → `data/raw/shom_ram/ram_wfs.json`.
+- Dataset page: https://www.data.gouv.fr/datasets/references-altimetriques-maritimes (last update 2024-06-06).
+- Levels are in m above chart datum (ZH). Level_IGN69 = level_ZH + zh_ref.
+
+| RAM site | ZH in IGN69 (zh_ref) | PHMA (HAT) ZH | PMVE (MHWS) ZH | NM (mean level) ZH | PHMA IGN69 | NM IGN69 | **PHMA − NM** |
+|---|---|---|---|---|---|---|---|
+| **Cap Ferret** (44.629N, −1.242E) | −1.98 | 4.51 | 4.20 | 2.37 | **+2.53** | **+0.39** | **2.14** |
+| Arcachon (Eyrac gauge) | −1.98 | 4.91 | 4.35 | 2.48 | +2.93 | +0.50 | 2.43 |
+| Le Grand Piquey | −1.981 | 4.65 | 4.20 | 2.37 | +2.67 | +0.39 | 2.28 |
+| Pilat Plage | −2.005 | 4.54 | 4.05 | 2.33 | +2.54 | +0.33 | 2.21 |
+| Lacanau (no IGN link) | n/a | 5.30 | 4.65 | 2.69 | n/a | n/a | 2.61 |
+| Biscarrosse (no IGN link) | n/a | 4.91 | 4.35 | 2.49 | n/a | n/a | 2.42 |
+| Boucau-Bayonne | −2.143 | 4.84 | 4.25 | 2.53 | +2.70 | +0.39 | 2.31 |
+
+**Finding**: the thesis value "PHMA = +2.14 m IGN69" is **exactly Cap Ferret PHMA − NM = 4.51 − 2.37 = 2.14 m**.
+- That number is HAT measured **above mean sea level**, not above IGN69.
+- Cap Ferret NM = +0.39 m IGN69, the same 0.39 m the thesis uses for MSL.
+- So Cap Ferret HAT = **+2.53 m IGN69 = +2.14 m MSL**.
+- The 2017 code/handoff conversion "2.14 m IGN69 − 0.39 = +1.75 m MSL" subtracts the MSL offset a second time.
+  The HAT threshold should have been **+2.14 m MSL** in the MSL-referenced profiles [verify against the thesis text/table
+  that defines PHMA; this is an inference from the exact numerical match].
+
+**Exceedance check** (hourly, percent of time above each threshold in m MSL):
+
+| Threshold (m MSL) | Castelle astronomical tide at Truc Vert, 2000–2019 | Legacy MARS2D level, 2008–2014 |
+|---|---|---|
+| 1.75 | 3.71% | 3.71% |
+| 2.14 | 0.42% | 0.41% |
+| 2.45 | 0% | 0% |
+
+- The 3.7% at 1.75 m matches Agent A's figure.
+- At 2.14 m MSL, still water alone exceeds HAT only about 0.4% of the time, which fits "rarely exceeded".
+- The maximum astronomical tide at Truc Vert itself (open coast, 7 m depth) over 2000–2019 is **+2.45 m MSL**. That is
+  an empirical local HAT, between Cap Ferret (2.14) and Lacanau (2.61). Cap Ferret's RAM point is at the lagoon
+  inlet, so a Truc Vert-specific HAT of about 2.45 m MSL is defensible [verify].
+- `trucvert_castelle2020_volumes_hat.parquet` gives the upper/lower split for all three thresholds (1.75 / 2.14 / 2.45),
+  so Agents A and C can test the sensitivity.
+
+**Datum of each processed file**
+
+| File / column | Vertical datum |
+|---|---|
+| `trucvert_castelle2020_profiles.z`, `*_volumes*` | m above **MSL, defined as NGF-IGN69 − 0.40 m** (Castelle et al. 2020 file attribute `mean_water_level` = 0.4). The legacy `TrucVert_OCA.mat` uses IGN69 − 0.39 m (= Cap Ferret NM); the 1 cm difference is not corrected. `v_upper` in `trucvert_castelle2020_volumes.parquet` uses 1.75 m MSL (thesis-code value, kept for comparability). |
+| `tide_trucvert_castelle2020.tide_msl` / `.tide_ign69` | m above MSL (IGN69 − 0.40) / m IGN69 (= tide_msl + 0.40). Astronomical only. |
+| `tide_shom_gauges.eta_zh` | m above the station's chart datum (ZH) |
+| `tide_shom_gauges.eta_ign69`, `.eta_tide_ign69` | m IGN69 (= ZH value + zh_ref: Arcachon −1.98, Boucau −2.143, Socoa −2.173) |
+| `tide_shom_gauges.residual` | m, observed − harmonic tide (both IGN69). The harmonic fit includes the record mean, so the residual has about zero mean. |
+| `waves_resourcecode_node94337.wlv` | m relative to the model mean level (mean about 0); tide-like [verify] |
 
 ## 4. Unfinished / open items
 - CANDHIS raw buoy data (API key needed), CMEMS IBI and ERA5 (credentials needed), WEPA (manual browser download),
@@ -113,6 +167,7 @@ From the repo root, with the venv active (`source .venv/bin/activate`):
 python -I scripts/download_castelle2020.py          # ~196 MB -> data/raw/castelle2020_osf/
 python -I scripts/download_resourcecode.py          # 12 JSON -> data/raw/resourcecode/
 python -I scripts/download_shom_tidegauges.py       # monthly requests 2003-now -> data/raw/shom_refmar/
+python -I scripts/download_shom_ram.py              # SHOM RAM tidal levels (prints Cap Ferret etc.)
 python -I scripts/download_climate_indices.py       # NAO (WEPA: manual, see data/README.md §4b)
 python -I scripts/process_castelle2020.py
 python -I scripts/process_waves.py

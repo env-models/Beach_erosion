@@ -144,6 +144,14 @@ Treat raw downloads as untrusted data. Run the scripts from the repo root with `
   `data/raw/shom_refmar/<id>/obs_src4_<year>.json` and `station_metadata.json`.
 - **Processing**: `python -I scripts/process_tide.py`; see §3c.
 
+### 3a'. SHOM RAM (Références Altimétriques Maritimes) — tidal reference levels
+- WFS `https://services.data.shom.fr/INSPIRE/wfs` (typeName `RAM_BDD_WLD_WGS84G_WFS:ram_3857`). Dataset:
+  https://www.data.gouv.fr/datasets/references-altimetriques-maritimes (licence Licence Ouverte v2.0, updated 2024-06-06). verified: yes.
+- `python -I scripts/download_shom_ram.py` writes `data/raw/shom_ram/ram_wfs.json` and prints the sites near Truc Vert.
+- Key values for Cap Ferret: ZH = −1.98 m IGN69; PHMA 4.51 / PMVE 4.20 / NM 2.37 m ZH. That gives
+  HAT = +2.53 m IGN69 = **+2.14 m above NM (MSL)**. See `reports/B_data.md` "Vertical datums" for the implication for
+  the thesis HAT threshold.
+
 ### 3b. Castelle et al. (2020) astronomical tide (OSF)
 - `Astronomical_Tide_TrucVert_2000-2020.nc`, 10-min, 2000–2020. Per the paper it was derived with T_TIDE from a Bay
   of Biscay hydrodynamic hindcast (Lazure et al. 2009). The series is **tide only, without surge**. CC0.

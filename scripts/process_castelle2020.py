@@ -38,6 +38,8 @@ Outputs (data/processed/):
   legacy-vs-w740 (2009-2011, 45 profiles) 0.11 m; legacy-vs-core300 (2005-2008) 0.22 m.
   trucvert_castelle2020_volumes.parquet  survey_id, date, campaign, window, v_total, v_upper,
       v_lower, vol_valid, xl_min_valid, xl_max_valid, z_at_xl70, z_at_xl170.
+  trucvert_castelle2020_volumes_hat.parquet  survey_id, date, campaign, window, vol_valid, v_total,
+      v_upper_175, v_lower_175, v_upper_214, v_lower_214, v_upper_245, v_lower_245 (HAT alternatives in m MSL).
 Run with:  python -I scripts/process_castelle2020.py
 """
 from __future__ import annotations
@@ -140,6 +142,28 @@ def main() -> None:
         df.to_parquet(OUT / f"trucvert_castelle2020_{name}.parquet", index=False)
         print(name, df.shape)
     print(v.groupby("window")["vol_valid"].agg(["size", "sum"]))
+    # Extra file (schema of the three files above is frozen for Agent A): upper/lower split for
+    # alternative HAT definitions (see reports/B_data.md "Vertical datums"):
+    #   1.75 = thesis value as used in 2017 code (2.14 m IGN69 - 0.39), 2.14 = SHOM RAM Cap Ferret PHMA - NM,
+    #   2.45 = max of the Castelle astronomical tide at Truc Vert 2000-2019 (empirical local HAT, m MSL).
+    rows = []
+    for (sid, w), g in p.groupby(["survey_id", "window"], sort=False):
+        z = np.full(XL.size, np.nan)
+        z[((g["xl"].to_numpy() - XL[0]) / 2).round().astype(int)] = g["z"].to_numpy()
+        zf = fill_small_gaps(XL, z, MAX_GAP)
+        m = (XL >= VOL_X[0]) & (XL <= VOL_X[1])
+        x, zz = XL[m], zf[m]
+        ok = bool(np.isfinite(zz).all())
+        r = {"survey_id": sid, "date": g["date"].iloc[0], "campaign": g["campaign"].iloc[0], "window": w,
+             "vol_valid": ok, "v_total": float(np.trapezoid(zz - Z_REF, x)) if ok else np.nan}
+        for h in (1.75, 2.14, 2.45):
+            tag = f"{int(round(h * 100)):03d}"
+            r[f"v_upper_{tag}"] = float(np.trapezoid(np.maximum(zz - h, 0.0), x)) if ok else np.nan
+            r[f"v_lower_{tag}"] = r["v_total"] - r[f"v_upper_{tag}"] if ok else np.nan
+        rows.append(r)
+    hv = pd.DataFrame(rows)
+    hv.to_parquet(OUT / "trucvert_castelle2020_volumes_hat.parquet", index=False)
+    print("volumes_hat", hv.shape)
     print(s.groupby([s.date.dt.year, "campaign"]).size().unstack(fill_value=0))
 
 
