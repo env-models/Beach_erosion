@@ -34,19 +34,26 @@ def global_window(prof: Profiles, idx: np.ndarray) -> float:
     return float(prof.x[min(valid_extent(prof.z[i]) for i in idx) - 1])
 
 
+def _circmean(deg: np.ndarray) -> float:
+    """Circular mean of directions in degrees (0-360)."""
+    r = np.deg2rad(deg[np.isfinite(deg)])
+    return float(np.rad2deg(np.arctan2(np.sin(r).mean(), np.cos(r).mean())) % 360) if r.size else float("nan")
+
+
 def _sum(a: np.ndarray, m: np.ndarray) -> float:
     return float(np.sum(a[m])) if m.any() else 0.0
 
 
 def build_intervals(hydro: pd.DataFrame | None = None, prof: Profiles | None = None,
                     calib: tuple[str, str] = (CALIB_START, CALIB_END),
-                    min_gap_h: float = 0.0) -> tuple[pd.DataFrame, dict]:
+                    min_gap_h: float = 0.0, dt_h: float = DT_HOURS,
+                    x_fixed: float | None = None) -> tuple[pd.DataFrame, dict]:
     """One row per consecutive survey pair fully inside the forcing record."""
     hydro = load_hydro() if hydro is None else hydro
     prof = load_profiles() if prof is None else prof
     thr_peak, thr_bound = storm_thresholds(hydro["hs"], *calib)
     storms = detect_storms(hydro["hs"].values, thr_peak, thr_bound,
-                           min_gap_samples=int(round(min_gap_h / DT_HOURS)))
+                           min_gap_samples=int(round(min_gap_h / dt_h)))
     smask = storm_mask(len(hydro), storms)
     sid = np.full(len(hydro), -1)
     for k, s in enumerate(storms):
@@ -56,12 +63,14 @@ def build_intervals(hydro: pd.DataFrame | None = None, prof: Profiles | None = N
     th, tpf = hydro["t_unix"].values, prof.t_unix
     exc = ts["exceed_hat"].values
     pkw = energy_flux(hs, tp) / 1e3  # kW/m, rho=1025, g=9.81, Tp (OCA thresholds RP-67418-FR: 100 / 200 kW/m)
-    e = {"notebook": e_notebook(hs), "Hs2dt": e_hs2dt(hs), "dens": e_density_dt(hs), "Pflux": p_flux_dt(hs, tp) / 1e3}
+    e = {"notebook": e_notebook(hs, dt_h), "Hs2dt": e_hs2dt(hs, dt_h), "dens": e_density_dt(hs, dt_h), "Pflux": p_flux_dt(hs, tp, dt_h) / 1e3}
+    dirs = hydro["dir"].values if "dir" in hydro else None
+    surge_ok = hydro["surge_ok"].values if "surge_ok" in hydro else None
     units = {"notebook": "MJh_m2", "Hs2dt": "m2h", "dens": "MJs_m2", "Pflux": "GJ_m"}
 
     inside = np.where((tpf >= th[0]) & (tpf <= th[-1]))[0]
     pairs = [(i, i + 1) for i in inside[:-1] if i + 1 in set(inside)]
-    xg = global_window(prof, np.array(sorted({i for p in pairs for i in p})))
+    xg = global_window(prof, np.array(sorted({i for p in pairs for i in p}))) if x_fixed is None else x_fixed
     s_end_t = np.array([th[s.i1] for s in storms])
     s_start_t = np.array([th[s.i0] for s in storms])
     rows = []
@@ -69,7 +78,7 @@ def build_intervals(hydro: pd.DataFrame | None = None, prof: Profiles | None = N
         m = (th >= tpf[i]) & (th < tpf[j])
         ms, mx = m & smask, m & smask & exc
         ks = sorted(set(sid[ms]) - {-1})
-        durs = [float(np.sum(sid[ms] == k) * DT_HOURS) for k in ks]
+        durs = [float(np.sum(sid[ms] == k) * dt_h) for k in ks]
         first_t = s_start_t[ks[0]] if ks else tpf[i]
         prev = s_end_t[s_end_t < first_t]
         dv = volume_change(prof.x, prof.z[i], prof.z[j])
@@ -78,8 +87,8 @@ def build_intervals(hydro: pd.DataFrame | None = None, prof: Profiles | None = N
             "survey_start": pd.Timestamp(tpf[i], unit="s"), "survey_end": pd.Timestamp(tpf[j], unit="s"),
             "p_start": i, "p_end": j, "interval_days": (tpf[j] - tpf[i]) / 86400.0,
             "n_storms": len(ks),
-            "n_clusters": count_clusters([storms[k] for k in ks], int(CLUSTER_GAP_H / DT_HOURS)),
-            "storm_hours_total": float(ms.sum() * DT_HOURS),
+            "n_clusters": count_clusters([storms[k] for k in ks], int(CLUSTER_GAP_H / dt_h)),
+            "storm_hours_total": float(ms.sum() * dt_h),
             "storm_durations_h": ";".join(f"{d:g}" for d in durs),
             "storm_straddles_survey": bool(any(storms[k].i0 < np.argmax(m) or th[storms[k].i1] >= tpf[j] for k in ks)),
         }
@@ -89,18 +98,18 @@ def build_intervals(hydro: pd.DataFrame | None = None, prof: Profiles | None = N
         r.update({
             "peak_hs": float(hs[ms].max()) if ms.any() else np.nan,
             "mean_tp_storm": float(tp[ms].mean()) if ms.any() else np.nan,
-            "mean_dir": np.nan,
-            "hat_exceed_hours_storm": float(mx.sum() * DT_HOURS),
-            "hat_exceed_hours_all": float((m & exc).sum() * DT_HOURS),
+            "mean_dir": _circmean(dirs[ms]) if (dirs is not None and ms.any()) else np.nan,
+            "hat_exceed_hours_storm": float(mx.sum() * dt_h),
+            "hat_exceed_hours_all": float((m & exc).sum() * dt_h),
             "max_twl_all": float(np.nanmax(ts["twl"].values[m])) if m.any() else np.nan,
             "max_twl_storm": float(np.nanmax(ts["twl"].values[ms])) if ms.any() else np.nan,
             "max_wl": float(hydro["wl"].values[m].max()),
             "max_P_kWm_all": float(pkw[m].max()) if m.any() else np.nan,
             "max_P_kWm_storm": float(pkw[ms].max()) if ms.any() else np.nan,
-            "hours_P_gt100_all": float((m & (pkw > 100)).sum() * DT_HOURS),
-            "hours_P_gt100_storm": float((ms & (pkw > 100)).sum() * DT_HOURS),
-            "hours_P_gt200_all": float((m & (pkw > 200)).sum() * DT_HOURS),
-            "hours_P_gt200_storm": float((ms & (pkw > 200)).sum() * DT_HOURS),
+            "hours_P_gt100_all": float((m & (pkw > 100)).sum() * dt_h),
+            "hours_P_gt100_storm": float((ms & (pkw > 100)).sum() * dt_h),
+            "hours_P_gt200_all": float((m & (pkw > 200)).sum() * dt_h),
+            "hours_P_gt200_storm": float((ms & (pkw > 200)).sum() * dt_h),
             "V_pre_total": volume(prof.x, prof.z[i], xg),
             "V_pre_upper": volume(prof.x, prof.z[i], xg, HAT_MSL),
             "berm_volume_pre": berm_volume(prof.x, prof.z[i]),
@@ -110,6 +119,8 @@ def build_intervals(hydro: pd.DataFrame | None = None, prof: Profiles | None = N
             "x_window_fixed": xg,
             "days_since_last_storm": (first_t - prev.max()) / 86400.0 if prev.size else np.nan,
         })
+        if surge_ok is not None:
+            r["frac_storm_no_surge"] = float(1 - surge_ok[ms].mean()) if ms.any() else np.nan
         r["V_pre_lower"] = r["V_pre_total"] - r["V_pre_upper"]
         mid = pd.Timestamp((tpf[i] + tpf[j]) / 2, unit="s")
         r["winter"] = winter_label(mid)

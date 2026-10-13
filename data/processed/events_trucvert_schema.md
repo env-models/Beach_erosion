@@ -72,3 +72,67 @@ window as "in-sample" for the thresholds.
 | days_since_last_storm | d | (start of first storm in interval, or survey_start if none) − end of the previous storm |
 | winter | – | storm year July–June of the interval midpoint, e.g. `2013-14` |
 | season | – | DJF/MAM/JJA/SON of the interval midpoint |
+
+---
+
+# v2 — extended table from Agent B's data (2008–2019)
+
+Files: `events_trucvert_v2.{parquet,csv}` (98 events) and `intervals_trucvert_v2.{parquet,csv}` (201 intervals,
+including storm-free ones). Built by `python -m evi.events_v2` (`src/evi/events_v2.py`). It reuses
+`evi.events.build_intervals` with `dt_h = 1`, so it has the **same columns as v1** plus `frac_storm_no_surge`, and
+the same definitions unless stated below. Event range: survey 2008-02-11 → survey 2019-12-26.
+
+**Profiles.** `trucvert_castelle2020_profiles.parquet`, window **`w740`** (yl ∈ [−700, 40] m). This is the window
+closest to the legacy 750 m longshore averaging, and the only one that covers 2008–2019 continuously (`w1500`
+exists only from about 2013). Mixing windows would alias the averaging change into ΔV.
+- Cross-shore coordinate: `x_legacy = xl − 40 m`.
+- Grid: x ∈ [30, 274] m, 2 m step.
+- Gaps of 10 m or less are filled linearly. The profile is truncated at the first larger gap.
+- Of 224 w740 surveys, **202 are used**. The other 22 have no data at x = 30 m, the landward origin. That origin is
+  xl = 70 m, ≈ +5 m MSL, and is the start of B's volume window. The w740 80% coverage rule usually removes the
+  dune crest, so the v1 origin x = 0 cannot be used.
+- **Vertical datum.** B's z is already **MSL = IGN69 − 0.40 m** (data/README.md), so no conversion was applied.
+  HAT = +1.75 m MSL is used as in v1. The legacy datum is IGN69 − 0.39 m; the 1 cm difference is ignored.
+- **Fixed volume window**: x ∈ [30, 130] m (= B's xl 70–170 m). Therefore `V_pre_*`, `dV_*_fixed` and `x_window_fixed`
+  are **not on the same window as v1** (which uses x ∈ [0, 139.9]). They are NaN when a survey does not reach x = 130
+  m: 27 of 98 events have NaN `dV_total_fixed`.
+- `dV_*` without a suffix uses the pairwise common window, starting at x = 30.
+- Cross-check: `dV_upper` equals the differences of B's `v_upper` (w740) over the 174 intervals where both exist
+  (correlation 1.000, mean absolute difference < 0.001 m³/m). Over the 97 survey intervals shared with v1,
+  corr(dV_upper v1, v2) = 0.941 and the mean difference is −0.4 m³/m. The windows and averaging differ.
+
+**Waves.** `waves_castelle2020.parquet`: hourly Hs, Tp, Dm (WW3 HOMERE+NORGAS-UG corrected with CANDHIS 03302,
+CC0; source string from B).
+- **`mean_dir`** is the circular mean of Dm over the storm hours in the interval, in degrees, nautical
+  coming-from convention [verify convention with B].
+- 17 slightly negative hourly Hs values (min −0.05 m) are clipped to 0.
+- De-shoaling from 50 m is kept as in v1. The depth of the Castelle wave point is not checked [verify].
+- These waves are **lower than the legacy WW3 node**. Over the 2008–2014 overlap (20,456 shared timestamps), corr
+  0.988, mean Hs 1.66 vs 2.01 m, q95 3.72 vs 4.41 m. Storm thresholds are therefore lower than in v1.
+
+**Storm thresholds.** Same rule as v1. Quantiles of hourly Hs on 2009-01-01 → 2013-12-01: **Hs95 = 3.56 m, Hs75 =
+2.04 m**. For information, the 2008-01-01 → 2019-12-31 quantiles would be Hs95 = 3.75 m and Hs75 = 2.16 m; they
+are **not** used. This gives 152 storms in 2008–2019.
+
+**Water level.** wl = `tide_msl` (Castelle predicted tide at Truc Vert) + **surge**. Surge is the Arcachon-Eyrac
+(SHOM 190) non-tidal `residual` from `tide_shom_gauges.parquet`.
+- Where the residual is missing (15.3% of hours), surge = 0. `frac_storm_no_surge` gives the share of storm hours
+  in each event without surge.
+- The residual is measured inside the lagoon inlet, so it is a proxy for open-coast surge [verify]. It also contains
+  seasonal and mean-sea-level anomalies.
+- Over 2008–2014 this water level agrees with the legacy MARS2D level: corr 0.995, mean difference −0.001 m.
+
+**Datum issue (applies to v1 and v2).** The *predicted astronomical tide alone* (Castelle `tide_msl`) exceeds
++1.75 m MSL in 3.7% of hours; its maximum is +2.45 m MSL and its 99th percentile +2.02 m. So +2.14 m IGN69 (+1.75 m
+MSL) is **not** the highest astronomical tide at Truc Vert in these data. HAT-exceedance features (TWL ≥ HAT is
+reached in 30% of hourly steps in v2) are therefore much less selective than the thesis intended. The water-level
+datum is consistent between sources; the HAT value is what should be checked [verify the PHMA reference used in the
+thesis against SHOM].
+
+**Other notes**
+- The wave-power columns and `E_*` use the hourly Δt = 1 h. `E_notebook_*` keeps the notebook unit (1e6 J·h·m⁻²)
+  and is directly comparable with v1.
+- The first 41 days (2008-01-01 → 2008-02-11, before the first used survey) have no profile in force, so their R2%
+  is NaN. Hydro covers 2008-01-01 → 2019-12-31 23:00.
+- Long gaps (up to 428 days, partly from dropped surveys) are kept. Filter on `interval_days`.
+- `period` uses the v1 split: `calibration` if survey_end ≤ 2013-12-01, otherwise `validation`. That makes 2014–2019 all "validation".
