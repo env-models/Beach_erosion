@@ -35,17 +35,30 @@ in-sample, can be negative out of sample). "R_w" = the notebook's n-weighted mea
 (fat/eroded) R; "RMSE_w" = n-weighted mean of the per-group RMSEs (the notebook does not pool).
 Units: ΔV in m³/m (positive = erosion); E in the notebook's unit (1e6 J·h·m⁻², labelled "MJ/m" / "MJ/m²").
 
-| Model | thesis (2017) | notebook printed (2020) | my reproduction of the notebook (exact port) | corrected version (clean event table, no ΔV filter unless stated) | explanation of differences |
-|---|---|---|---|---|---|
-| General — fit | thesis: ΔV_upper = 10.2E − 3.2 | not printed (cell 18 is a scatter only) | ΔV_total = 11.87E + 1.05 (n = 35, whole profile, threshold +3 m) | ΔV_upper = 8.33E − 2.88 (n = 35) | notebook uses whole-profile ΔV and +3 m threshold; corrected uses ΔV above the HAT plane, HAT = +1.75 m, exact runup/crossings, calibration-only quantiles |
-| General — calibration skill | thesis: R² = 0.26, RMSE 22.4 | not printed | R = 0.53 (R² = 0.28), RMSE 23.7 | R = 0.48, **R² = 0.23**, RMSE 14.0 | RMSE not comparable across ΔV definitions (upper-beach ΔV has lower variance) |
-| General — validation | thesis abstract: "R² = 0.55" (body unclear) [verify which metric] | not printed | test (Dec 2013–Dec 2014): R = 0.86, RMSE 15.4 (n = 10) | val: R = 0.75, R² = 0.52 [CI −0.24, 0.76], RMSE 8.5 [5.3, 11.4] (n = 11) | different validation windows (thesis 2014–2015; repo forcing ends 2014-12-31) |
-| TPTE — fit | thesis: ΔV = 18.7E + 2.1 | not printed (`r` computed, unused) | 10.72E + 9.64 (n = 28, erosive only) | erosive-only: 12.80E + 2.12 (n = 27); honest (all events): 12.62E − 4.99 (n = 35) | selection on ΔV changes intercept sign |
-| TPTE — calibration skill | thesis: not given [verify] | not printed | R = 0.68, RMSE 15.5 | erosive-only: R = 0.73, R² = 0.53, RMSE 11.9; honest: R = 0.48, R² = 0.23, RMSE 21.6 | dropping accretion events inflates R (item 7) |
-| TPTE — validation | thesis: "0.61" (body: "coefficient de corrélation", abstract implies R²), RMSE 11.9 | not printed | test: R = 0.88, RMSE 12.2 (n = 8) | erosive-only: R = 0.87, R² = 0.74, RMSE 10.0 [4.3, 14.1] (n = 8); honest: R = 0.88, R² = 0.76 [0.52, 0.87], RMSE 11.2 [6.6, 15.9] (n = 11) | |
-| PPT — fit | thesis: fat 20.9E + 2.6; eroded 14.9E + 2.7 | figure only | fat 21.89E + 5.48 (n = 17); eroded 8.37E + 5.84 (n = 11) | erosive-only: fat 16.21E + 1.00, eroded 8.46E + 4.69 (n = 27); honest: fat 17.78E − 5.08, eroded 7.10E − 4.08 (n = 35) | label = pre-storm volume vs mean of calibration surveys only (notebook: mean of 2008–2014 incl. test) |
-| PPT — calibration skill | thesis: not given [verify] | **R = 0.83, RMSE = 11.73** (figure, cell 20) | **R_w = 0.83, RMSE_w = 11.73** (pooled: R = 0.82, RMSE 12.18) | erosive-only: R = 0.78, R² = 0.61, RMSE 10.9; honest: R = 0.56, R² = 0.31, RMSE 20.4 | exact match |
-| PPT — validation | thesis: "0.85" (abstract: R² = 0.85; body: correlation coefficient), RMSE 7.5 | **R = 0.97, RMSE = 8.08** (cell 23) | **R_w = 0.97, RMSE_w = 8.08** (n = 8; fat n = 2, eroded n = 6); pooled R = 0.94, RMSE 8.11 | erosive-only: R = 0.97, R² = 0.92 [0.76, 0.96], RMSE 5.6 [3.7, 7.6] (n = 8); honest: R = 0.91, R² = 0.78 [0.34, 0.89], RMSE 10.7 [7.5, 13.4] (n = 11) | exact match; the 0.97 is an artefact of a 2-point group (see item 9) |
+| Model | thesis (2017) | published 2018 (Nicolae Lerma et al., JCS SI85:666–670, doi:10.2112/SI85-134.1; values relayed by Agent E, not read by A [verify]) | notebook printed (2020) | my reproduction of the notebook (exact port) | corrected version (clean event table, no ΔV filter unless stated) | explanation of differences |
+|---|---| --- |---|---|---|---|
+| General — fit | thesis: ΔV_upper = 10.2E − 3.2 | not reported as such (only erosive events used) [verify] | not printed (cell 18 is a scatter only) | ΔV_total = 11.87E + 1.05 (n = 35, whole profile, threshold +3 m) | ΔV_upper = 8.33E − 2.88 (n = 35) | notebook uses whole-profile ΔV and +3 m threshold; corrected uses ΔV above the HAT plane, HAT = +1.75 m, exact runup/crossings, calibration-only quantiles |
+| General — calibration skill | thesis: R² = 0.26, RMSE 22.4 | – | not printed | R = 0.53 (R² = 0.28), RMSE 23.7 | R = 0.48, **R² = 0.23**, RMSE 14.0 | RMSE not comparable across ΔV definitions (upper-beach ΔV has lower variance) |
+| General — validation | thesis abstract: "R² = 0.55" (body unclear) [verify which metric] | – | not printed | test (Dec 2013–Dec 2014): R = 0.86, RMSE 15.4 (n = 10) | val: R = 0.75, R² = 0.52 [CI −0.24, 0.76], RMSE 8.5 [5.3, 11.4] (n = 11) | different validation windows (thesis 2014–2015; repo forcing ends 2014-12-31) |
+| TPTE — fit | thesis: ΔV = 18.7E + 2.1 | single model, calibration on 39 **erosive** events 2009–2013 [verify coefficients] | not printed (`r` computed, unused) | 10.72E + 9.64 (n = 28, erosive only) | erosive-only: 12.80E + 2.12 (n = 27); honest (all events): 12.62E − 4.99 (n = 35) | selection on ΔV changes intercept sign |
+| TPTE — calibration skill | thesis: not given [verify] | – [verify] | not printed | R = 0.68, RMSE 15.5 | erosive-only: R = 0.73, R² = 0.53, RMSE 11.9; honest: R = 0.48, R² = 0.23, RMSE 21.6 | dropping accretion events inflates R (item 7) |
+| TPTE — validation | thesis: "0.61" (body: "coefficient de corrélation", abstract implies R²), RMSE 11.9 | single model, validation 2013–2015 (13 events): **R² = 0.70, RMSE 10.3** | not printed | test: R = 0.88, RMSE 12.2 (n = 8) | erosive-only: R = 0.87, R² = 0.74, RMSE 10.0 [4.3, 14.1] (n = 8); honest: R = 0.88, R² = 0.76 [0.52, 0.87], RMSE 11.2 [6.6, 15.9] (n = 11) | |
+| PPT — fit | thesis: fat 20.9E + 2.6; eroded 14.9E + 2.7 | two models (pre-storm state) [verify coefficients] | figure only | fat 21.89E + 5.48 (n = 17); eroded 8.37E + 5.84 (n = 11) | erosive-only: fat 16.21E + 1.00, eroded 8.46E + 4.69 (n = 27); honest: fat 17.78E − 5.08, eroded 7.10E − 4.08 (n = 35) | label = pre-storm volume vs mean of calibration surveys only (notebook: mean of 2008–2014 incl. test) |
+| PPT — calibration skill | thesis: not given [verify] | – [verify] | **R = 0.83, RMSE = 11.73** (figure, cell 20) | **R_w = 0.83, RMSE_w = 11.73** (pooled: R = 0.82, RMSE 12.18) | erosive-only: R = 0.78, R² = 0.61, RMSE 10.9; honest: R = 0.56, R² = 0.31, RMSE 20.4 | exact match |
+| PPT — validation | thesis: "0.85" (abstract: R² = 0.85; body: correlation coefficient), RMSE 7.5 | two models: **R² = 0.83, RMSE 7.7 m³/m, NRMSE 22 %** (13 events) | **R = 0.97, RMSE = 8.08** (cell 23) | **R_w = 0.97, RMSE_w = 8.08** (n = 8; fat n = 2, eroded n = 6); pooled R = 0.94, RMSE 8.11 | erosive-only: R = 0.97, R² = 0.92 [0.76, 0.96], RMSE 5.6 [3.7, 7.6] (n = 8); honest: R = 0.91, R² = 0.78 [0.34, 0.89], RMSE 10.7 [7.5, 13.4] (n = 11) | exact match; the 0.97 is an artefact of a 2-point group (see item 9) |
+
+**Which number does my reproduction match?** The exact port matches the **2020 notebook** (PPT calibration
+R_w 0.83 / RMSE_w 11.73; PPT test R_w 0.97 / RMSE_w 8.08). Both are **R** values, not R². The calibration R_w of
+0.83 is numerically the same as the 2018 paper's *validation R² = 0.83*, but they are different quantities: one is
+a weighted per-group correlation on the calibration set, the other a validation R². That is a coincidence, not a
+reproduction. The closest analogues of the published 2018 validation numbers are my **erosive-only corrected**
+rows. Single model (TPTE-thesis): validation R² 0.74, RMSE 10.0 (n = 8), against the paper's R² 0.70, RMSE 10.3
+(n = 13). Two-model PPT-thesis: validation R² 0.92, RMSE 5.6 (n = 8), against the paper's R² 0.83, RMSE 7.7. The thesis
+(0.61 / 11.9 and 0.85 / 7.5, called "coefficient de corrélation") and the 2018 paper (0.70 / 10.3 and 0.83 / 7.7,
+R²) do not report the same numbers, so they come from different event sets or runs [verify]. The paper's
+39 erosive calibration events also differ from the thesis's 22 erosive (of 37) upper-beach events, and from the 27
+erosive whole-profile events in my clean table. ρ: the notebook and this package use ρ = 1025 kg/m³; the 2018 paper
+and the thesis use 1030. For any linear fit this only rescales E by 1030/1025 (+0.5 %) [paper value relayed, verify].
 
 Event counts: the clean table has 101 survey intervals between 2009-02-09 and 2014-01-02 (i.e. **102 profiles**,
 thesis: 102), of which 38 contain ≥ 1 storm (thesis: 37 events), with 67 storm segments (a storm crossing a

@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 from .constants import CALIB_END, CALIB_START, DT_HOURS, HAT_MSL
-from .energy import e_density_dt, e_hs2dt, e_notebook, p_flux_dt
+from .energy import e_density_dt, e_hs2dt, e_notebook, energy_flux, p_flux_dt
 from .features import timestep_features
 from .io import REPO, Profiles, load_hydro, load_profiles
 from .profiles import berm_volume, intertidal_slope, valid_extent, volume, volume_change
@@ -55,6 +55,7 @@ def build_intervals(hydro: pd.DataFrame | None = None, prof: Profiles | None = N
     hs, tp = hydro["hs"].values, hydro["tp"].values
     th, tpf = hydro["t_unix"].values, prof.t_unix
     exc = ts["exceed_hat"].values
+    pkw = energy_flux(hs, tp) / 1e3  # kW/m, rho=1025, g=9.81, Tp (OCA thresholds RP-67418-FR: 100 / 200 kW/m)
     e = {"notebook": e_notebook(hs), "Hs2dt": e_hs2dt(hs), "dens": e_density_dt(hs), "Pflux": p_flux_dt(hs, tp) / 1e3}
     units = {"notebook": "MJh_m2", "Hs2dt": "m2h", "dens": "MJs_m2", "Pflux": "GJ_m"}
 
@@ -94,6 +95,12 @@ def build_intervals(hydro: pd.DataFrame | None = None, prof: Profiles | None = N
             "max_twl_all": float(np.nanmax(ts["twl"].values[m])) if m.any() else np.nan,
             "max_twl_storm": float(np.nanmax(ts["twl"].values[ms])) if ms.any() else np.nan,
             "max_wl": float(hydro["wl"].values[m].max()),
+            "max_P_kWm_all": float(pkw[m].max()) if m.any() else np.nan,
+            "max_P_kWm_storm": float(pkw[ms].max()) if ms.any() else np.nan,
+            "hours_P_gt100_all": float((m & (pkw > 100)).sum() * DT_HOURS),
+            "hours_P_gt100_storm": float((ms & (pkw > 100)).sum() * DT_HOURS),
+            "hours_P_gt200_all": float((m & (pkw > 200)).sum() * DT_HOURS),
+            "hours_P_gt200_storm": float((ms & (pkw > 200)).sum() * DT_HOURS),
             "V_pre_total": volume(prof.x, prof.z[i], xg),
             "V_pre_upper": volume(prof.x, prof.z[i], xg, HAT_MSL),
             "berm_volume_pre": berm_volume(prof.x, prof.z[i]),

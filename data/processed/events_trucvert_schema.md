@@ -1,4 +1,7 @@
-# Truc Vert event / interval tables — schema (v1, repo data only)
+# Truc Vert event / interval tables — schema (v1.1, repo data only)
+
+v1.1 (2026-10-13): added `max_P_kWm_*` and `hours_P_gt100_*` / `hours_P_gt200_*` (OCA operational wave-power
+thresholds, BRGM report RP-67418-FR (2019), thresholds relayed by the orchestrator [verify]). Density documented below.
 
 Built by `python -m evi.events` (Agent A, `src/evi/events.py`) from the legacy, read-only
 `datasets/Data_frame.csv` (WW3 Hs/Tp + MARS2D water level, 3-hourly, 2008-01-01 → 2014-12-31) and
@@ -15,6 +18,7 @@ window as "in-sample" for the thresholds.
 ## Conventions
 * Times: naive UTC. The CSV clock is shifted by +3600 s (it is CET, 1 h early; see reports/A_audit.md §2.2). Survey datenums converted exactly (`datetime.fromordinal(int(d)) + frac - 366 d`); every survey is at 12:00.
 * Elevations: m relative to the profile datum = MSL at Truc Vert (0 = +0.39 m IGN69).
+* Constants: ρ = 1025 kg/m³ (notebook value; the thesis and the 2018 JCR paper use 1030, which rescales energies by +0.5 %), g = 9.81 m/s², except `E_notebook_*`, which keeps the notebook's ρ = 1025, g = 9.8.
 * HAT (PHMA) = +2.14 m IGN69 = **+1.75 m MSL** (`evi.constants.HAT_MSL`).
 * Δt = 3 h per forcing sample; a sample at time t belongs to interval [survey_start, survey_end).
 * **Sign: ΔV > 0 = erosion** (volume lost between `survey_start` and `survey_end`), ΔV < 0 = accretion.
@@ -53,6 +57,9 @@ window as "in-sample" for the thresholds.
 | hat_exceed_hours_all | h | all samples with TWL ≥ HAT × 3 h |
 | max_twl_all, max_twl_storm | m MSL | max TWL over all / storm samples |
 | max_wl | m MSL | max MARS2D water level in interval |
+| max_P_kWm_all, max_P_kWm_storm | kW/m | max deep-water wave power P = ρg²Hs²Tp/(64π) over all / storm samples in the interval (Hs at the WW3 node, Tp as period) — v1.1 |
+| hours_P_gt100_all, hours_P_gt100_storm | h | samples with P > 100 kW/m × 3 h, all / storm samples (OCA threshold, RP-67418-FR) — v1.1 |
+| hours_P_gt200_all, hours_P_gt200_storm | h | same with P > 200 kW/m — v1.1 |
 | V_pre_total | m³/m | ∫ z dx over the fixed window x ∈ [0, 139.9 m] on the survey_start profile (relative to the MSL datum) |
 | V_pre_upper | m³/m | ∫ max(z − HAT, 0) dx, same window (sand above the HAT plane) |
 | V_pre_lower | m³/m | V_pre_total − V_pre_upper |
