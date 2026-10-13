@@ -35,7 +35,7 @@ in-sample, can be negative out of sample). "R_w" = the notebook's n-weighted mea
 (fat/eroded) R; "RMSE_w" = n-weighted mean of the per-group RMSEs (the notebook does not pool).
 Units: ΔV in m³/m (positive = erosion); E in the notebook's unit (1e6 J·h·m⁻², labelled "MJ/m" / "MJ/m²").
 
-| Model | thesis (2017) | published 2018 (Nicolae Lerma et al., JCS SI85:666–670, doi:10.2112/SI85-134.1; values relayed by Agent E, not read by A [verify]) | notebook printed (2020) | my reproduction of the notebook (exact port) | corrected version (clean event table, no ΔV filter unless stated) | explanation of differences |
+| Model | thesis (2017) | published 2018 (Nicolae Lerma et al., J. Coastal Res. SI85:666–670, doi:10.2112/SI85-134.1; values relayed by Agent E, not read by A [verify]) | notebook printed (2020) | my reproduction of the notebook (exact port) | corrected version (clean event table, no ΔV filter unless stated) | explanation of differences |
 |---|---| --- |---|---|---|---|
 | General — fit | thesis: ΔV_upper = 10.2E − 3.2 | not reported as such (only erosive events used) [verify] | not printed (cell 18 is a scatter only) | ΔV_total = 11.87E + 1.05 (n = 35, whole profile, threshold +3 m) | ΔV_upper = 8.33E − 2.88 (n = 35) | notebook uses whole-profile ΔV and +3 m threshold; corrected uses ΔV above the HAT plane, HAT = +1.75 m, exact runup/crossings, calibration-only quantiles |
 | General — calibration skill | thesis: R² = 0.26, RMSE 22.4 | – | not printed | R = 0.53 (R² = 0.28), RMSE 23.7 | R = 0.48, **R² = 0.23**, RMSE 14.0 | RMSE not comparable across ΔV definitions (upper-beach ΔV has lower variance) |
