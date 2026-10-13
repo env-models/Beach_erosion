@@ -1,12 +1,12 @@
 {
   "events": {
     "path": "data/processed/events_trucvert.parquet",
-    "mtime": "2026-10-13 22:54:21 CEST",
+    "mtime": "2026-10-13 23:02:32 CEST",
     "n_rows": 51
   },
   "intervals": {
     "path": "data/processed/intervals_trucvert.parquet",
-    "mtime": "2026-10-13 22:54:21 CEST",
+    "mtime": "2026-10-13 23:02:32 CEST",
     "n_rows": 128
   }
 }
