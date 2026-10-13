@@ -47,6 +47,13 @@ Profiles: HAL (90 records as of 13 Oct 2026, queried via `authFullName_s:"Alexan
   - The paper does **not** cite the thesis itself (no "Gillet 2017" in its reference list), but Gillet is a co-author and the EVI section is the thesis method.
   - It cites two BRGM reports relevant to Agent B: **RP-63797-FR** (Bulteau et al. 2014, impact of the 2013–14 winter on the Aquitaine coast; public PDF confirmed at `infoterre.brgm.fr/rapports/RP-63797-FR.pdf`, HTTP 200, 23.7 MB) and **RP-63802-FR** (Bulteau et al. 2016, exposure to marine flooding) `[verify: not downloaded]`.
 
+**Cross-check with the orchestrator / Agent D (13 Oct, ~23:05):** Agent D independently confirmed the same Crossref record: 9 authors, Gillet 5th, JCR SI 85: 666–670, doi:10.2112/SI85-134.1. The full text was **not** behind the BioOne paywall for us. The HAL author PDF (brgm.hal.science/hal-01719953) was downloaded and read in full. Answers to the orchestrator's specific questions:
+- **Equation:** ΣE = ∫₀ᴺ (1/16) ρ g Hs² Δt, with ρ = 1030 kg/m³ and N in hours. Energy is counted only while η_d = tide + surge + R2% (Stockdon 2006) exceeds local HAT. The EVI is described as "inspired from Splinter et al. (2014)" and uses the pre-storm profile volume.
+- **Calibration period:** 2009–2013 (39 erosive storm events). **Validation:** 2013–2015 (13 events, incl. winter 2013–14). It is *not* a 2009–2015 calibration.
+- **Skill:** two-model (pre-storm state) R² = 0.83, RMSE 7.7 m³/m, NRMSE 22%; single model R² = 0.70, RMSE 10.3 m³/m, NRMSE 23%. This does **not exactly match** the thesis (0.85 / 7.5; see the table below).
+- **Biscarrosse:** in the paper, Biscarrosse is used **only for the CRI** (2 erosive events, winter 2015–16; dune-foot retreat 10–13 m at 4 m NGF, 5–7 m at 5 m, 0.5–3 m at 6 m; collision predicted 7× and 3×; plus a ±10 % Hs/Tp/η_st sensitivity analysis). **The EVI is calibrated and validated at Truc Vert only.** The thesis's Biscarrosse EVI extrapolation (4 profiles) is not reported in the paper.
+- **Does RP-67418-FR (2019) update the EVI after 2018?** **No.** The report never uses the terms "volume érodé" or "EVI" and gives no regression or skill for eroded volume. The operational indicator replaced it with a threshold matrix: wave power (∝ Hs²Tp) at 100/200 kW/m, PMVE, and dune-foot P5% from LiDAR. That matrix was calibrated against field feedback from past winters, not against measured ΔV. No later EVI update was found on HAL (90 records) or Crossref either. The 2018 JCR paper is therefore the last published state of the EVI.
+
 **Discrepancies with the thesis, to pass to Agent A (§2.1 item 9, R vs R²):**
 
 | Quantity | Thesis (Gillet 2017) | JCR 2018 paper |
