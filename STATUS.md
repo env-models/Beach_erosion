@@ -9,8 +9,8 @@
 
 ## Progress
 - [x] Setup: branch, layout, env, thesis text extraction, first commit + push (22:50)
-- [ ] Wave 1 launched (A, B, D, E)
-- [ ] Event table v1 from A
-- [ ] Wave 2: C
+- [x] Wave 1 launched (A, B, D, E) at 22:50, all on Opus 5.5
+- [x] Event table v1 from A (22:53; 51 events 2008–2014)
+- [x] Wave 2: C launched 22:56
 - [ ] paper/outline.md + publication checklist
 - [ ] Final STATUS.md, commit, push

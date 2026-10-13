@@ -19,3 +19,8 @@ Session started 2026-10-13 ~22:45 local. Orchestrator: Claude (Fable 5.1). Owner
 (appended below as decisions are made)
 - **[22:52] D-10 — All subagents run on Opus 5.5 (`model: opus`).** Owner said mid-session they need to move off Fable 5.1 to conserve credits. Orchestrator stays on whatever model the owner selects with `/model`; subagents are pinned to Opus 5.5.
 - **[22:52] D-11 — Shared working tree, disjoint paths.** Agents work in the same checkout on `revisit-2026` and stage only their own paths (`git add <paths>`), never `git add -A`, and retry on `index.lock`. Only the orchestrator pushes. Rationale: 4 worktrees would need 4 merges at the end; path ownership from HANDOFF §3 is already disjoint.
+- **[22:50] D-12 — Wave 1 launched: A (audit), B (data), D (state of the art), E (supervisors).** Each told: hard stop 00:10, commit own paths only, A to deliver event table v1 by ~23:35. Orchestrator drafts `paper/outline.md` skeleton and the §7 checklist while waiting, to be filled with results at the end.
+
+## Wave 2
+
+- **[22:56] D-13 — Agent C launched on event table v1 (51 events, 2008-01→2014-11, 44 cols), delivered by A at 22:53.** Concurrency now 5/5. C told to (a) treat the table as read-only and reread it per run since A is still refining, (b) document a resolvability rule for very long intervals without looking at the target (v1 includes a 307-day interval with 11 storms), (c) check `data/processed/` for B's extended data at ~23:40 and ~00:00 and rerun as v2 if present, (d) flag suspicious inputs (peak Hs 14.2 m, max TWL 8.3 m in v1) for A rather than fix them, (e) hard stop 00:15.
