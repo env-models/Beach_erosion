@@ -157,6 +157,48 @@ Same code path as the notebook (85/15 split, whole-profile ΔV, notebook metrics
 * **Survey gaps.** Interval 2008-04-08 → 2009-02-09 is 307 days long (11 storms) and is not usable as an event;
   `interval_days` is in the table so Agent C can exclude long gaps.
 
+* **Runup slope definition (from C's and R's findings).** The default runup slope β is the mean slope between the
+  still-water-level crossing and the +4 m crossing on the last pre-step survey (the notebook's definition, kept for
+  comparability). This is not Stockdon's foreshore slope, and it blows up when the two crossings are close.
+  Measured over all forcing steps (`python -m evi.slopefix`):
+
+  | table / slope | β p50 / p90 / p99 / max | R2% p50 / p99 / max (m) | steps R2% > 4 m | steps TWL > 6 m | TWL ≥ HAT | max TWL (m MSL) |
+  |---|---|---|---|---|---|---|
+  | v1, default (WL→+4 m) | 0.053 / 0.072 / 0.103 / 0.137 | 1.12 / 3.49 / 6.44 | 85 | 37 | 27.4% | 8.67 |
+  | v1, slopefix | 0.049 / 0.081 / 0.124 / 0.124 | 1.15 / 3.33 / 6.60 | 69 | 17 | 24.9% | 7.92 |
+  | v2, default | 0.049 / 0.068 / 0.087 / 0.324 | 0.92 / 2.63 / 12.83 | 45 | 44 | 20.8% | 15.59 |
+  | v2, slopefix | 0.047 / 0.081 / 0.125 / 0.125 | 0.95 / 2.68 / 5.17 | 95 | 27 | 18.9% | 6.73 |
+
+  Events with `max_twl_all` > 6 m: v1 12/51 by default and 3/51 with slopefix; v2 9/98 by default and 2/98 with slopefix.
+  - **The v2 TV20140303 case** (TWL 15.59 m) is at step 2014-03-03 17:00 UTC: Hs 7.45 m, Tp 13.7 s, wl 2.76 m
+    (tide + surge), H0 8.16 m, L0 292 m. The pre-storm survey starts *below* +4 m at the v2 landward origin
+    (x = 30 m, the dune scarp after the 2013–14 winter). So x(+4 m) = 30.0 m and x(wl) = 33.8 m, giving β = 0.324
+    over 3.8 m. That β puts Stockdon in the non-dissipative branch, so R2% = 12.83 m.
+  - **The v1 maximum** (TV20140303, 8.67 m) is a different mechanism: β = 0.11 is moderate, but the legacy WW3 Hs is
+    9.09 m with Tp 16.7 s at wl 2.22 m, giving R2% 6.44 m. The legacy wave forcing is too high (next bullet).
+  - **Alternative (`slope_method="band_0_3"`, `evi.profiles.foreshore_slope_band`):** one least-squares slope per
+    survey over z ∈ [0, +3] m MSL, landward of the first 0 m crossing, capped at β ≤ 0.2 [verify against Stockdon
+    et al. 2006, who use the foreshore slope over ±2σ around setup]. The cap never binds in these data (max 0.125).
+  - **Alternative tables:** `events_trucvert_slopefix.*`, `intervals_trucvert_slopefix.*`,
+    `events_trucvert_v2_slopefix.*`, `intervals_trucvert_v2_slopefix.*`. Same schema; the default tables are unchanged.
+  - **Linear reproduction on v1** (HAT 2.14, energy over HAT-exceeding storm hours, all events, thesis split):
+
+    | model | default β: cal R² / val R² [95% CI] | slopefix β: cal R² / val R² [95% CI] |
+    |---|---|---|
+    | General (ΔV_upper; n_cal 35, n_val 11) | 0.24 / 0.53 [0.07, 0.70], val RMSE 7.6 | **0.36** / 0.60 [0.17, 0.77], val RMSE 7.1 |
+    | TPTE-honest (ΔV_total_fixed) | 0.24 / 0.73 [0.45, 0.88] | 0.28 / 0.72 [0.42, 0.85] |
+    | PPT-honest | 0.31 / 0.73 [0.27, 0.85] | 0.36 / 0.72 [0.23, 0.85] |
+
+    A physically saner slope improves the in-sample General fit (0.24 → 0.36). Validation CIs overlap completely.
+* **Wave-forcing outliers (from C, checked here where possible).**
+  - The legacy maximum Hs = 14.23 m at 2009-01-24 09:00 UTC (Klaus) is a single-sample spike: the neighbours are
+    10.51 m (06:00) and 10.63 m (12:00), and B's Castelle series peaks at 9.32 m that day. These three values were
+    checked here.
+  - C reports RESOURCECODE at 12.3 m (not checked by A).
+  - C reports that the legacy WW3 node runs 1.5–2.5 m above B's wave series at storm peaks [not re-measured by A].
+    This is consistent with what A measured over 2008–2014: mean Hs 2.01 vs 1.66 m, q95 4.41 vs 3.72 m.
+  - Together with the runup slope, this inflates v1 R2%/TWL. It is a further reason to prefer the v2 forcing.
+
 ## 3. Interpretation for Agents C/F (no new numbers)
 * The 2017 calibration-period finding is reproduced: storm energy alone explains about a quarter of
   storm-event ΔV variance at Truc Vert (thesis R² 0.26; here 0.24 for ΔV above HAT with HAT-filtered energy, HAT = +2.14 m MSL).
@@ -183,6 +225,8 @@ Same code path as the notebook (85/15 split, whole-profile ΔV, notebook metrics
 cd Beach_erosion
 source .venv/bin/activate            # Python 3.12, package `evi` installed editable from src/
 python -m evi.events                 # -> data/processed/{events,intervals}_trucvert.{parquet,csv}
+python -m evi.events_v2              # -> v2 tables (Agent B data)
+python -m evi.slopefix               # -> *_slopefix tables + slope diagnostics (default tables untouched)
 python -m evi.reproduce              # -> prints §1 tables (notebook ablation, corrected models, energy variants)
                                      #    and writes data/processed/reproduction_A.json (bootstrap seed 42)
 pytest -q                            # 24 tests: runup, energy units, storms, volumes, datenum, events, notebook regression

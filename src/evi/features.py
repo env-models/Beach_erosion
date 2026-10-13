@@ -6,7 +6,7 @@ import pandas as pd
 
 from .constants import DEPTH_SHOAL, HAT_MSL, Z_SLOPE_TOP
 from .io import Profiles
-from .profiles import foreshore_slope
+from .profiles import foreshore_slope, foreshore_slope_band
 from .runup import deep_water_wavelength, deshoal, stockdon_r2
 
 
@@ -16,8 +16,12 @@ def profile_in_force(t_unix: np.ndarray, prof_t_unix: np.ndarray) -> np.ndarray:
 
 
 def timestep_features(hydro: pd.DataFrame, prof: Profiles, hat: float = HAT_MSL,
-                      z_top: float = Z_SLOPE_TOP, depth: float = DEPTH_SHOAL) -> pd.DataFrame:
+                      z_top: float = Z_SLOPE_TOP, depth: float = DEPTH_SHOAL,
+                      slope_method: str = "wl_to_4") -> pd.DataFrame:
     """Return per-timestep ``p_idx, beta, H0, L0, R2, twl, exceed_hat``.
+
+    ``slope_method``: ``"wl_to_4"`` (default, notebook-like, see below) or ``"band_0_3"``
+    (A slopefix: least-squares slope of z in [0, +3] m MSL on the survey, capped at 0.2).
 
     beta: mean slope between still water level and ``z_top`` on the pre-existing
     survey (landward-most crossings; seaward survey end used when the water level
@@ -27,9 +31,15 @@ def timestep_features(hydro: pd.DataFrame, prof: Profiles, hat: float = HAT_MSL,
     p_idx = profile_in_force(hydro["t_unix"].values, prof.t_unix)
     wl = hydro["wl"].values
     beta = np.full(len(hydro), np.nan)
-    for n, (p, w) in enumerate(zip(p_idx, wl)):
-        if p >= 0:
-            beta[n] = foreshore_slope(prof.x, prof.z[p], float(w), z_top)
+    if slope_method == "band_0_3":  # A slopefix: fixed-band slope per survey, capped at 0.2
+        per = np.array([foreshore_slope_band(prof.x, prof.z[i]) for i in range(prof.z.shape[0])])
+        beta[p_idx >= 0] = per[p_idx[p_idx >= 0]]
+    elif slope_method == "wl_to_4":
+        for n, (p, w) in enumerate(zip(p_idx, wl)):
+            if p >= 0:
+                beta[n] = foreshore_slope(prof.x, prof.z[p], float(w), z_top)
+    else:
+        raise ValueError(slope_method)
     l0 = deep_water_wavelength(hydro["tp"].values)
     h0 = deshoal(hydro["hs"].values, hydro["tp"].values, depth, exact=True)
     r2 = stockdon_r2(h0, l0, beta)

@@ -47,7 +47,7 @@ def _sum(a: np.ndarray, m: np.ndarray) -> float:
 def build_intervals(hydro: pd.DataFrame | None = None, prof: Profiles | None = None,
                     calib: tuple[str, str] = (CALIB_START, CALIB_END),
                     min_gap_h: float = 0.0, dt_h: float = DT_HOURS,
-                    x_fixed: float | None = None) -> tuple[pd.DataFrame, dict]:
+                    x_fixed: float | None = None, slope_method: str = "wl_to_4") -> tuple[pd.DataFrame, dict]:
     """One row per consecutive survey pair fully inside the forcing record."""
     hydro = load_hydro() if hydro is None else hydro
     prof = load_profiles() if prof is None else prof
@@ -58,7 +58,7 @@ def build_intervals(hydro: pd.DataFrame | None = None, prof: Profiles | None = N
     sid = np.full(len(hydro), -1)
     for k, s in enumerate(storms):
         sid[s.i0:s.i1 + 1] = k
-    ts = timestep_features(hydro, prof)
+    ts = timestep_features(hydro, prof, slope_method=slope_method)
     hs, tp = hydro["hs"].values, hydro["tp"].values
     th, tpf = hydro["t_unix"].values, prof.t_unix
     exc = ts["exceed_hat"].values

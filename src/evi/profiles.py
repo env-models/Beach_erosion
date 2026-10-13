@@ -122,3 +122,22 @@ def foreshore_slope(x: np.ndarray, z: np.ndarray, wl: float, z_top: float = 4.0,
     if np.isnan(x_top) or np.isnan(x_wl) or x_wl <= x_top:
         return float("nan")
     return float((z_top - z_wl) / (x_wl - x_top))
+
+
+def foreshore_slope_band(x: np.ndarray, z: np.ndarray, band: tuple[float, float] = (0.0, 3.0),
+                         cap: float = 0.2, min_points: int = 5) -> float:
+    """Alternative runup slope (A slopefix): least-squares slope of z in a FIXED band [0, +3] m MSL.
+
+    Uses points landward of the landward-most crossing of the band's lower level and caps the
+    result at ``cap``. This is one slope per survey, independent of the instantaneous water level, so it cannot blow up
+    when the water-level and +4 m crossings are close (the notebook definition). Band and cap
+    are choices [verify against Stockdon et al. 2006 foreshore-slope definition, ±2σ around setup].
+    """
+    n = valid_extent(z)
+    xx, zz = x[:n], z[:n]
+    xl = landward_crossing(xx, zz, band[0])
+    lim = xx[-1] if np.isnan(xl) else xl
+    m = (zz >= band[0]) & (zz <= band[1]) & (xx <= lim)
+    if m.sum() < min_points:
+        return float("nan")
+    return float(min(-np.polyfit(xx[m], zz[m], 1)[0], cap))

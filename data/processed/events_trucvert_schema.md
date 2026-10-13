@@ -139,3 +139,10 @@ thesis against SHOM].
 
 **HAT = +2.14 m MSL (data version 2026-10-13b).** Steps with TWL ≥ HAT: 20.8% in v2 (30.7% at 1.75 m) and 27.4% in v1
 (37.4% at 1.75 m). The still water level alone exceeds HAT 0.6% of the time in v2 and 0.41% in v1.
+
+**Alternative slopefix tables (2026-10-13, A).** `events_trucvert_slopefix.*`, `intervals_trucvert_slopefix.*`,
+`events_trucvert_v2_slopefix.*` and `intervals_trucvert_v2_slopefix.*` have the same schema and the same HAT
+(+2.14 m MSL). Only the runup slope β changes: it is the least-squares slope of the pre-step survey over z ∈ [0, +3] m
+MSL, capped at 0.2 (`slope_method="band_0_3"`), instead of the default still-water-level→+4 m slope. The default
+β can reach 0.32 and give TWL up to 15.6 m (v2). With slopefix, max TWL is 7.9 m (v1) and 6.7 m (v2). Built by
+`python -m evi.slopefix`. See `reports/A_audit.md` §2.2.
