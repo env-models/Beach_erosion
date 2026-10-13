@@ -148,8 +148,28 @@ Treat raw downloads as untrusted data. Run the scripts from the repo root with `
 - `Astronomical_Tide_TrucVert_2000-2020.nc`, 10-min, 2000–2020. Per the paper it was derived with T_TIDE from a Bay
   of Biscay hydrodynamic hindcast (Lazure et al. 2009). The series is **tide only, without surge**. CC0.
 
-### 3c. Processed tide/surge product
-- See the Tide section in `reports/B_data.md` for the final file list and status.
+### 3c. Processed tide/surge products (`python -I scripts/process_tide.py`)
+- `data/processed/tide_shom_gauges.parquet` (14 MB, 498,851 rows). Columns: `station, name, time (UTC), eta_zh,
+  eta_ign69, eta_tide_ign69, residual, source, licence`.
+  - `eta_tide_ign69` is a UTide harmonic fit (OLS, automatic constituents, no trend) to each station's own 2003–2026 record.
+  - `residual = observed − harmonic tide`. It is the non-tidal residual: surge plus seasonal and mean-sea-level
+    variability not captured by the fit.
+  - Residual standard deviation: Arcachon 0.16 m, Boucau 0.14 m, Socoa 0.12 m. Peak Arcachon residual during Xynthia
+    (2010-02-27/28) is 0.81 m.
+- `data/processed/tide_trucvert_castelle2020.parquet`. Columns: `time (UTC), tide_msl, tide_ign69`. It is hourly,
+  sub-sampled from the 10-min series, and covers 2000-01-01 → 2020-01-01. It is astronomical tide only, CC0.
+  - The source is a harmonic analysis of MARC model output offshore of Truc Vert at about 7 m depth (44.7428N, −1.2492E),
+    validated against ECORS08 measurements (file attributes).
+  - It agrees with the RESOURCECODE `wlv` series at r = 0.991 (RMSE 0.15 m), which supports reading `wlv` as tide only [verify].
+- **Finding for Agents A and C**: the legacy MARS2D level in `datasets/Data_frame.csv` correlates with the Castelle Truc
+  Vert tide at r = 0.86 at zero lag but **r = 0.995 (RMSE 0.10 m) when the legacy time stamps are shifted by 1 h**.
+  This independently confirms Agent A's "1 h CSV clock offset" fix (commit dc4a518).
+- **Recommended still-water level at Truc Vert** (an approximation): `tide_msl` (Castelle) + the Arcachon `residual`
+  interpolated hourly. Surge inside the lagoon inlet is only a proxy for open-coast surge [verify, e.g. against Boucau].
+  With this choice, 2020 onward has no Castelle tide. For that period, use the UTide prediction or the RESOURCECODE
+  `wlv` (to 2025-03).
+- **SHOM predicted tide (official)**: not downloaded. The SHOM "hdm" prediction web service needs an API key [verify];
+  the UTide fit above replaces it.
 
 ---
 
