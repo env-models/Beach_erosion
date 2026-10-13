@@ -317,3 +317,42 @@ def hat_sensitivity():
     out = pd.DataFrame(rows)
     out.to_csv(OUT_TAB / "C_hat_sensitivity.csv", index=False)
     return out
+
+
+def direction_ablation():
+    """v2 only: does wave direction (or winter NAO) add skill? LOWO, paired bootstrap of ΔRMSE."""
+    ev, iv, *_ = load_v2()
+    base = FEATURES
+    ms = {
+        "E_hat": OLS([E_HAT], "E_hat"),
+        "E_hat_dir": OLS([E_HAT, "mean_dir"], "E_hat + dir"),
+        "E_hat_Edir": OLS([E_HAT, e_times("mean_dir")], "E_hat + E*dir"),
+        "eq_b": baseline_models()["eq_b"],
+        "eq_b_dir": OLS([E_HAT, e_times_diseq, "mean_dir"], "eq_b + dir", state_fn=True),
+        "lgbm_base": Tree("lgbm", base),
+        "lgbm_dir": Tree("lgbm", base + ["mean_dir"]),
+        "lgbm_nao": Tree("lgbm", base + ["nao_winter"]),
+        "lgbm_dir_nao": Tree("lgbm", base + ["mean_dir", "nao_winter"]),
+        "clim": baseline_models()["clim"],
+    }
+    pairs = [("Direction (OLS): E + dir vs E", "E_hat_dir", "E_hat"),
+             ("Direction (OLS): E + E*dir vs E", "E_hat_Edir", "E_hat"),
+             ("Direction: Equilibrium B + dir vs Equilibrium B", "eq_b_dir", "eq_b"),
+             ("Direction (LightGBM): + mean_dir vs base", "lgbm_dir", "lgbm_base"),
+             ("NAO (LightGBM): + nao_winter vs base", "lgbm_nao", "lgbm_base"),
+             ("Direction + NAO (LightGBM) vs base", "lgbm_dir_nao", "lgbm_base")]
+    rows = []
+    for target in TARGETS:
+        for subset in SUBSETS:
+            pred = evaluate(ev, iv, target, subset, ms, with_intervals=False)
+            y = pred["obs"].to_numpy(float)
+            for q, a, b in pairs:
+                d = P.paired_delta_rmse(y, pred[a], pred[b])
+                sa = P.point_metrics(y, pred[a], {"clim": pred["clim"]})
+                sb = P.point_metrics(y, pred[b], {"clim": pred["clim"]})
+                rows.append(dict(data="v2", target=target, subset=subset, question=q, variant=a, reference=b,
+                                 rmse_variant=sa["rmse"], rmse_reference=sb["rmse"], **d,
+                                 skill_clim_variant=sa["skill_clim"], skill_clim_reference=sb["skill_clim"]))
+    out = pd.DataFrame(rows)
+    out.to_csv(OUT_TAB / "C_ablation_direction_v2.csv", index=False)
+    return out

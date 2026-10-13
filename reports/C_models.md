@@ -542,6 +542,36 @@ Target ablation (EVI-type OLS on E_HAT, LOWO):
 | dV_lower_fixed | all | 81 | 11.0 | 10.2 | 0.12 [-0.14, 0.31] | 0.13 [-0.10, 0.33] |
 <!-- /AUTO:ablt_v2 -->
 
+### v2 — wave direction and winter NAO (`run_all.direction_ablation`)
+<!-- AUTO:abl_dir_v2 -->
+| target | subset | question | n | RMSE variant | RMSE reference | ΔRMSE (variant − ref) [95 % CI] | skill vs clim (variant / ref) |
+|---|---|---|---|---|---|---|---|
+| dV_upper | resolvable | Direction (OLS): E + dir vs E | 91 | 8.43 | 8.47 | -0.04 [-0.24, +0.18] | 0.38 / 0.37 |
+| dV_upper | resolvable | Direction (OLS): E + E*dir vs E | 91 | 9.01 | 8.47 | +0.54 [-0.28, +1.55] | 0.29 / 0.37 |
+| dV_upper | resolvable | Direction: Equilibrium B + dir vs Equilibrium B | 91 | 7.77 | 7.87 | -0.10 [-0.32, +0.17] | 0.47 / 0.46 |
+| dV_upper | resolvable | Direction (LightGBM): + mean_dir vs base | 91 | 9.11 | 9.32 | -0.21 [-0.72, +0.33] | 0.27 / 0.24 |
+| dV_upper | resolvable | NAO (LightGBM): + nao_winter vs base | 91 | 8.91 | 9.32 | -0.40 [-0.84, -0.00] | 0.30 / 0.24 |
+| dV_upper | resolvable | Direction + NAO (LightGBM) vs base | 91 | 8.84 | 9.32 | -0.48 [-0.99, -0.06] | 0.31 / 0.24 |
+| dV_upper | all | Direction (OLS): E + dir vs E | 98 | 11.10 | 11.29 | -0.19 [-0.45, +0.12] | -0.08 / -0.12 |
+| dV_upper | all | Direction (OLS): E + E*dir vs E | 98 | 11.05 | 11.29 | -0.24 [-1.02, +0.65] | -0.08 / -0.12 |
+| dV_upper | all | Direction: Equilibrium B + dir vs Equilibrium B | 98 | 10.61 | 10.86 | -0.25 [-0.55, +0.10] | 0.01 / -0.04 |
+| dV_upper | all | Direction (LightGBM): + mean_dir vs base | 98 | 9.55 | 9.71 | -0.17 [-0.52, +0.22] | 0.20 / 0.17 |
+| dV_upper | all | NAO (LightGBM): + nao_winter vs base | 98 | 9.56 | 9.71 | -0.15 [-0.48, +0.20] | 0.19 / 0.17 |
+| dV_upper | all | Direction + NAO (LightGBM) vs base | 98 | 9.49 | 9.71 | -0.22 [-0.57, +0.17] | 0.21 / 0.17 |
+| dV_total_fixed | resolvable | Direction (OLS): E + dir vs E | 76 | 14.30 | 14.27 | +0.03 [-0.15, +0.23] | 0.39 / 0.39 |
+| dV_total_fixed | resolvable | Direction (OLS): E + E*dir vs E | 76 | 15.23 | 14.27 | +0.96 [-0.29, +2.69] | 0.31 / 0.39 |
+| dV_total_fixed | resolvable | Direction: Equilibrium B + dir vs Equilibrium B | 76 | 12.78 | 12.80 | -0.02 [-0.23, +0.22] | 0.51 / 0.51 |
+| dV_total_fixed | resolvable | Direction (LightGBM): + mean_dir vs base | 76 | 15.68 | 16.00 | -0.32 [-1.22, +0.56] | 0.27 / 0.24 |
+| dV_total_fixed | resolvable | NAO (LightGBM): + nao_winter vs base | 76 | 14.79 | 16.00 | -1.21 [-2.00, -0.44] | 0.35 / 0.24 |
+| dV_total_fixed | resolvable | Direction + NAO (LightGBM) vs base | 76 | 14.60 | 16.00 | -1.40 [-2.41, -0.39] | 0.36 / 0.24 |
+| dV_total_fixed | all | Direction (OLS): E + dir vs E | 81 | 17.23 | 17.31 | -0.08 [-0.29, +0.20] | 0.12 / 0.11 |
+| dV_total_fixed | all | Direction (OLS): E + E*dir vs E | 81 | 17.57 | 17.31 | +0.26 [-0.17, +1.01] | 0.09 / 0.11 |
+| dV_total_fixed | all | Direction: Equilibrium B + dir vs Equilibrium B | 81 | 18.24 | 18.35 | -0.11 [-0.33, +0.19] | 0.02 / 0.00 |
+| dV_total_fixed | all | Direction (LightGBM): + mean_dir vs base | 81 | 14.80 | 15.22 | -0.41 [-1.26, +0.40] | 0.35 / 0.31 |
+| dV_total_fixed | all | NAO (LightGBM): + nao_winter vs base | 81 | 14.17 | 15.22 | -1.05 [-1.70, -0.37] | 0.41 / 0.31 |
+| dV_total_fixed | all | Direction + NAO (LightGBM) vs base | 81 | 14.11 | 15.22 | -1.10 [-1.95, -0.26] | 0.41 / 0.31 |
+<!-- /AUTO:abl_dir_v2 -->
+
 ### HAT sensitivity (HAT = +2.14 m vs superseded +1.75 m MSL tables; LOWO, resolvable)
 <!-- AUTO:hat -->
 | data | target | model | n | RMSE HAT 2.14 | RMSE HAT 1.75 | skill vs clim HAT 2.14 [CI] | skill vs clim HAT 1.75 [CI] |
@@ -583,6 +613,13 @@ Target ablation (EVI-type OLS on E_HAT, LOWO):
   v1 (Hs²Δt: +1.00 [+0.02, +1.92]; flux +1.18 [+0.26, +1.98]) and no different elsewhere. This is expected because
   TWL ≥ HAT is reached in a large share of time steps even at HAT = +2.14 m (Agent A: 27 % v1 / 21 % v2), so
   "stormHAT" energy ≈ "storm" energy for almost every event (v1: 50/51 events have HAT-exceeding energy).
+* *Wave direction (v2):* no detectable effect in the linear/equilibrium models (`dV_upper` resolvable: E + dir
+  −0.04 [−0.24, +0.18]; Equilibrium B + dir −0.10 [−0.32, +0.17]); a non-significant gain in LightGBM (−0.21
+  [−0.72, +0.33]).
+* *Winter NAO (v2, concurrent DJFM index):* the only added variable with a detectable gain, and only inside
+  LightGBM (`dV_upper` −0.40 [−0.84, −0.00]; `dV_total_fixed` −1.21 [−2.00, −0.44]); even then LightGBM + NAO
+  (skill 0.30 / 0.35) stays below Equilibrium B (0.46 / 0.51). NAO is not known in advance, so this is a
+  seasonal-context signal, not a forecast gain.
 * *ML with vs without antecedent features:* no detectable gain (v1 `dV_upper` −0.13 [−1.20, +0.95]; v2 +0.34
   [−0.20, +0.91]); without them LightGBM is even marginally better on `dV_total_fixed`.
 * *Upper vs total ΔV:* in v1 the whole-profile fixed-window target is more predictable from energy (skill 0.57
@@ -990,8 +1027,8 @@ v2:
 (1.7); in v2 they are the berm proxy (1.6), wave direction `mean_dir` (1.5) and the energy flux (1.2), with the
 winter NAO at 1.1. The continuous antecedent anomaly is mid-ranked (1.4 v1, 0.5 v2) and the cluster count is
 last in both. These are **in-sample** explanations of a model that does *not* beat the linear baselines out of
-sample, so they describe what the trees use, not proven physical controls. Direction appearing in v2 is a lead for
-the paper (the 2017 work had none), not a result: the direction ablation was not run separately. Figures:
+sample, so they describe what the trees use, not proven physical controls. Direction ranks high in v2 SHAP, but the direction
+ablation (§5) shows no detectable out-of-sample gain from it. Figures:
 `figures/fig_shap_summary.png`, `fig_shap_dependence.png` (and `_v2` versions).
 
 ## 8. v2C — Agent C's independent v2 build (robustness check only)
@@ -1033,8 +1070,9 @@ and v2C, which shows how fragile any 2013-14 ranking based on 8–12 events is.
    with n = 8–12 and CIs that include the baseline (e.g. v1 2013-14 `dV_total_fixed`: XGBoost 0.85 [0.72, 0.91] vs
    EVI General 0.66 [0.28, 0.86]; on LOWO the same XGBoost is at 0.33). On the v2 recent hold-out (2015-16 → 2019-20,
    n = 38) Equilibrium B is best (0.47 [0.13, 0.75]) and LightGBM is worse than climatology.
-4. **Antecedent state, clustering, flux, HAT filter:** none of the 2017 open questions gives a detectable gain
-   with these data (§5). The most defensible improvement over the 2017 EVI is the **equilibrium/disequilibrium**
+4. **Antecedent state, clustering, flux, HAT filter, direction:** none of the 2017 open questions gives a
+   detectable gain with these data (§5); the only detectable gain is the concurrent winter NAO inside LightGBM,
+   which still leaves LightGBM below Equilibrium B. The most defensible improvement over the 2017 EVI is the **equilibrium/disequilibrium**
    form (Equilibrium B: a·E + c·E·(V_pre − V_eq)) and, in v2, the ShoreFor-flavoured model. Both are physics-based
    and give the best and most stable out-of-winter skill, but their margin over EVI General is within the CIs.
 5. **Uncertainty:** conformal intervals are calibrated but ~3× the observed SD wide; GP intervals are
@@ -1078,7 +1116,7 @@ Engineering 201:104813) and the GP approach of Beuzen et al. 2019 (NHESS 19:2295
   version (daily Ω, φ chosen in-sample, w_s assumed) and is not the full Davidson et al. (2013) model.
 * **Hyper-parameters** were fixed a priori, not tuned; a nested tuning might help the trees slightly, but n is too
   small for it to be trusted.
-* **SHAP** values are in-sample. The direction ablation (with vs without `mean_dir`) was not run separately.
+* **SHAP** values are in-sample.
 * `nao_winter` is a concurrent seasonal index (DJFM of the same winter), so it is diagnostic, not a forecast input.
 * **PySR not run.** First import downloads Julia from the internet. It was skipped to keep inside the time box and to
   avoid an unplanned large download on the owner's machine.
@@ -1093,7 +1131,7 @@ source .venv/bin/activate            # Python 3.12, requirements.txt
 python -m evi.models.run_all --data v1   # ~2 min: tables in figures/tables/, figures in figures/
 python -m evi.models.run_all --data v2   # ~6 min (needs data/processed/events_trucvert_v2.parquet)
 python -m evi.models.run_all --data v2C  # optional: C's own build from Agent B's files (+ raw tide nc)
-python -c "from evi.models.run_all import hat_sensitivity; hat_sensitivity()"
+python -c "from evi.models.run_all import hat_sensitivity, direction_ablation; hat_sensitivity(); direction_ablation()"
 python -m evi.models.report v1 v2 v2C   # refresh the auto tables in this file + model cards
 ```
 Seeds are fixed (0); results are deterministic on the same library versions (`requirements.lock.txt`).

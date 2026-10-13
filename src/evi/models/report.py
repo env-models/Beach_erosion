@@ -84,6 +84,9 @@ def fill(tag_list):
         imp = pd.read_csv(TAB / f"C_shap_importance_{tag}.csv", index_col=0)
         blocks[f"shap_{tag}"] = "| feature | mean abs SHAP (m³/m) |\n|---|---|\n" + "\n".join(
             f"| {k} | {v:.2f} |" for k, v in imp["mean_abs_shap"].items()) + "\n"
+    df_ = TAB / "C_ablation_direction_v2.csv"
+    if df_.exists():
+        blocks["abl_dir_v2"] = ablation_md(pd.read_csv(df_))
     hf = TAB / "C_hat_sensitivity.csv"
     if hf.exists():
         h = pd.read_csv(hf)
